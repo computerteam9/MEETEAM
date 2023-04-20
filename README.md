@@ -2,7 +2,7 @@
 
 ### 조원
 
-> 손봉우, 박정현
+> 손봉우, 박정현, 손예진
 
 ### Commit Convention
 ```bash
