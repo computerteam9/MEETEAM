@@ -1,5 +1,9 @@
 # meetteam
 
+### 조원
+
+> 손봉우, 박정현, 손예진, 김은수, 심여민
+
 ### Commit Convention
 ```bash
 추가 : ~
