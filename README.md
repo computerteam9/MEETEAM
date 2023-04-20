@@ -1,5 +1,9 @@
 # meetteam
 
+### 조원
+
+> 손봉우, 
+
 ### Commit Convention
 ```bash
 추가 : ~
