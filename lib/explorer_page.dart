@@ -4,15 +4,26 @@ import 'package:meetteam/color.dart';
 
 class ExplorerPage extends StatefulWidget {
   const ExplorerPage({super.key});
-  static const List<String> tagList = ["오프라인", "Javascript", "백엔드"];
-  static List<bool> isTagSelected = [false, false, false];
 
   @override
   State<StatefulWidget> createState() => _ExplorerState();
 }
 
 class _ExplorerState extends State<ExplorerPage> {
-  static const List<String> tagList = ["오프라인", "Javascript", "백엔드"];
+  static const List<String> tagList = [
+    "오프라인",
+    "Javascript",
+    "백엔드",
+    "프론트엔드",
+    "안드로이드",
+    "IOS",
+    "웹",
+    "데스크탑",
+    "게임",
+    "데이터베이스",
+    "기타"
+  ];
+  // tagList의 갯수만큼 false로 초기화
   static List<bool> isTagSelected = [false, false, false];
 
   @override
@@ -47,31 +58,37 @@ class _ExplorerState extends State<ExplorerPage> {
                 ],
               )),
           Container(
-              child: Row(children: [
-            for (int i = 0; i < tagList.length; i++)
-              ToggleButtons(
-                  color: Colors.black.withOpacity(0.60),
-                  selectedColor: CustomColor.color3,
-                  selectedBorderColor: CustomColor.color3,
-                  fillColor: CustomColor.color3.withOpacity(0.08),
-                  splashColor: CustomColor.color3.withOpacity(0.12),
-                  hoverColor: CustomColor.color3.withOpacity(0.04),
-                  borderRadius: BorderRadius.circular(4.0),
-                  constraints: BoxConstraints(minHeight: 36.0),
-                  isSelected: [isTagSelected[i]],
-                  onPressed: (index) {
-                    setState(() {
-                      isTagSelected[i] = !isTagSelected[i];
-                    });
-                  },
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              // Wrap으로 감싸서 자동 줄바꿈
+              child: Wrap(
+                  direction: Axis.horizontal,
+                  alignment: WrapAlignment.start,
+                  spacing: 5,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(tagList[i],
-                          style: const TextStyle(fontSize: 18)),
-                    )
-                  ]),
-          ]))
+                    // ToggleButtons 반복 생성
+                    for (int i = 0; i < tagList.length; i++)
+                      ToggleButtons(
+                          color: Colors.black.withOpacity(0.60),
+                          selectedColor: CustomColor.color3,
+                          selectedBorderColor: CustomColor.color3,
+                          fillColor: CustomColor.color3.withOpacity(0.08),
+                          splashColor: CustomColor.color3.withOpacity(0.12),
+                          hoverColor: CustomColor.color3.withOpacity(0.04),
+                          borderRadius: BorderRadius.circular(4.0),
+                          constraints: const BoxConstraints(minHeight: 36.0),
+                          isSelected: [isTagSelected[i]],
+                          onPressed: (index) {
+                            setState(() {
+                              isTagSelected[i] = !isTagSelected[i];
+                            });
+                          },
+                          children: [
+                            Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                child: Text(tagList[i]))
+                          ]),
+                  ]))
         ]));
   }
 }
