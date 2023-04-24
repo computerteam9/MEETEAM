@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/main_page.dart';
+import 'package:meetteam/explorer_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,8 +27,8 @@ class LoadingPage extends StatelessWidget {
       // 아무데나 누르면 메인페이지로 이동
       onTap: () {
         Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MainPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ExplorerPage()));
       },
       // 로딩화면
       child: const Scaffold(
