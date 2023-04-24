@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/app_bar.dart';
+import 'package:meetteam/color.dart';
 
 class MainPage extends StatelessWidget {
-  static const color1 = Color(0xff5dbaf4);
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,8 @@ class MainPage extends StatelessWidget {
                     height: 90,
                     margin: const EdgeInsets.only(top: 20),
                     decoration: BoxDecoration(
-                        color: color1, borderRadius: BorderRadius.circular(10)))
+                        color: CustomColor.color1,
+                        borderRadius: BorderRadius.circular(10)))
               ])),
           Container(
             margin: const EdgeInsets.all(50),
