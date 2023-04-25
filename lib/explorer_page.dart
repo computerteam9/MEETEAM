@@ -24,7 +24,7 @@ class _ExplorerState extends State<ExplorerPage> {
     "기타"
   ];
   // tagList의 갯수만큼 false로 초기화
-  static List<bool> isTagSelected = [false, false, false];
+  static List<bool> isTagSelected = List.filled(tagList.length, false);
 
   @override
   Widget build(BuildContext context) {
