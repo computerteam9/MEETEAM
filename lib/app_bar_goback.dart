@@ -14,7 +14,7 @@ class BaseAppBar2 extends StatelessWidget implements PreferredSizeWidget {
       title: const Text(
         "MEETTEAM",
         style: TextStyle(
-            color: titleColor, fontSize: 10.0, fontWeight: FontWeight.w700),
+            color: titleColor, fontSize: 20.0, fontWeight: FontWeight.w700),
       ),
       centerTitle: true,
 //      leading: const Icon(Icons.notifications_none, color: iconColor, size: 30),
