@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BaseAppBar2 extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBar2({required Key key, required this.appBar}) : super(key: key);
+class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const BaseAppBar({required Key key, required this.appBar}) : super(key: key);
   final AppBar appBar;
   static const titleColor = Color(0xff2c4096);
   static const iconColor = Colors.black;
@@ -17,12 +17,13 @@ class BaseAppBar2 extends StatelessWidget implements PreferredSizeWidget {
             color: titleColor, fontSize: 20.0, fontWeight: FontWeight.w700),
       ),
       centerTitle: true,
-//      leading: const Icon(Icons.notifications_none, color: iconColor, size: 30),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back, color: iconColor, size: 30),
-        tooltip: 'go_back',
-        onPressed: () => {},
-      ),
+      leading: const Icon(Icons.arrow_back, color: iconColor, size: 30),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.description, color: iconColor, size: 30),
+          onPressed: () => {},
+        )
+      ],
     );
   }
 
