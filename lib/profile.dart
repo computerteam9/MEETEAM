@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/app_bar.dart';
 
-class MainPage extends StatelessWidget {
+class Profile extends StatelessWidget {
   static const color1 = Color(0xff5dbaf4);
   static const iconColor = Colors.black;
 
