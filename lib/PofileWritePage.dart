@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:meetteam/app_bar2.dart';
+import 'package:meetteam/Appbar2.dart';
 
 class ProfileWritePage extends StatefulWidget {
   const ProfileWritePage({super.key});

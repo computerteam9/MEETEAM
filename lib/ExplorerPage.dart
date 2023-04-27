@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/app_bar.dart';
-import 'package:meetteam/color.dart';
+import 'package:meetteam/Appbar3.dart';
+import 'package:meetteam/Color.dart';
 
 class ExplorerPage extends StatefulWidget {
   const ExplorerPage({super.key});

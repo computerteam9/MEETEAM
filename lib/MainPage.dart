@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:meetteam/app_bar.dart';
-import 'package:meetteam/color.dart';
-import 'package:meetteam/write_Page.dart';
+import 'package:meetteam/Appbar3.dart';
+import 'package:meetteam/Color.dart';
+import 'package:meetteam/WriteProjectPage.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
