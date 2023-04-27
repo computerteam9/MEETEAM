@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/main_page.dart';
+import 'package:meetteam/user_check.dart';
 import 'package:meetteam/write_Page.dart';
 import 'package:meetteam/memberApplication_Page.dart';
 
@@ -30,7 +31,9 @@ class LoadingPage extends StatelessWidget {
       onTap: () {
         Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MainPage()));
+            //context, MaterialPageRoute(builder: (context) => MainPage()));
+            context,
+            MaterialPageRoute(builder: (context) => UserCheck()));
       },
       // 로딩화면
       child: const Scaffold(
