@@ -53,22 +53,6 @@ class ProfileWrite extends State<ExplorerPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Icon(Icons.account_circle, size: 100),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "닉네임",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Text(
-                        "전문 분야",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Text(
-                        "거주 지역",
-                        style: TextStyle(fontSize: 15),
-                      )
-                    ]),
                 Column(children: [
                   Container(
                     margin: const EdgeInsets.all(5),
