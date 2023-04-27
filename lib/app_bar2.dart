@@ -20,7 +20,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: const Icon(Icons.arrow_back, color: iconColor, size: 30),
       actions: <Widget>[
         IconButton(
-          icon: const Icon(Icons.edit, color: iconColor, size: 30),
+          icon: const Icon(Icons.description, color: iconColor, size: 30),
           onPressed: () => {},
         )
       ],
