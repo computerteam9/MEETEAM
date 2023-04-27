@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/main_page.dart';
 import 'package:meetteam/user_check.dart';
+import 'package:meetteam/write_Page.dart';
+import 'package:meetteam/memberApplication_Page.dart';
 
 void main() {
   runApp(const MyApp());
