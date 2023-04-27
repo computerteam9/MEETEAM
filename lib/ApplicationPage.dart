@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:meetteam/app_bar.dart';
+import 'package:meetteam/Appbar3.dart';
 
 class ApplicationPage extends StatefulWidget {
   const ApplicationPage({super.key});
@@ -16,7 +16,6 @@ class _ApplicationPageState extends State<ApplicationPage> {
   TextEditingController workingTime = TextEditingController();
   TextEditingController introduceUser = TextEditingController();
 
-
   static const iconColor = Colors.black;
 
   @override
@@ -24,96 +23,85 @@ class _ApplicationPageState extends State<ApplicationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
-      body: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                child: Row(
-
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Flexible(
-                        fit: FlexFit.tight,
-                        flex: 7,
-                        child:TextFormField(
-                          decoration: InputDecoration(
-                            labelText: "닉네임",
-                          ),
-                          textAlign: TextAlign.start,
-                          controller: nickName,
-                        ),
-                      ),
-                      Spacer(flex:1),
-                      Flexible(
-                        fit: FlexFit.tight,
-                        flex: 10,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                              labelText: "지원 분야"
-                          ),
-                          textAlign: TextAlign.start,
-                          controller: supportArea,
-                          minLines: 1,
-                          maxLines: 3,
-                        ),
-                      ),
-                    ]),
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                child:
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: "경력",
-                    ),
-                    textAlign: TextAlign.start,
-                    controller: requiredCareer,
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                        labelText: "활동 시간"
-                    ),
-                    textAlign: TextAlign.start,
-                    controller: workingTime,
-                    minLines: 1,
-                    maxLines: 3,
-                  ),
-                ]),
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                child:
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: "한 줄 소개",
-                  ),
-                  textAlign: TextAlign.start,
-                  controller: introduceUser,
-                  minLines: 1,
-                  maxLines: 3,
+      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        Container(
+          margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 7,
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "닉네임",
                 ),
+                textAlign: TextAlign.start,
+                controller: nickName,
               ),
-              Container(
-                margin: const EdgeInsets.all(30),
-                alignment: Alignment.centerLeft,
-                child:
-                  const Icon(Icons.add, color: iconColor, size: 30,),
-                // const IconButton(
-                //   icon: Icon(Icons.add, color:iconColor, size: 30),
-                //   onPressed: () => {print("hi")},
-                // ),
-
+            ),
+            Spacer(flex: 1),
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 10,
+              child: TextFormField(
+                decoration: const InputDecoration(labelText: "지원 분야"),
+                textAlign: TextAlign.start,
+                controller: supportArea,
+                minLines: 1,
+                maxLines: 3,
               ),
-            ]),
-        );
+            ),
+          ]),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: "경력",
+              ),
+              textAlign: TextAlign.start,
+              controller: requiredCareer,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: "활동 시간"),
+              textAlign: TextAlign.start,
+              controller: workingTime,
+              minLines: 1,
+              maxLines: 3,
+            ),
+          ]),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+          child: TextFormField(
+            decoration: const InputDecoration(
+              labelText: "한 줄 소개",
+            ),
+            textAlign: TextAlign.start,
+            controller: introduceUser,
+            minLines: 1,
+            maxLines: 3,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.all(30),
+          alignment: Alignment.centerLeft,
+          child: const Icon(
+            Icons.add,
+            color: iconColor,
+            size: 30,
+          ),
+          // const IconButton(
+          //   icon: Icon(Icons.add, color:iconColor, size: 30),
+          //   onPressed: () => {print("hi")},
+          // ),
+        ),
+      ]),
+    );
     // TODO: implement build
     throw UnimplementedError();
   }
-
 }
 
 /*

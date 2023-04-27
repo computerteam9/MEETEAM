@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/explorer_page.dart';
-import 'package:meetteam/profile.dart';
-import 'package:meetteam/profile_write.dart';
-import 'package:meetteam/main_page.dart';
-import 'package:meetteam/user_check.dart';
-import 'package:meetteam/write_Page.dart';
-import 'package:meetteam/memberApplication_Page.dart';
+import 'package:meetteam/ExplorerPage.dart';
+import 'package:meetteam/ProfilePage.dart';
+import 'package:meetteam/ProfileWritePage.dart';
+import 'package:meetteam/MainPage.dart';
+import 'package:meetteam/UserCheckpage.dart';
+import 'package:meetteam/ProjectWritePage.dart';
+import 'package:meetteam/ApplicationPage.dart';
+
 void main() {
   runApp(const MyApp());
 }
