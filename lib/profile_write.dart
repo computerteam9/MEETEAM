@@ -4,10 +4,10 @@ import 'package:meetteam/app_bar2.dart';
 class ExplorerPage extends StatefulWidget {
   const ExplorerPage({super.key});
   @override
-  State<StatefulWidget> createState() => _ExplorerState();
+  State<StatefulWidget> createState() => ProfileWrite();
 }
 
-class _ExplorerState extends State<ExplorerPage> {
+class ProfileWrite extends State<ExplorerPage> {
   static const color1 = Color(0xff5dbaf4);
   static const List<String> tagList = [
     "C++",
