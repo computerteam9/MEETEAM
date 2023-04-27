@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:meetteam/app_bar.dart';
+import 'package:meetteam/color.dart';
 
 class MainPage extends StatelessWidget {
+  const MainPage({super.key});
   static const mainColor = Color(0xff83B8EE);
   static const subColor = Color(0Xff4676BA);
 
@@ -24,7 +26,6 @@ class MainPage extends StatelessWidget {
                       Icon(Icons.add)
                     ]),
                 // 내 프로젝트 리스트
-
                     Container(
                         height: 100,
                         margin: const EdgeInsets.only(top: 10),
