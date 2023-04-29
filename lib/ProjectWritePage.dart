@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar3.dart';
 
-class WritePage extends StatefulWidget {
-  const WritePage({super.key});
+class ProjectWritePage extends StatefulWidget {
+  const ProjectWritePage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _WritePageState();
+  State<StatefulWidget> createState() => _ProjectWritePageState();
 }
 
-class _WritePageState extends State<WritePage> {
+class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController projectTitle = TextEditingController();
   TextEditingController requiredCareer = TextEditingController();
   TextEditingController workingTime = TextEditingController();

@@ -2,14 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar3.dart';
 
-class ApplicationPage extends StatefulWidget {
-  const ApplicationPage({super.key});
+class ApplicationWritePage extends StatefulWidget {
+  const ApplicationWritePage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _ApplicationPageState();
+  State<StatefulWidget> createState() => _ApplicationWritePageState();
 }
 
-class _ApplicationPageState extends State<ApplicationPage> {
+class _ApplicationWritePageState extends State<ApplicationWritePage> {
   TextEditingController nickName = TextEditingController();
   TextEditingController supportArea = TextEditingController();
   TextEditingController requiredCareer = TextEditingController();

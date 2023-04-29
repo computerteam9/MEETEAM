@@ -5,7 +5,7 @@ import 'package:meetteam/ProfileWritePage.dart';
 import 'package:meetteam/MainPage.dart';
 import 'package:meetteam/UserCheckpage.dart';
 import 'package:meetteam/ProjectWritePage.dart';
-import 'package:meetteam/ApplicationPage.dart';
+import 'package:meetteam/ApplicationWritePage.dart';
 
 void main() {
   runApp(const MyApp());
