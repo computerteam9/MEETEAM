@@ -43,7 +43,12 @@ class ProfileWrite extends State<ProfileWritePage> {
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [Text("프로필", style: TextStyle(fontWeight: FontWeight.bold),)],),
                   ])),
+<<<<<<< HEAD
           Row(//mainAxisAlignment: MainAxisAlignment.start,
+=======
+          Row(
+              //mainAxisAlignment: MainAxisAlignment.start,
+>>>>>>> e231d8328dadffd5009b736cd9e0d2d776424d9f
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
