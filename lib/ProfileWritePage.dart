@@ -24,105 +24,99 @@ class ProfileWrite extends State<ProfileWritePage> {
   ];
   static List<bool> isTagSelected = List.filled(tagList.length, false);
 
+  final TextEditingController _nicknameController = TextEditingController();
+  final TextEditingController _fieldController = TextEditingController();
+  final TextEditingController _areaController = TextEditingController();
+  final TextEditingController _blogController = TextEditingController();
+  final TextEditingController _careerController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
-              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [Text("프로필")]),
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [Text("프로필", style: TextStyle(fontWeight: FontWeight.bold),)],),
                   ])),
           Row(
-              /*
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[Icon(Icons.account_circle ,color: iconColor, size: 100),]
-
-                )
-                */
-              //은수 코드
-              mainAxisAlignment: MainAxisAlignment.start,
+              //mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Icon(Icons.account_circle, size: 100),
+                Container(
+                  margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                  child: Icon(Icons.account_circle, size: 100),),
+
                 Column(children: [
                   Container(
-                    margin: const EdgeInsets.all(5),
-                    width: 150,
-                    child: TextField(
+                    margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
+                    width: 250,
+                    child: TextFormField(
+                        controller: _nicknameController,
                         decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '닉네임',
-                      labelStyle: TextStyle(fontSize: 10),
-                      isCollapsed: true,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    )),
+                          hintText: '닉네임',
+                        )),
                   ),
                   Container(
-                    margin: const EdgeInsets.all(5),
-                    width: 150,
-                    child: TextField(
+                    margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
+                    width: 250,
+                    child: TextFormField(
+                        controller: _fieldController,
                         decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '전문분야',
-                      labelStyle: TextStyle(fontSize: 10),
-                      isCollapsed: true,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    )),
+                          hintText: '전문분야',
+                        )),
                   ),
                   Container(
-                    margin: const EdgeInsets.all(5),
-                    width: 150,
-                    child: TextField(
+                    margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
+                    width: 250,
+                    child: TextFormField(
+                        controller: _areaController,
                         decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '거주지역',
-                      labelStyle: TextStyle(fontSize: 10),
-                      isCollapsed: true,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    )),
-                  )
+                          hintText: '거주지역',
+                        )),
+                  ),
                 ])
               ]),
+
+
+
           Container(
-            margin: const EdgeInsets.all(10),
-            // 추천 프로젝트 상단 라벨
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text("블로그")]),
-          ),
-          Container(
-            margin: const EdgeInsets.all(10),
-            // 추천 프로젝트 상단 라벨
-            child: TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: '블로그',
-            )),
+                children: const [Text("블로그", style: TextStyle(fontWeight: FontWeight.bold),)]),
           ),
 
           Container(
             margin: const EdgeInsets.all(10),
+            width: 450,
+            // 추천 프로젝트 상단 라벨
+            child: TextFormField(
+                controller: _blogController,
+                decoration: InputDecoration(
+                hintText: '블로그',
+            )),
+          ),
+          SizedBox(height: 20.0,),
+
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             // 추천 프로젝트 상단 라벨
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text("경력")]),
+                children: const [Text("경력", style: TextStyle(fontWeight: FontWeight.bold),)]),
           ),
           //경력 표시되는 상자
           Container(
             margin: const EdgeInsets.all(10),
+            width: 450,
             child: TextField(
+                controller: _careerController,
                 decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: '경력',
+                hintText: '경력',
             )),
           ),
 
@@ -131,7 +125,7 @@ class ProfileWrite extends State<ProfileWritePage> {
             // 추천 프로젝트 상단 라벨
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text("관심사")]),
+                children: const [Text("관심사", style: TextStyle(fontWeight: FontWeight.bold),)]),
           ),
 
           Container(
