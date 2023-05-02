@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar3.dart';
-import 'package:meetteam/Color.dart';
 import 'package:meetteam/ProjectWritePage.dart';
+import 'package:meetteam/ProjectListPage.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -25,7 +25,13 @@ class MainPage extends StatelessWidget {
                         "내 프로젝트",
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProjectListPage(),
+                              ));
+                        },
                         icon: const Icon(Icons.add),
                       ),
                     ]),
