@@ -15,16 +15,19 @@ class MainPage extends StatelessWidget {
         appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
-              margin: const EdgeInsets.fromLTRB(50, 20, 50, 20),
+              margin: const EdgeInsets.fromLTRB(50, 20, 50, 10),
               child: Column(children: [
                 // 내 프로젝트 상단 라벨
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         "내 프로젝트",
                       ),
-                      Icon(Icons.add)
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.add),
+                      ),
                     ]),
                 // 내 프로젝트 리스트
                 Container(
