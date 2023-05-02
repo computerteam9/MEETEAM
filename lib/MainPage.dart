@@ -98,9 +98,9 @@ class MainPage extends StatelessWidget {
                 // 추천 프로젝트 리스트
                 Stack(children: [
                   Container(
-                      height: 340,
-                      margin: const EdgeInsets.fromLTRB(0, 10, 50, 30),
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      height: 360,
+                      margin: const EdgeInsets.fromLTRB(0, 10, 50, 10),
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                       decoration: BoxDecoration(
                           color: subColor,
                           borderRadius: BorderRadius.circular(20)),
@@ -159,7 +159,7 @@ class MainPage extends StatelessWidget {
                             )
                           ])),
                   Positioned(
-                    bottom: 20,
+                    bottom: 0,
                     right: 20,
                     child: MaterialButton(
                       onPressed: () {
