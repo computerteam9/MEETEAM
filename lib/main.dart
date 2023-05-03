@@ -38,7 +38,7 @@ class LoadingPage extends StatelessWidget {
         Navigator.push(
             //context, MaterialPageRoute(builder: (context) => MainPage()));
             context,
-            MaterialPageRoute(builder: (context) => ApplicationReadPage()));
+            MaterialPageRoute(builder: (context) => Profile()));
       },
       // 로딩화면
       child: const Scaffold(
