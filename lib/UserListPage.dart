@@ -35,7 +35,7 @@ class UserList extends StatelessWidget {
                     border: Border.all(color: color3, width: 5)),
                 //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     //프로필 사진
                     Icon(Icons.account_circle, size: 70),
@@ -48,7 +48,7 @@ class UserList extends StatelessWidget {
                             children: <Widget>[
                               //닉네임
                               Container(
-                                  margin: EdgeInsets.only(top: 5),
+                                  margin: EdgeInsets.only(top: 5, left: 10),
                                   width: 60,
                                   child: Text("닉네임",
                                       textAlign: TextAlign.left,
@@ -65,8 +65,8 @@ class UserList extends StatelessWidget {
                             ]),
                         // 한 줄 소개 부분
                         Container(
-                            margin: EdgeInsets.only(top: 5),
-                            width: 200,
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 170,
                             child: Text("한 줄 소개",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: color2, fontSize: 20)))
@@ -86,20 +86,20 @@ class UserList extends StatelessWidget {
                     border: Border.all(color: color3, width: 5)),
                 //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     //프로필 사진
                     Icon(Icons.account_circle, size: 70),
                     //글 부분
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               //닉네임
                               Container(
-                                  margin: EdgeInsets.only(top: 5),
+                                  margin: EdgeInsets.only(top: 5, left: 10),
                                   width: 60,
                                   child: Text("닉네임",
                                       textAlign: TextAlign.left,
@@ -116,13 +116,14 @@ class UserList extends StatelessWidget {
                             ]),
                         // 한 줄 소개 부분
                         Container(
-                            margin: EdgeInsets.only(top: 5),
-                            width: 200,
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 170,
                             child: Text("한 줄 소개",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: color2, fontSize: 20)))
                       ],
                     ),
+                    Icon(Icons.military_tech, size: 60, color: Colors.yellow)
                   ],
                 ),
               ),
@@ -137,20 +138,20 @@ class UserList extends StatelessWidget {
                     border: Border.all(color: color3, width: 5)),
                 //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     //프로필 사진
                     Icon(Icons.account_circle, size: 70),
                     //글 부분
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               //닉네임
                               Container(
-                                  margin: EdgeInsets.only(top: 5),
+                                  margin: EdgeInsets.only(top: 5, left: 10),
                                   width: 60,
                                   child: Text("닉네임",
                                       textAlign: TextAlign.left,
@@ -167,13 +168,14 @@ class UserList extends StatelessWidget {
                             ]),
                         // 한 줄 소개 부분
                         Container(
-                            margin: EdgeInsets.only(top: 5),
-                            width: 200,
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 170,
                             child: Text("한 줄 소개",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: color2, fontSize: 20)))
                       ],
                     ),
+                    Icon(Icons.military_tech, size: 60, color: Colors.yellow)
                   ],
                 ),
               ),
@@ -188,20 +190,20 @@ class UserList extends StatelessWidget {
                     border: Border.all(color: color3, width: 5)),
                 //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     //프로필 사진
                     Icon(Icons.account_circle, size: 70),
                     //글 부분
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               //닉네임
                               Container(
-                                  margin: EdgeInsets.only(top: 5),
+                                  margin: EdgeInsets.only(top: 5, left: 10),
                                   width: 60,
                                   child: Text("닉네임",
                                       textAlign: TextAlign.left,
@@ -218,8 +220,8 @@ class UserList extends StatelessWidget {
                             ]),
                         // 한 줄 소개 부분
                         Container(
-                            margin: EdgeInsets.only(top: 5),
-                            width: 200,
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 170,
                             child: Text("한 줄 소개",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: color2, fontSize: 20)))
@@ -239,20 +241,20 @@ class UserList extends StatelessWidget {
                     border: Border.all(color: color3, width: 5)),
                 //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     //프로필 사진
                     Icon(Icons.account_circle, size: 70),
                     //글 부분
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               //닉네임
                               Container(
-                                  margin: EdgeInsets.only(top: 5),
+                                  margin: EdgeInsets.only(top: 5, left: 10),
                                   width: 60,
                                   child: Text("닉네임",
                                       textAlign: TextAlign.left,
@@ -269,8 +271,8 @@ class UserList extends StatelessWidget {
                             ]),
                         // 한 줄 소개 부분
                         Container(
-                            margin: EdgeInsets.only(top: 5),
-                            width: 200,
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 170,
                             child: Text("한 줄 소개",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: color2, fontSize: 20)))
@@ -290,20 +292,20 @@ class UserList extends StatelessWidget {
                     border: Border.all(color: color3, width: 5)),
                 //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     //프로필 사진
                     Icon(Icons.account_circle, size: 70),
                     //글 부분
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               //닉네임
                               Container(
-                                  margin: EdgeInsets.only(top: 5),
+                                  margin: EdgeInsets.only(top: 5, left: 10),
                                   width: 60,
                                   child: Text("닉네임",
                                       textAlign: TextAlign.left,
@@ -320,8 +322,8 @@ class UserList extends StatelessWidget {
                             ]),
                         // 한 줄 소개 부분
                         Container(
-                            margin: EdgeInsets.only(top: 5),
-                            width: 200,
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 170,
                             child: Text("한 줄 소개",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: color2, fontSize: 20)))
