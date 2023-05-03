@@ -3,11 +3,10 @@ import "package:flutter/material.dart";
 import 'package:meetteam/Appbar3.dart';
 import 'package:meetteam/ProjectWritePage.dart';
 import 'package:meetteam/ProjectListPage.dart';
+import 'package:meetteam/Color.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
-  static const mainColor = Color(0xff83B8EE);
-  static const subColor = Color(0Xff4676BA);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class MainPage extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 10),
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                     decoration: BoxDecoration(
-                        color: mainColor,
+                        color: CustomColor.color1,
                         borderRadius: BorderRadius.circular(20)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -102,7 +101,7 @@ class MainPage extends StatelessWidget {
                       margin: const EdgeInsets.fromLTRB(0, 10, 50, 10),
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                       decoration: BoxDecoration(
-                          color: subColor,
+                          color: CustomColor.color3,
                           borderRadius: BorderRadius.circular(20)),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
