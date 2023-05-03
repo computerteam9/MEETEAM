@@ -25,56 +25,65 @@ class UserList extends StatelessWidget {
                   )),
 
               //각 신청자별 상자-1
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                padding: const EdgeInsets.all(10),
-                height: 100,
-                width: 370,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: color3, width: 5)),
-                //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    //프로필 사진
-                    Icon(Icons.account_circle, size: 70),
-                    //글 부분
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/', (_) => false);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => UserCheck()));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.all(10),
+                    height: 100,
+                    width: 370,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(color: color3, width: 5)),
+                    //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              //닉네임
-                              Container(
-                                  margin: EdgeInsets.only(top: 5, left: 10),
-                                  width: 60,
-                                  child: Text("닉네임",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: color2, fontSize: 20))),
-                              //지원 분야
-                              Container(
-                                  margin: EdgeInsets.only(top: 5, left: 5),
-                                  width: 100,
-                                  child: Text("지원 분야",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: color2, fontSize: 15)))
-                            ]),
-                        // 한 줄 소개 부분
-                        Container(
-                            margin: EdgeInsets.only(top: 5, left: 10),
-                            width: 170,
-                            child: Text("한 줄 소개",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(color: color2, fontSize: 20)))
+                        //프로필 사진
+                        Icon(Icons.account_circle, size: 70),
+                        //글 부분
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  //닉네임
+                                  Container(
+                                      margin: EdgeInsets.only(top: 5, left: 10),
+                                      width: 60,
+                                      child: Text("닉네임",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              color: color2, fontSize: 20))),
+                                  //지원 분야
+                                  Container(
+                                      margin: EdgeInsets.only(top: 5, left: 5),
+                                      width: 100,
+                                      child: Text("지원 분야",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              color: color2, fontSize: 15)))
+                                ]),
+                            // 한 줄 소개 부분
+                            Container(
+                                margin: EdgeInsets.only(top: 5, left: 10),
+                                width: 170,
+                                child: Text("한 줄 소개",
+                                    textAlign: TextAlign.left,
+                                    style:
+                                        TextStyle(color: color2, fontSize: 20)))
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
-              ),
+                  )),
               //각 신청자별 상자-2
               Container(
                 margin: const EdgeInsets.only(top: 20),
