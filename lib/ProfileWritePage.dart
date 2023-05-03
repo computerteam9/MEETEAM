@@ -83,7 +83,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                   ),
                 ])
               ]),
-
+//블로그 입력
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Row(
@@ -94,7 +94,6 @@ class ProfileWrite extends State<ProfileWritePage> {
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             width: 450,
-            // 추천 프로젝트 상단 라벨
             child: TextFormField(
                 controller: blogController,
                 decoration: InputDecoration(
@@ -102,10 +101,9 @@ class ProfileWrite extends State<ProfileWritePage> {
                 )),
           ),
           SizedBox(height: 10.0,),
-
+//경력입력
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            // 추천 프로젝트 상단 라벨
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [Text("경력", style: TextStyle(fontWeight: FontWeight.bold),)]),
@@ -119,15 +117,14 @@ class ProfileWrite extends State<ProfileWritePage> {
                 decoration: InputDecoration(
                   hintText: '경력',
                 )),
-          ),SizedBox(height: 10.0,),
+          ),SizedBox(height: 11.0,),
+//활동내역입력
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            // 추천 프로젝트 상단 라벨
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [Text("활동내역", style: TextStyle(fontWeight: FontWeight.bold),)]),
           ),
-          //경력 표시되는 상자
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             width: 450,
@@ -141,7 +138,6 @@ class ProfileWrite extends State<ProfileWritePage> {
 
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            // 추천 프로젝트 상단 라벨
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [Text("관심사", style: TextStyle(fontWeight: FontWeight.bold),)]),

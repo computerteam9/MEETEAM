@@ -56,6 +56,7 @@ class Profile extends StatelessWidget {
               Text("블로그", style: TextStyle(fontWeight: FontWeight.bold),),
               SizedBox(width : 20.0,),
               TextButton(onPressed: () async {
+                //가져온 링크로 연결
                 final url = Uri.parse(ProfileWrite.blogController.text);
                 if (await canLaunchUrl(url)){
                   launchUrl(url);

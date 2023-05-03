@@ -17,7 +17,6 @@ class _Sign_upState extends State<Sign_up> {
   final TextEditingController _passwordController1 = TextEditingController();
   final TextEditingController _passwordController2 = TextEditingController();
   bool _isOK = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +53,6 @@ class _Sign_upState extends State<Sign_up> {
                 controller: _passwordController1,
                 decoration: InputDecoration(
                     hintText: '비밀번호'),
-
               ),
               SizedBox(height: 20.0,),
               TextFormField(
@@ -80,13 +78,12 @@ class _Sign_upState extends State<Sign_up> {
               ElevatedButton(
                 child: Text("가입하기"),
                 //5개의 값이 입력되어야 하고 비밀번호와 비밀번호 확인의 값이 같아야하고
-                // 개인정보동의가 되어야 가입하기 버튼을 누를 수 있음!!
+                // 개인정보동의가 되어야 가입하기 버튼을 누를 수 있음
                 onPressed: _nameController.text.isNotEmpty && _emailController.text.isNotEmpty &&
                     _idController.text.isNotEmpty  && _passwordController1.text.isNotEmpty &&
                     _passwordController2.text.isNotEmpty && _passwordController1.text == _passwordController2.text && _isOK
                     ? () => Navigator.push(
                     context, MaterialPageRoute(builder: (_) => ProfileWritePage())) : null,
-
               ),
             ],
           ),
