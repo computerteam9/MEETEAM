@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:meetteam/ProfilePage.dart';
 import 'package:meetteam/Appbar2.dart';
+
 
 class ProfileWritePage extends StatefulWidget {
   const ProfileWritePage({super.key});
@@ -24,11 +26,13 @@ class ProfileWrite extends State<ProfileWritePage> {
   ];
   static List<bool> isTagSelected = List.filled(tagList.length, false);
 
-  final TextEditingController _nicknameController = TextEditingController();
-  final TextEditingController _fieldController = TextEditingController();
-  final TextEditingController _areaController = TextEditingController();
-  final TextEditingController _blogController = TextEditingController();
-  final TextEditingController _careerController = TextEditingController();
+  static final TextEditingController nicknameController = TextEditingController();
+  static final TextEditingController fieldController = TextEditingController();
+  static final TextEditingController areaController = TextEditingController();
+  static final TextEditingController blogController = TextEditingController();
+  static final TextEditingController careerController = TextEditingController();
+  static final TextEditingController activityController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +45,9 @@ class ProfileWrite extends State<ProfileWritePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [Text("프로필", style: TextStyle(fontWeight: FontWeight.bold),)],),
+                      children: const [Text("프로필", style: TextStyle(fontWeight: FontWeight.bold),)],),
                   ])),
-<<<<<<< HEAD
           Row(//mainAxisAlignment: MainAxisAlignment.start,
-=======
-          Row(
-              //mainAxisAlignment: MainAxisAlignment.start,
->>>>>>> e231d8328dadffd5009b736cd9e0d2d776424d9f
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
@@ -59,7 +58,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                     margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
                     width: 250,
                     child: TextFormField(
-                        controller: _nicknameController,
+                        controller: nicknameController,
                         decoration: InputDecoration(
                           hintText: '닉네임',
                         )),
@@ -68,7 +67,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                     margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
                     width: 250,
                     child: TextFormField(
-                        controller: _fieldController,
+                        controller: fieldController,
                         decoration: InputDecoration(
                           hintText: '전문분야',
                         )),
@@ -77,15 +76,13 @@ class ProfileWrite extends State<ProfileWritePage> {
                     margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
                     width: 250,
                     child: TextFormField(
-                        controller: _areaController,
+                        controller: areaController,
                         decoration: InputDecoration(
                           hintText: '거주지역',
                         )),
                   ),
                 ])
               ]),
-
-
 
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -95,16 +92,16 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
 
           Container(
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             width: 450,
             // 추천 프로젝트 상단 라벨
             child: TextFormField(
-                controller: _blogController,
+                controller: blogController,
                 decoration: InputDecoration(
-                hintText: '블로그',
-            )),
+                  hintText: '블로그',
+                )),
           ),
-          SizedBox(height: 20.0,),
+          SizedBox(height: 10.0,),
 
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -115,30 +112,49 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           //경력 표시되는 상자
           Container(
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             width: 450,
             child: TextField(
-                controller: _careerController,
+                controller: activityController,
                 decoration: InputDecoration(
-                hintText: '경력',
-            )),
+                  hintText: '경력',
+                )),
+          ),SizedBox(height: 10.0,),
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            // 추천 프로젝트 상단 라벨
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [Text("활동내역", style: TextStyle(fontWeight: FontWeight.bold),)]),
           ),
+          //경력 표시되는 상자
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            width: 450,
+            child: TextField(
+                controller: careerController,
+                decoration: InputDecoration(
+                  hintText: '활동내역',
+                )),
+          ),
+          SizedBox(height: 20.0,),
 
           Container(
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             // 추천 프로젝트 상단 라벨
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [Text("관심사", style: TextStyle(fontWeight: FontWeight.bold),)]),
           ),
+          SizedBox(height: 20.0,),
 
           Container(
               margin: const EdgeInsets.only(
-                  left: 30, right: 30), // Wrap으로 감싸서 자동 줄바꿈
+                  left: 20, right: 20),
               child: Wrap(
                   direction: Axis.horizontal,
                   alignment: WrapAlignment.start,
-                  spacing: 5,
+                  spacing: 10,
                   children: [
                     // ToggleButtons 반복 생성
                     for (int i = 0; i < tagList.length; i++)
@@ -163,7 +179,15 @@ class ProfileWrite extends State<ProfileWritePage> {
                                     horizontal: 16.0),
                                 child: Text(tagList[i]))
                           ]),
-                  ]))
+                  ])),
+          SizedBox(height: 20.0,),
+          ElevatedButton(
+            child: Text("저장"),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Profile()));
+            },
+          ),
         ]));
   }
 }
