@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:meetteam/Appbar2.dart';
+import 'package:meetteam/Appbar/NormalAppbar.dart';
 
 class ProfileWritePage extends StatefulWidget {
   const ProfileWritePage({super.key});
@@ -27,7 +27,7 @@ class ProfileWrite extends State<ProfileWritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
+        appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
               margin: const EdgeInsets.all(10),

@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:meetteam/Appbar3.dart';
-import 'package:meetteam/Color.dart';
 import 'package:meetteam/ProjectWritePage.dart';
+import 'package:meetteam/Appbar/MainAppbar.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -12,7 +11,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
+        appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
               margin: const EdgeInsets.fromLTRB(50, 20, 50, 20),
@@ -157,7 +156,7 @@ class MainPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const WritePage(),
+                              builder: (context) => const ProjectWritePage(),
                             ));
                       },
                       color: CupertinoColors.systemGrey3,

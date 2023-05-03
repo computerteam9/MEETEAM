@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/Appbar3.dart';
+import 'package:meetteam/Appbar/WriteAppbar.dart';
 
-class WritePage extends StatefulWidget {
-  const WritePage({super.key});
+class ProjectWritePage extends StatefulWidget {
+  const ProjectWritePage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _WritePageState();
+  State<StatefulWidget> createState() => _ProjectWritePageState();
 }
 
-class _WritePageState extends State<WritePage> {
+class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController projectTitle = TextEditingController();
   TextEditingController requiredCareer = TextEditingController();
   TextEditingController workingTime = TextEditingController();
@@ -21,7 +21,7 @@ class _WritePageState extends State<WritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
+      appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
       body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Container(
           margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),

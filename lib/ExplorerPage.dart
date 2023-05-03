@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/Appbar3.dart';
 import 'package:meetteam/Color.dart';
+import 'package:meetteam/Appbar/NormalAppbar.dart';
 
 class ExplorerPage extends StatefulWidget {
   const ExplorerPage({super.key});
@@ -29,7 +29,7 @@ class _ExplorerState extends State<ExplorerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
+        appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
               margin: const EdgeInsets.all(50),

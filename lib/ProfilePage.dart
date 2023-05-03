@@ -1,14 +1,14 @@
 import "package:flutter/material.dart";
-import 'package:meetteam/Appbar3.dart';
+import 'package:meetteam/Appbar/EditAppbar.dart';
 
-class Profile extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   static const color1 = Color(0xff5dbaf4);
   static const iconColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
+        appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
               margin: const EdgeInsets.all(20),
