@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/Appbar3.dart';
+import 'package:meetteam/Appbar/WriteAppbar.dart';
 
 class ProjectWritePage extends StatefulWidget {
   ProjectWritePage({super.key});
 
   String projectTitle = _ProjectWritePageState().projectTitleController.text;
-  String requiredCareer = _ProjectWritePageState().requiredCareerController.text;
+  String requiredCareer =
+      _ProjectWritePageState().requiredCareerController.text;
   String workingTime = _ProjectWritePageState().workingTimeController.text;
   String personNumber = _ProjectWritePageState().personNumberController.text;
-  String introduceProject = _ProjectWritePageState().introduceProjectController.text;
+  String introduceProject =
+      _ProjectWritePageState().introduceProjectController.text;
   @override
   State<StatefulWidget> createState() => _ProjectWritePageState();
 }
 
 class _ProjectWritePageState extends State<ProjectWritePage> {
-  final TextEditingController projectTitleController = TextEditingController();
-  final TextEditingController requiredCareerController = TextEditingController();
-  final TextEditingController workingTimeController = TextEditingController();
-  final TextEditingController personNumberController = TextEditingController();
-  final TextEditingController introduceProjectController = TextEditingController();
+  TextEditingController projectTitle = TextEditingController();
+  TextEditingController requiredCareer = TextEditingController();
+  TextEditingController workingTime = TextEditingController();
+  TextEditingController personNumber = TextEditingController();
+  TextEditingController introduceProject = TextEditingController();
 
   static const iconColor = Colors.black;
 
@@ -26,7 +28,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
+      appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
       body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Container(
           margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
