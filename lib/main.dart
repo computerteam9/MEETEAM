@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetteam/ApplicationReadPage.dart';
 import 'package:meetteam/ExplorerPage.dart';
 import 'package:meetteam/ProfilePage.dart';
 import 'package:meetteam/ProfileWritePage.dart';
@@ -37,7 +38,7 @@ class LoadingPage extends StatelessWidget {
         Navigator.push(
             //context, MaterialPageRoute(builder: (context) => MainPage()));
             context,
-            MaterialPageRoute(builder: (context) => ProjectReadPage()));
+            MaterialPageRoute(builder: (context) => ApplicationReadPage()));
       },
       // 로딩화면
       child: const Scaffold(
