@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:meetteam/Appbar1.dart';
+import 'package:meetteam/Appbar/NormalAppbar.dart';
 import 'package:meetteam/UserCheckPage.dart';
 
 class UserList extends StatelessWidget {
@@ -10,7 +10,7 @@ class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar2(key: UniqueKey(), appBar: AppBar()),
+        appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -29,8 +29,10 @@ class UserList extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context, '/', (_) => false);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => UserCheck()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UserCheckPage()));
                   },
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),
