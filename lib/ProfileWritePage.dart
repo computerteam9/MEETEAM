@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
+import 'package:meetteam/ProfilePage.dart';
 
 class ProfileWritePage extends StatefulWidget {
   const ProfileWritePage({super.key});
@@ -24,123 +25,167 @@ class ProfileWrite extends State<ProfileWritePage> {
   ];
   static List<bool> isTagSelected = List.filled(tagList.length, false);
 
+  static final TextEditingController nicknameController =
+      TextEditingController();
+  static final TextEditingController fieldController = TextEditingController();
+  static final TextEditingController areaController = TextEditingController();
+  static final TextEditingController blogController = TextEditingController();
+  static final TextEditingController careerController = TextEditingController();
+  static final TextEditingController activityController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
-              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [Text("프로필")]),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text(
+                          "프로필",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
                   ])),
-          Row(
-              /*
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[Icon(Icons.account_circle ,color: iconColor, size: 100),]
-
-                )
-                */
-              //은수 코드
-              mainAxisAlignment: MainAxisAlignment.start,
+          Row(//mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Icon(Icons.account_circle, size: 100),
-                Column(children: [
-                  Container(
-                    margin: const EdgeInsets.all(5),
-                    width: 150,
-                    child: TextField(
-                        decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '닉네임',
-                      labelStyle: TextStyle(fontSize: 10),
-                      isCollapsed: true,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            Container(
+              margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
+              child: Icon(Icons.account_circle, size: 100),
+            ),
+            Column(children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
+                width: 250,
+                child: TextFormField(
+                    controller: nicknameController,
+                    decoration: InputDecoration(
+                      hintText: '닉네임',
                     )),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(5),
-                    width: 150,
-                    child: TextField(
-                        decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '전문분야',
-                      labelStyle: TextStyle(fontSize: 10),
-                      isCollapsed: true,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
+                width: 250,
+                child: TextFormField(
+                    controller: fieldController,
+                    decoration: InputDecoration(
+                      hintText: '전문분야',
                     )),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(5),
-                    width: 150,
-                    child: TextField(
-                        decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '거주지역',
-                      labelStyle: TextStyle(fontSize: 10),
-                      isCollapsed: true,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
+                width: 250,
+                child: TextFormField(
+                    controller: areaController,
+                    decoration: InputDecoration(
+                      hintText: '거주지역',
                     )),
-                  )
-                ])
-              ]),
+              ),
+            ])
+          ]),
+//블로그 입력
           Container(
-            margin: const EdgeInsets.all(10),
-            // 추천 프로젝트 상단 라벨
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text("블로그")]),
-          ),
-          Container(
-            margin: const EdgeInsets.all(10),
-            // 추천 프로젝트 상단 라벨
-            child: TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: '블로그',
-            )),
+                children: const [
+                  Text(
+                    "블로그",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ]),
           ),
 
           Container(
-            margin: const EdgeInsets.all(10),
-            // 추천 프로젝트 상단 라벨
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            width: 450,
+            child: TextFormField(
+                controller: blogController,
+                decoration: InputDecoration(
+                  hintText: '블로그',
+                )),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+//경력입력
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text("경력")]),
+                children: const [
+                  Text(
+                    "경력",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ]),
           ),
           //경력 표시되는 상자
           Container(
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            width: 450,
             child: TextField(
+                controller: activityController,
                 decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: '경력',
-            )),
+                  hintText: '경력',
+                )),
           ),
-
+          SizedBox(
+            height: 11.0,
+          ),
+//활동내역입력
           Container(
-            margin: const EdgeInsets.all(10),
-            // 추천 프로젝트 상단 라벨
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [Text("관심사")]),
+                children: const [
+                  Text(
+                    "활동내역",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ]),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            width: 450,
+            child: TextField(
+                controller: careerController,
+                decoration: InputDecoration(
+                  hintText: '활동내역',
+                )),
+          ),
+          SizedBox(
+            height: 20.0,
           ),
 
           Container(
-              margin: const EdgeInsets.only(
-                  left: 30, right: 30), // Wrap으로 감싸서 자동 줄바꿈
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "관심사",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ]),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+
+          Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
               child: Wrap(
                   direction: Axis.horizontal,
                   alignment: WrapAlignment.start,
-                  spacing: 5,
+                  spacing: 10,
                   children: [
                     // ToggleButtons 반복 생성
                     for (int i = 0; i < tagList.length; i++)
@@ -165,7 +210,17 @@ class ProfileWrite extends State<ProfileWritePage> {
                                     horizontal: 16.0),
                                 child: Text(tagList[i]))
                           ]),
-                  ]))
+                  ])),
+          SizedBox(
+            height: 20.0,
+          ),
+          ElevatedButton(
+            child: Text("저장"),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Profile()));
+            },
+          ),
         ]));
   }
 }

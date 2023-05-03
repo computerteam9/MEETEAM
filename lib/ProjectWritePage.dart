@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/WriteAppbar.dart';
 
 class ProjectWritePage extends StatefulWidget {
-  const ProjectWritePage({super.key});
+  ProjectWritePage({super.key});
 
+  String projectTitle = _ProjectWritePageState().projectTitleController.text;
+  String requiredCareer =
+      _ProjectWritePageState().requiredCareerController.text;
+  String workingTime = _ProjectWritePageState().workingTimeController.text;
+  String personNumber = _ProjectWritePageState().personNumberController.text;
+  String introduceProject =
+      _ProjectWritePageState().introduceProjectController.text;
   @override
   State<StatefulWidget> createState() => _ProjectWritePageState();
 }
@@ -37,7 +44,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     labelText: "프로젝트 제목",
                   ),
                   textAlign: TextAlign.start,
-                  controller: projectTitle,
+                  controller: projectTitleController,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -54,7 +61,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     labelText: "경력",
                   ),
                   textAlign: TextAlign.start,
-                  controller: requiredCareer,
+                  controller: requiredCareerController,
                   minLines: 1,
                   maxLines: 3,
                 ),
@@ -73,7 +80,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   labelText: "기간",
                 ),
                 textAlign: TextAlign.start,
-                controller: workingTime,
+                controller: workingTimeController,
               ),
             ),
             const Spacer(flex: 1),
@@ -83,7 +90,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               child: TextFormField(
                 decoration: const InputDecoration(labelText: "인원"),
                 textAlign: TextAlign.start,
-                controller: personNumber,
+                controller: personNumberController,
               ),
             ),
           ]),
@@ -95,7 +102,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               labelText: "프로젝트 내용",
             ),
             textAlign: TextAlign.start,
-            controller: introduceProject,
+            controller: introduceProjectController,
             minLines: 1,
             maxLines: 3,
           ),

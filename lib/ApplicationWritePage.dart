@@ -2,19 +2,25 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/WriteAppbar.dart';
 
-class ApplicationPage extends StatefulWidget {
-  const ApplicationPage({super.key});
+class ApplicationWritePage extends StatefulWidget {
+  ApplicationWritePage({super.key});
+  
+  String nickName = _ApplicationWritePageState().nickNameController.text;
+  String supportArea = _ApplicationWritePageState().supportAreaController.text;
+  String myCareer = _ApplicationWritePageState().myCareerController.text;
+  String workingTime = _ApplicationWritePageState().workingTimeController.text;
+  String introduceUser = _ApplicationWritePageState().introduceUserController.text;
 
   @override
-  State<StatefulWidget> createState() => _ApplicationPageState();
+  State<StatefulWidget> createState() => _ApplicationWritePageState();
 }
 
-class _ApplicationPageState extends State<ApplicationPage> {
-  TextEditingController nickName = TextEditingController();
-  TextEditingController supportArea = TextEditingController();
-  TextEditingController requiredCareer = TextEditingController();
-  TextEditingController workingTime = TextEditingController();
-  TextEditingController introduceUser = TextEditingController();
+class _ApplicationWritePageState extends State<ApplicationWritePage> {
+  TextEditingController nickNameController = TextEditingController();
+  TextEditingController supportAreaController = TextEditingController();
+  TextEditingController myCareerController = TextEditingController();
+  TextEditingController workingTimeController = TextEditingController();
+  TextEditingController introduceUserController = TextEditingController();
 
   static const iconColor = Colors.black;
 
@@ -36,7 +42,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                   labelText: "닉네임",
                 ),
                 textAlign: TextAlign.start,
-                controller: nickName,
+                controller: nickNameController,
               ),
             ),
             Spacer(flex: 1),
@@ -46,7 +52,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
               child: TextFormField(
                 decoration: const InputDecoration(labelText: "지원 분야"),
                 textAlign: TextAlign.start,
-                controller: supportArea,
+                controller: supportAreaController,
                 minLines: 1,
                 maxLines: 3,
               ),
@@ -61,12 +67,12 @@ class _ApplicationPageState extends State<ApplicationPage> {
                 labelText: "경력",
               ),
               textAlign: TextAlign.start,
-              controller: requiredCareer,
+              controller: myCareerController,
             ),
             TextFormField(
               decoration: const InputDecoration(labelText: "활동 시간"),
               textAlign: TextAlign.start,
-              controller: workingTime,
+              controller: workingTimeController,
               minLines: 1,
               maxLines: 3,
             ),
@@ -79,7 +85,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
               labelText: "한 줄 소개",
             ),
             textAlign: TextAlign.start,
-            controller: introduceUser,
+            controller: introduceUserController,
             minLines: 1,
             maxLines: 3,
           ),
@@ -121,7 +127,7 @@ child: Column(
                         children: [
                           TextField(
                             keyboardType: TextInputType.name,
-                            controller: nickName,
+                            controller: nickNameController,
                             decoration: const InputDecoration(
                               hintText: '닉네임',
                             ),
@@ -131,7 +137,7 @@ child: Column(
                       ),
                       TextField(
                         keyboardType: TextInputType.text,
-                        controller: requiredCareer,
+                        controller: myCareerController,
                         decoration: const InputDecoration(
                           hintText: '경력',
                         ),
@@ -141,14 +147,14 @@ child: Column(
                           children: <Widget>[
                             TextField(
                               keyboardType: TextInputType.text,
-                              controller: supportArea,
+                              controller: supportAreaController,
                               decoration: const InputDecoration(
                                 hintText: '지원 분야',
                               ),
                             ),
                             TextField(
                               keyboardType: TextInputType.datetime,
-                              controller: workingTime,
+                              controller: workingTimeController,
                               decoration: const InputDecoration(
                                 hintText: '활동 시간',
                               ),
