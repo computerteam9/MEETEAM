@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:meetteam/Appbar1.dart";
 import "package:meetteam/Color.dart";
+import "package:meetteam/ProfileWritePage.dart";
 //스크롤 미구현 상태
 //body 영역에 대한 스크롤 구현
 //프로필 버튼 누르면 프로필로 이동 구현
@@ -37,7 +38,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
             Container(
               margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
               alignment: Alignment.topLeft,
-              child: const Text(
+              child: Text(
                 "프로젝트명",
                 style: TextStyle(
                   fontSize: 35,
@@ -54,7 +55,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                 ),
               ),
             ),
-            const Text(
+            Text(
               "풍부하게 앞이 수 인생을 스며들어 얼마나 꾸며 위하여 밝은 운다. 기쁘며, 놀이 얼마나 심장은 기관과 얼마나 피고 목숨을 있으랴? 뼈 안고, 철환하였는가?",
               maxLines: 10,
               overflow: TextOverflow.ellipsis,
@@ -63,7 +64,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
               padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
               alignment: Alignment.topLeft,
               child:
-              const Text(
+              Text(
                 "리더",
                 style: TextStyle(
                     fontSize: 20
@@ -89,7 +90,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                     width: 100,
                     alignment: Alignment.topLeft,
                     child:
-                    const Text("닉네임")
+                    Text("닉네임")
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(100, 30, 0, 0),
@@ -127,7 +128,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
               height: 30,
               alignment: Alignment.topLeft,
               child:
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
@@ -173,7 +174,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                     width: 80,
                     alignment: Alignment.topLeft,
                     child:
-                    const Text("백엔드")
+                    Text("백엔드")
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
@@ -196,7 +197,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                                     borderRadius: BorderRadius.all(Radius.circular(10))
                                 ),
                                 child:
-                                const Text(
+                                Text(
                                   "3년",
                                   style: TextStyle(
                                       color: CustomColor.color3
@@ -245,7 +246,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                     width: 80,
                     alignment: Alignment.topLeft,
                     child:
-                    const Text("프론트엔드")
+                    Text("프론트엔드")
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
@@ -268,7 +269,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                                     borderRadius: BorderRadius.all(Radius.circular(10))
                                 ),
                                 child:
-                                const Text(
+                                Text(
                                   "5년",
                                   style: TextStyle(
                                       color: CustomColor.color3

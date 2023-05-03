@@ -157,7 +157,7 @@ class MainPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ProjectWritePage(),
+                              builder: (context) => ProjectWritePage(),
                             ));
                       },
                       color: CupertinoColors.systemGrey3,
