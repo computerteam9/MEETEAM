@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
+import 'package:meetteam/ProjectReadPage.dart';
 
 class UserCheckPage extends StatelessWidget {
   static const color1 = Color(0Xff4676BA);
@@ -90,10 +91,16 @@ class UserCheckPage extends StatelessWidget {
                       border: Border.all(color: color3, width: 10))),
 
               SizedBox(
-                width: 500,
-                height: 70,
-                child: Text("확인", style: TextStyle(fontSize: 40)),
-              )
+                  width: 500,
+                  height: 70,
+                  child: ElevatedButton(
+                      child: Text("확인", style: TextStyle(fontSize: 40)),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProjectReadPage()));
+                      }))
             ]));
   }
 }
