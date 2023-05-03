@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
-import 'package:meetteam/ProfilePage.dart';
+import 'package:meetteam/MainPage.dart';
 
 class ProfileWritePage extends StatefulWidget {
   const ProfileWritePage({super.key});
@@ -218,7 +218,7 @@ class ProfileWrite extends State<ProfileWritePage> {
             child: Text("저장"),
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => ProfilePage()));
+                  context, MaterialPageRoute(builder: (_) => MainPage()));
             },
           ),
         ]));
