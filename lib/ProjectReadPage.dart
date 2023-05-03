@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:meetteam/Appbar1.dart";
+import "package:meetteam/Appbar/NormalAppbar.dart";
 import "package:meetteam/Color.dart";
 import "package:meetteam/ProjectWritePage.dart";
 //스크롤 미구현 상태
@@ -16,7 +16,7 @@ class ProjectReadPage extends StatefulWidget {
 class _ProjectReadPage extends State<ProjectReadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar2(key: UniqueKey(), appBar: AppBar()),
+      appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
       bottomNavigationBar: Container(
         height: 60,
         color: CustomColor.color3,

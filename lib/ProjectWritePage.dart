@@ -16,11 +16,11 @@ class ProjectWritePage extends StatefulWidget {
 }
 
 class _ProjectWritePageState extends State<ProjectWritePage> {
-  TextEditingController projectTitle = TextEditingController();
-  TextEditingController requiredCareer = TextEditingController();
-  TextEditingController workingTime = TextEditingController();
-  TextEditingController personNumber = TextEditingController();
-  TextEditingController introduceProject = TextEditingController();
+  TextEditingController projectTitleController = TextEditingController();
+  TextEditingController requiredCareerController = TextEditingController();
+  TextEditingController workingTimeController = TextEditingController();
+  TextEditingController personNumberController = TextEditingController();
+  TextEditingController introduceProjectController = TextEditingController();
 
   static const iconColor = Colors.black;
 
