@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/ExplorerPage.dart';
-import 'package:meetteam/ProfilePage.dart';
-import 'package:meetteam/ProfileWritePage.dart';
-import 'package:meetteam/MainPage.dart';
-import 'package:meetteam/UserCheckpage.dart';
-import 'package:meetteam/ProjectWritePage.dart';
-import 'package:meetteam/ApplicationPage.dart';
+import 'package:meetteam/Mainpage.dart';
+import 'package:meetteam/UserListPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +31,7 @@ class LoadingPage extends StatelessWidget {
         Navigator.push(
             //context, MaterialPageRoute(builder: (context) => MainPage()));
             context,
-            MaterialPageRoute(builder: (context) => Profile()));
+            MaterialPageRoute(builder: (context) => UserList()));
       },
       // 로딩화면
       child: const Scaffold(
