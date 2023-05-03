@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar3.dart';
-import 'package:meetteam/Color.dart';
 import 'package:meetteam/ProjectWritePage.dart';
+import 'package:meetteam/ProjectListPage.dart';
+import 'package:meetteam/Color.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
-  static const mainColor = Color(0xff83B8EE);
-  static const subColor = Color(0Xff4676BA);
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +14,25 @@ class MainPage extends StatelessWidget {
         appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
-              margin: const EdgeInsets.fromLTRB(50, 20, 50, 20),
+              margin: const EdgeInsets.fromLTRB(50, 20, 50, 10),
               child: Column(children: [
                 // 내 프로젝트 상단 라벨
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         "내 프로젝트",
                       ),
-                      Icon(Icons.add)
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProjectListPage(),
+                              ));
+                        },
+                        icon: const Icon(Icons.add),
+                      ),
                     ]),
                 // 내 프로젝트 리스트
                 Container(
@@ -32,7 +40,7 @@ class MainPage extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 10),
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                     decoration: BoxDecoration(
-                        color: mainColor,
+                        color: CustomColor.color1,
                         borderRadius: BorderRadius.circular(20)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -89,11 +97,11 @@ class MainPage extends StatelessWidget {
                 // 추천 프로젝트 리스트
                 Stack(children: [
                   Container(
-                      height: 340,
-                      margin: const EdgeInsets.fromLTRB(0, 10, 50, 30),
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      height: 360,
+                      margin: const EdgeInsets.fromLTRB(0, 10, 50, 10),
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                       decoration: BoxDecoration(
-                          color: subColor,
+                          color: CustomColor.color3,
                           borderRadius: BorderRadius.circular(20)),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,14 +158,14 @@ class MainPage extends StatelessWidget {
                             )
                           ])),
                   Positioned(
-                    bottom: 20,
+                    bottom: 0,
                     right: 20,
                     child: MaterialButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const WritePage(),
+                              builder: (context) => ProjectWritePage(),
                             ));
                       },
                       color: CupertinoColors.systemGrey3,
