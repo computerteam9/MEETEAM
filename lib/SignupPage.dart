@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/ProfileWritePage.dart';
-import 'package:meetteam/Appbar2.dart';
+import 'package:meetteam/Appbar/NormalAppbar.dart';
 import 'main.dart';
 
 void main() => runApp(Sign_up());
@@ -20,7 +20,7 @@ class _Sign_upState extends State<Sign_up> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(key: UniqueKey(), appBar: AppBar()),
+      appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
       body: Container(
         margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
         child: Form(

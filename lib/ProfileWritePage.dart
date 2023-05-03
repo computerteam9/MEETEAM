@@ -218,7 +218,7 @@ class ProfileWrite extends State<ProfileWritePage> {
             child: Text("저장"),
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Profile()));
+                  context, MaterialPageRoute(builder: (_) => ProfilePage()));
             },
           ),
         ]));
