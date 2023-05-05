@@ -41,7 +41,7 @@ class ProfileWrite extends State<ProfileWritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-        body: Column(children: [
+        body: SingleChildScrollView(child: Column(children: [
           Container(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -231,6 +231,6 @@ class ProfileWrite extends State<ProfileWritePage> {
 
             },
           ),
-        ]));
+        ])));
   }
 }

@@ -40,8 +40,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-      body: Container(
-        margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
+
+      body: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
         child: Form(
           key: _formKey,
           child: Column(
