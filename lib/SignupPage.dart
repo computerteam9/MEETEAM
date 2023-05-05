@@ -99,10 +99,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         _passwordController1.text.isNotEmpty &&
                         _passwordController2.text.isNotEmpty &&
                         _passwordController1.text ==
-                            _passwordController2.text &&
+                        _passwordController2.text &&
                         _isOK
                     ? () => Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => ProfileWritePage()))
+                        MaterialPageRoute(builder: (_) => ProfileWritePage(changed: true,)))
                     : null,
               ),
             ],

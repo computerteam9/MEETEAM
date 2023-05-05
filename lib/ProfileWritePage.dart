@@ -1,9 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
 import 'package:meetteam/MainPage.dart';
+import 'package:meetteam/ProfilePage.dart';
 
 class ProfileWritePage extends StatefulWidget {
-  const ProfileWritePage({super.key});
+  final bool? changed;
+  const ProfileWritePage({Key? key, required this.changed}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => ProfileWrite();
 }
@@ -217,8 +220,15 @@ class ProfileWrite extends State<ProfileWritePage> {
           ElevatedButton(
             child: Text("저장"),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => MainPage()));
+              if (widget.changed == true){
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => MainPage()));
+              }else{
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => ProfilePage()));
+              }
+
+
             },
           ),
         ]));
