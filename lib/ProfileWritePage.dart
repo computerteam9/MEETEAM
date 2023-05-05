@@ -66,7 +66,7 @@ class ProfileWrite extends State<ProfileWritePage> {
             Column(children: [
               Container(
                 margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 250,
+                width: 200,
                 child: TextFormField(
                     controller: nicknameController,
                     decoration: InputDecoration(
@@ -75,7 +75,7 @@ class ProfileWrite extends State<ProfileWritePage> {
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 250,
+                width: 200,
                 child: TextFormField(
                     controller: fieldController,
                     decoration: InputDecoration(
@@ -84,7 +84,7 @@ class ProfileWrite extends State<ProfileWritePage> {
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 250,
+                width: 200,
                 child: TextFormField(
                     controller: areaController,
                     decoration: InputDecoration(
@@ -108,7 +108,7 @@ class ProfileWrite extends State<ProfileWritePage> {
 
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 450,
+            width: 400,
             child: TextFormField(
                 controller: blogController,
                 decoration: InputDecoration(
@@ -133,7 +133,7 @@ class ProfileWrite extends State<ProfileWritePage> {
           //경력 표시되는 상자
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 450,
+            width: 400,
             child: TextField(
                 controller: activityController,
                 decoration: InputDecoration(
@@ -157,7 +157,7 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 450,
+            width: 400,
             child: TextField(
                 controller: careerController,
                 decoration: InputDecoration(
