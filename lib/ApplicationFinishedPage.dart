@@ -2,15 +2,15 @@ import "package:flutter/material.dart";
 import "package:meetteam/Appbar/NormalAppbar.dart";
 import "package:meetteam/Color.dart";
 
-class ProjectWriteFinishedPage extends StatefulWidget {
-  const ProjectWriteFinishedPage({super.key});
+class ApplicationFinishedPage extends StatefulWidget {
+  const ApplicationFinishedPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => ProjectWriteFinishedPageState();
+  State<StatefulWidget> createState() => ApplicationFinishedPageState();
 
 }
 
-class ProjectWriteFinishedPageState extends State<ProjectWriteFinishedPage> {
+class ApplicationFinishedPageState extends State<ApplicationFinishedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +31,9 @@ class ProjectWriteFinishedPageState extends State<ProjectWriteFinishedPage> {
       body: const Center(
         child:
         Text(
-          "작성이 완료되었습니다.",
+          "지원이 완료되었습니다.",
           style: TextStyle(
-            fontSize: 20
+              fontSize: 20
           ),
         ),
       ),
