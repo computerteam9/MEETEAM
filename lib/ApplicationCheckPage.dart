@@ -4,7 +4,7 @@ import "package:meetteam/Color.dart";
 import "package:meetteam/ProfileWritePage.dart";
 
 class ApplicationCheckPage extends StatefulWidget {
-  const ApplicationReadPage({super.key});
+  const ApplicationCheckPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _ApplicationCheckPage();
