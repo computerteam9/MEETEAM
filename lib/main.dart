@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetteam/ProjectWriteFinishedPage.dart';
 import 'package:meetteam/SignupPage.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: SignUpPage(),
+      home: ProjectWriteFinishedPage(),
     );
   }
 }
