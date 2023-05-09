@@ -3,15 +3,16 @@ import 'package:meetteam/Color.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProjectCard extends StatelessWidget {
-  String title;
-  String description;
-  String dDay;
-  String nickname;
-  ProjectCard(
-      {required this.title,
+  final String title;
+  final String description;
+  final String nickname;
+  final String dDay;
+  const ProjectCard(
+      {super.key,
+      required this.title,
       required this.description,
-      required this.dDay,
-      required this.nickname});
+      required this.nickname,
+      required this.dDay});
 
   @override
   Widget build(BuildContext context) {
