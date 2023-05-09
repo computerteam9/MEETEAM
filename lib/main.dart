@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/SelfCheckPage.dart';
+import 'package:meetteam/SignUpPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: SelfCheckPage(),
+      home: SignUpPage(),
     );
   }
 }
