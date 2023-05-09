@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   url_launcher: ^6.1.10
+  carousel_slider: ^4.0.0
   flutter:
     sdk: flutter
 
