@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:meetteam/ProjectWritePage.dart';
 import 'package:meetteam/Appbar/MainAppbar.dart';
-import 'package:meetteam/ProjectWritePage.dart';
 import 'package:meetteam/ProjectListPage.dart';
 import 'package:meetteam/Color.dart';
 import 'package:meetteam/Widgets/ProjectCard.dart';
@@ -99,7 +98,7 @@ class MainPage extends StatelessWidget {
                 ),
                 // 추천 프로젝트 리스트
                 CarouselSlider(
-                    items: [
+                    items: const [
                       ProjectCard(
                         title: "프로젝트1",
                         description: "설명1",
