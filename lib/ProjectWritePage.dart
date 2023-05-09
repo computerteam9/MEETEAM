@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/Appbar/WriteAppbar.dart';
+import 'package:meetteam/Appbar/NormalAppbar.dart';
+import 'package:meetteam/ProjectReadPage.dart';
 
 class ProjectWritePage extends StatefulWidget {
   ProjectWritePage({super.key});
@@ -115,10 +116,14 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             color: iconColor,
             size: 30,
           ),
-          // const IconButton(
-          //   icon: Icon(Icons.add, color:iconColor, size: 30),
-          //   onPressed: () => {print("hi")},
-          // ),
+        ),
+        ElevatedButton(
+          child: Text("저장"),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => ProjectReadPage()));
+          },
         ),
       ]),
     );
