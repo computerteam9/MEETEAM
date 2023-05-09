@@ -3,9 +3,13 @@ import 'package:meetteam/Color.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProjectCard extends StatelessWidget {
+  // 프로젝트 제목
   final String title;
+  // 프로젝트 설명
   final String description;
+  // user 이름
   final String nickname;
+  // D-day
   final String dDay;
   const ProjectCard(
       {super.key,
