@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:meetteam/ProjectReadPage.dart';
 import 'package:meetteam/ProjectWritePage.dart';
 import 'package:meetteam/Appbar/MainAppbar.dart';
 import 'package:meetteam/ProjectListPage.dart';
@@ -53,12 +54,21 @@ class MainPage extends StatelessWidget {
                       ),
                     ]),
                 // 내 프로젝트 리스트
-                const ProjectBox(
-                  title: "프로젝트 명",
-                  description: "프로젝트 설명...",
-                  tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                  dDay: "진행 중",
-                ),])),
+                SizedBox(child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(
+                      builder: (context) => const ProjectReadPage(),
+                    ));
+                  },
+                  child: const ProjectBox(
+                    title: "프로젝트 명",
+                    description: "프로젝트 설명...",
+                    tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                    dDay: "진행 중",
+                  ),
+                )),
+              ])),
           Container(
               margin: const EdgeInsets.fromLTRB(50, 10, 0, 0),
               // 추천 프로젝트 상단 라벨
