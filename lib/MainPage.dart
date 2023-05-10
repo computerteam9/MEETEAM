@@ -53,20 +53,12 @@ class MainPage extends StatelessWidget {
                       ),
                     ]),
                 // 내 프로젝트 리스트
-                Container(
-                    height: 100,
-                    margin: const EdgeInsets.only(top: 10),
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    decoration: BoxDecoration(
-                        color: CustomColor.color1,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const ProjectBox(
-                      title: "프로젝트 명",
-                      description: "프로젝트 설명...",
-                      tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                      dDay: "진행 중",
-                    ),
-                )])),
+                const ProjectBox(
+                  title: "프로젝트 명",
+                  description: "프로젝트 설명...",
+                  tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                  dDay: "진행 중",
+                ),])),
           Container(
               margin: const EdgeInsets.fromLTRB(50, 10, 0, 0),
               // 추천 프로젝트 상단 라벨

@@ -18,7 +18,7 @@ class ProjectBox extends StatelessWidget {
   Widget build(BuildContext context){
     return Container(
         height: 100,
-        padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         decoration: BoxDecoration(
             color: CustomColor.color1,
             borderRadius: BorderRadius.circular(20)),
