@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/color.dart';
+import 'package:meetteam/Color.dart';
 
 class ProjectBox extends StatelessWidget {
   final String title;
   final String description;
   final String tag;
   final String dDay;
+  final Color color;
+
 
   const ProjectBox({super.key,
     required this.title,
     required this.description,
     required this.tag,
     required this.dDay,
+    this.color = CustomColor.color3,
   });
 
   @override
   Widget build(BuildContext context){
     return Container(
         height: 100,
+        margin: const EdgeInsets.only(top: 10),
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         decoration: BoxDecoration(
-            color: CustomColor.color1,
+            color: color,
             borderRadius: BorderRadius.circular(20)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
