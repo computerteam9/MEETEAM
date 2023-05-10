@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:meetteam/ProjectWritePage.dart';
 import 'package:meetteam/Appbar/MainAppbar.dart';
-import 'package:meetteam/ProjectWritePage.dart';
 import 'package:meetteam/ProjectListPage.dart';
 import 'package:meetteam/Color.dart';
 
@@ -13,6 +12,22 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
+
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProjectWritePage(),
+                ));
+          },
+          backgroundColor: CupertinoColors.systemGrey3,
+          child: const Icon(
+              Icons.create,
+            color: Colors.black,
+          ),
+        ),
+
         body: Column(children: [
           Container(
               margin: const EdgeInsets.fromLTRB(50, 20, 50, 10),
