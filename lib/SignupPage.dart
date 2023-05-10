@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/ProfileWritePage.dart';
 import 'package:meetteam/Appbar/NormalAppbar.dart';
 import 'main.dart';
 
@@ -101,8 +100,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         _passwordController1.text ==
                             _passwordController2.text &&
                         _isOK
-                    ? () => Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => ProfileWritePage()))
+                    ? () => Navigator.pushNamed(context, '/')
                     : null,
               ),
             ],

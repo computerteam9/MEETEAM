@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:meetteam/ProjectWritePage.dart';
 import 'package:meetteam/Appbar/MainAppbar.dart';
-import 'package:meetteam/ProjectListPage.dart';
 import 'package:meetteam/Color.dart';
 import 'package:meetteam/Widgets/ProjectCard.dart';
 
@@ -27,11 +25,7 @@ class MainPage extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProjectListPage(),
-                              ));
+                          Navigator.pushNamed(context, '/projects');
                         },
                         icon: const Icon(Icons.add),
                       ),
@@ -127,11 +121,7 @@ class MainPage extends StatelessWidget {
                   right: 20,
                   child: MaterialButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProjectWritePage(),
-                          ));
+                      Navigator.pushNamed(context, '/projectWrite');
                     },
                     color: CupertinoColors.systemGrey3,
                     textColor: Colors.black,

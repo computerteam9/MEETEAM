@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/NormalAppbar.dart';
-import 'package:meetteam/ProjectReadPage.dart';
 
 class ProjectWritePage extends StatefulWidget {
   ProjectWritePage({super.key});
@@ -121,8 +120,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
           child: Text("저장"),
           onPressed: () {
             Navigator.pop(context);
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => ProjectReadPage()));
+            Navigator.pushNamed(context, '/project');
           },
         ),
       ]),

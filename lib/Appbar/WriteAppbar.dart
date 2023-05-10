@@ -22,7 +22,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: iconColor, size: 30),
         tooltip: 'go_back',
-        onPressed: () => {Navigator.pop(context, false)},
+        onPressed: () => {Navigator.pop(context)},
       ),
       actions: <Widget>[
         // 저장 버튼

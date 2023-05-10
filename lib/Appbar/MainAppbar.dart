@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/ProfilePage.dart';
-import 'package:meetteam/ExplorerPage.dart';
 
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
   const BaseAppbar({required Key key, required this.appBar}) : super(key: key);
@@ -31,25 +29,13 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: const Icon(Icons.search, color: iconColor, size: 30),
           tooltip: 'search',
-          onPressed: () => {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ExplorerPage(),
-                ))
-          },
+          onPressed: () => {Navigator.pushNamed(context, '/explorer')},
         ),
         // 프로필 버튼
         IconButton(
           icon: const Icon(Icons.account_circle, color: iconColor, size: 30),
           tooltip: 'profile',
-          onPressed: () => {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfilePage(),
-                ))
-          },
+          onPressed: () => {Navigator.pushNamed(context, '/profile')},
         )
       ],
     );
