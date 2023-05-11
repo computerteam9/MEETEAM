@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../ProfileWritePage.dart';
+
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
   const BaseAppbar({required Key key, required this.appBar}) : super(key: key);
   final AppBar appBar;
@@ -28,8 +30,15 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
         // 수정 버튼
         IconButton(
           icon: const Icon(Icons.edit, color: iconColor, size: 30),
-          onPressed: () => {Navigator.pushNamed(context, '/profileWrite')},
-
+          onPressed: () => {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileWritePage(
+                    changed: false,
+                  ),
+                ))
+          },
         )
       ],
     );

@@ -39,7 +39,8 @@ class ProfileWrite extends State<ProfileWritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-        body: SingleChildScrollView(child: Column(children: [
+        body: SingleChildScrollView(
+            child: Column(children: [
           Container(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -218,9 +219,9 @@ class ProfileWrite extends State<ProfileWritePage> {
           ElevatedButton(
             child: Text("저장"),
             onPressed: () {
-              if (widget.changed == true){
+              if (widget.changed == true) {
                 Navigator.pushNamed(context, '/');
-              }else{
+              } else {
                 Navigator.pushNamed(context, '/profile');
               }
             },
