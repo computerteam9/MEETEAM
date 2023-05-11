@@ -1,15 +1,15 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/WriteAppbar.dart';
 
 class ApplicationWritePage extends StatefulWidget {
   ApplicationWritePage({super.key});
-  
+
   String nickName = _ApplicationWritePageState().nickNameController.text;
   String supportArea = _ApplicationWritePageState().supportAreaController.text;
   String myCareer = _ApplicationWritePageState().myCareerController.text;
   String workingTime = _ApplicationWritePageState().workingTimeController.text;
-  String introduceUser = _ApplicationWritePageState().introduceUserController.text;
+  String introduceUser =
+      _ApplicationWritePageState().introduceUserController.text;
 
   @override
   State<StatefulWidget> createState() => _ApplicationWritePageState();

@@ -1,7 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
-import 'package:meetteam/MainPage.dart';
-import 'package:meetteam/ProfilePage.dart';
 
 class ProfileWritePage extends StatefulWidget {
   final bool? changed;
@@ -221,14 +219,10 @@ class ProfileWrite extends State<ProfileWritePage> {
             child: Text("저장"),
             onPressed: () {
               if (widget.changed == true){
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => MainPage()));
+                Navigator.pushNamed(context, '/');
               }else{
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => ProfilePage()));
+                Navigator.pushNamed(context, '/profile');
               }
-
-
             },
           ),
         ])));

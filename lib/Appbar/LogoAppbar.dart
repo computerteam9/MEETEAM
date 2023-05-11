@@ -18,26 +18,6 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
             color: titleColor, fontSize: 20.0, fontWeight: FontWeight.w700),
       ),
       centerTitle: true,
-      // 뒤로가기 버튼
-      leading: IconButton(
-        icon: const Icon(Icons.notifications_none, color: iconColor, size: 30),
-        tooltip: 'notification',
-        onPressed: () => {},
-      ),
-      actions: [
-        // 검색 버튼
-        IconButton(
-          icon: const Icon(Icons.search, color: iconColor, size: 30),
-          tooltip: 'search',
-          onPressed: () => {Navigator.pushNamed(context, '/explorer')},
-        ),
-        // 프로필 버튼
-        IconButton(
-          icon: const Icon(Icons.account_circle, color: iconColor, size: 30),
-          tooltip: 'profile',
-          onPressed: () => {Navigator.pushNamed(context, '/profile')},
-        )
-      ],
     );
   }
 

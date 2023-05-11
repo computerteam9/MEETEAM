@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/ProfileWritePage.dart';
 import 'package:meetteam/Appbar/NormalAppbar.dart';
 import 'main.dart';
 
@@ -120,6 +119,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Text("가입하기"),
                 //5개의 값이 입력되어야 하고 비밀번호와 비밀번호 확인의 값이 같아야하고
                 // 개인정보동의가 되어야 가입하기 버튼을 누를 수 있음
+
                 onPressed: _CompleteSignup ? () => Navigator.push(context,
                         MaterialPageRoute(builder: (_) => ProfileWritePage(changed: true,))) : null,
               ),

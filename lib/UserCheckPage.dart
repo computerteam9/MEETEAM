@@ -1,7 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
-import 'package:meetteam/UserCheckPage.dart';
-import 'package:meetteam/UserListPage.dart';
 
 class UserCheckPage extends StatelessWidget {
   static const color1 = Color(0Xff4676BA);
@@ -97,10 +95,7 @@ class UserCheckPage extends StatelessWidget {
                   child: ElevatedButton(
                       child: Text("확정", style: TextStyle(fontSize: 40)),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UserList()));
+                        Navigator.pushNamed(context, '/userList');
                       }))
             ]));
   }

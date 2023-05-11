@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
-import 'package:meetteam/UserCheckPage.dart';
 
 class UserList extends StatelessWidget {
   static const color1 = Color(0Xff4676BA);
@@ -27,12 +26,13 @@ class UserList extends StatelessWidget {
               //각 신청자별 상자-1
               GestureDetector(
                   onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/', (_) => false);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UserCheckPage()));
+                    Navigator.pushNamed(context, '/UserCheckPage');
+                    // Navigator.pushNamedAndRemoveUntil(
+                    //     context, '/', (_) => false);
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => UserCheckPage()));
                   },
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),

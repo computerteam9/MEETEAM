@@ -13,7 +13,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: bgColor,
       // 중앙 로고
       title: const Text(
-        "MEETTEAM",
+        "MEETEAM",
         style: TextStyle(
             color: titleColor, fontSize: 20.0, fontWeight: FontWeight.w700),
       ),
@@ -22,7 +22,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: iconColor, size: 30),
         tooltip: 'go_back',
-        onPressed: () => {Navigator.pop(context, false)},
+        onPressed: () => {Navigator.pop(context)},
       ),
     );
   }

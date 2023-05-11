@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/ProfileWritePage.dart';
 
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
   const BaseAppbar({required Key key, required this.appBar}) : super(key: key);
@@ -14,7 +13,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: bgColor,
       // 중앙 로고
       title: const Text(
-        "MEETTEAM",
+        "MEETEAM",
         style: TextStyle(
             color: titleColor, fontSize: 20.0, fontWeight: FontWeight.w700),
       ),
@@ -23,19 +22,14 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: iconColor, size: 30),
         tooltip: 'go_back',
-        onPressed: () => {Navigator.pop(context, false)},
+        onPressed: () => {Navigator.pop(context)},
       ),
       actions: <Widget>[
         // 수정 버튼
         IconButton(
           icon: const Icon(Icons.edit, color: iconColor, size: 30),
-          onPressed: () => {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfileWritePage(changed: false,),
-                ))
-          },
+          onPressed: () => {Navigator.pushNamed(context, '/profileWrite')},
+
         )
       ],
     );

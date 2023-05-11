@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:meetteam/ProjectReadPage.dart';
-import 'package:meetteam/ProjectWritePage.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:meetteam/Appbar/MainAppbar.dart';
-import 'package:meetteam/ProjectListPage.dart';
 import 'package:meetteam/Color.dart';
+import 'package:meetteam/Widgets/ProjectCard.dart';
 import 'package:meetteam/ProjectBox.dart';
 
 class MainPage extends StatelessWidget {
@@ -44,11 +43,7 @@ class MainPage extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProjectListPage(),
-                              ));
+                          Navigator.pushNamed(context, '/projects');
                         },
                         icon: const Icon(Icons.add),
                       ),
@@ -82,68 +77,49 @@ class MainPage extends StatelessWidget {
                   ],
                 ),
                 // 추천 프로젝트 리스트
-                Container(
-                    height: 360,
-                    margin: const EdgeInsets.fromLTRB(0, 10, 50, 10),
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    decoration: BoxDecoration(
-                        color: CustomColor.color3,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                const ClipOval(
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 50,
-                                  ),
-                                ),
-                                const Text(
-                                  "Nickname",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.white),
-                                ),
-                                Container(
-                                    height: 40,
-                                    width: 100,
-                                    margin: const EdgeInsets.only(top: 5),
-                                    decoration: BoxDecoration(
-                                        color: CupertinoColors.systemGrey3,
-                                        borderRadius:
-                                        BorderRadius.circular(37)),
-                                    child: const Text("D-2",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 30,
-                                            color: Colors.white),
-                                        textAlign: TextAlign.center)),
-                              ]),
-                          Container(
-                            height: 180,
-                            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                            decoration: const BoxDecoration(
-                                color: CupertinoColors.systemGrey3),
-                          ),
-                          const Text(
-                            "  프로젝트명",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.white),
-                          ),
-                          const Text(
-                            "   한줄 소개",
-                            style:
-                            TextStyle(fontSize: 13, color: Colors.white),
-                          ),
+                CarouselSlider(
+                    items: const [
+                      ProjectCard(
+                        title: "프로젝트1",
+                        description: "설명1",
+                        nickname: "user1",
+                        dDay: "3",
+                      ),
+                      ProjectCard(
+                        title: "프로젝트2",
+                        description: "설명2",
+                        nickname: "user2",
+                        dDay: "6",
+                      ),
+                    ],
+                    options: CarouselOptions(
+                      height: 380.0,
+                      enlargeCenterPage: false,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      viewportFraction: 1,
+                    )),
+                Positioned(
+                  bottom: 0,
+                  right: 20,
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/projectWrite');
+                    },
+                    color: CupertinoColors.systemGrey3,
+                    textColor: Colors.black,
+                    padding: const EdgeInsets.all(20),
+                    shape: const CircleBorder(),
+                    child: const Icon(
+                      Icons.create,
+                      size: 20,
+                    ),
+                  ),
+                )
 
-                        ])),
               ]))
         ]));
   }
