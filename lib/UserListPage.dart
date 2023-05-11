@@ -345,12 +345,7 @@ class UserList extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/', (_) => false);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UserCheckPage()));
+                    Navigator.pushNamed(context, '/userCheck');
                   },
                   child: Container(
                     margin: const EdgeInsets.only(top: 20),

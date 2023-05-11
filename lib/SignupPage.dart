@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/NormalAppbar.dart';
+import 'ProfileWritePage.dart';
 import 'main.dart';
 
 class SignUpPage extends StatefulWidget {

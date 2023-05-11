@@ -9,6 +9,8 @@ import 'package:meetteam/ProfileWritePage.dart';
 import 'package:meetteam/ProjectReadPage.dart';
 import 'package:meetteam/UserListPage.dart';
 
+import 'UserCheckPage.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfilePage(),
         '/explorer': (context) => ExplorerPage(),
         '/userList': (context) => UserList(),
+        '/userCheck' : (context) => UserCheckPage(),
       });
   }
 }
