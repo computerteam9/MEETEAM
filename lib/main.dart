@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/SignupPage.dart';
+import 'package:meetteam/SignUpPage.dart';
 
 void main() {
   runApp(const MyApp());
