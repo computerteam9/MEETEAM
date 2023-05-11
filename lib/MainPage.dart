@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:meetteam/Appbar/MainAppbar.dart';
 import 'package:meetteam/Color.dart';
 import 'package:meetteam/Widgets/ProjectCard.dart';
-import 'package:meetteam/ProjectBox.dart';
+import 'package:meetteam/Widgets/ProjectBox.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

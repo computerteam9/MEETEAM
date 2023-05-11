@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/NormalAppbar.dart';
 import 'package:meetteam/Color.dart';
-import 'ProjectBox.dart';
+import 'Widgets/ProjectBox.dart';
 
 class ProjectListPage extends StatefulWidget {
   const ProjectListPage({super.key});
