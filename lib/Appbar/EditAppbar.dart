@@ -29,6 +29,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: const Icon(Icons.edit, color: iconColor, size: 30),
           onPressed: () => {Navigator.pushNamed(context, '/profileWrite')},
+
         )
       ],
     );
