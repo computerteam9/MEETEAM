@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:meetteam/Appbar/NormalAppbar.dart";
+import "package:meetteam/ApplicationCheckPage.dart";
 import "package:meetteam/Color.dart";
 
 class ApplicationFinishedPage extends StatefulWidget {
@@ -15,16 +16,26 @@ class ApplicationFinishedPageState extends State<ApplicationFinishedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-      bottomNavigationBar: Container(
-        height: 60,
-        color: CustomColor.color3,
-        alignment: Alignment.center,
-        child:
-        const Text(
-          "확인",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
+      bottomNavigationBar: SizedBox(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(
+              builder: (context) => const ApplicationCheckPage(),
+            ));
+          },
+          child: Container(
+            height: 60,
+            color: CustomColor.color3,
+            alignment: Alignment.center,
+            child:
+            const Text(
+              "확인",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+              ),
+            ),
           ),
         ),
       ),
