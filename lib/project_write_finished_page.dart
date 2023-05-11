@@ -1,17 +1,18 @@
 import "package:flutter/material.dart";
-import "package:meetteam/Appbar/NormalAppbar.dart";
-import "package:meetteam/ApplicationCheckPage.dart";
+import "package:meetteam/Appbar/normal_appbar.dart";
 import "package:meetteam/Color.dart";
 
-class ApplicationFinishedPage extends StatefulWidget {
-  const ApplicationFinishedPage({super.key});
+import "project_read_page.dart";
+
+class ProjectWriteFinishedPage extends StatefulWidget {
+  const ProjectWriteFinishedPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => ApplicationFinishedPageState();
+  State<StatefulWidget> createState() => ProjectWriteFinishedPageState();
 
 }
 
-class ApplicationFinishedPageState extends State<ApplicationFinishedPage> {
+class ProjectWriteFinishedPageState extends State<ProjectWriteFinishedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,7 @@ class ApplicationFinishedPageState extends State<ApplicationFinishedPage> {
           onTap: () {
             Navigator.push(
                 context, MaterialPageRoute(
-              builder: (context) => const ApplicationCheckPage(),
+              builder: (context) => const ProjectReadPage(),
             ));
           },
           child: Container(
@@ -42,9 +43,9 @@ class ApplicationFinishedPageState extends State<ApplicationFinishedPage> {
       body: const Center(
         child:
         Text(
-          "지원이 완료되었습니다.",
+          "작성이 완료되었습니다.",
           style: TextStyle(
-              fontSize: 20
+            fontSize: 20
           ),
         ),
       ),

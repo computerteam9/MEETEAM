@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/Appbar/NormalAppbar.dart';
+import 'package:meetteam/Appbar/normal_appbar.dart';
 
 class ProjectWritePage extends StatefulWidget {
   ProjectWritePage({super.key});

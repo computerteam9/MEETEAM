@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:meetteam/Appbar/NormalAppbar.dart';
+import 'package:meetteam/Appbar/normal_appbar.dart';
 
 class ProfileWritePage extends StatefulWidget {
   final bool? changed;

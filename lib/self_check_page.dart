@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:meetteam/Appbar/NormalAppbar.dart';
-import 'package:meetteam/ProjectReadPage.dart';
+import 'package:meetteam/Appbar/normal_appbar.dart';
+import 'package:meetteam/project_read_page.dart';
 
 class SelfCheckPage extends StatelessWidget {
   static const color1 = Color(0Xff4676BA);

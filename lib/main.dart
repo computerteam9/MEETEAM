@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/SignupPage.dart';
-import 'package:meetteam/MainPage.dart';
-import 'package:meetteam/ProfilePage.dart';
-import 'package:meetteam/ExplorerPage.dart';
-import 'package:meetteam/ProjectListPage.dart';
-import 'package:meetteam/ProjectWritePage.dart';
-import 'package:meetteam/ProfileWritePage.dart';
-import 'package:meetteam/ProjectReadPage.dart';
-import 'package:meetteam/UserListPage.dart';
+import 'package:meetteam/signup_page.dart';
+import 'package:meetteam/main_page.dart';
+import 'package:meetteam/profile_page.dart';
+import 'package:meetteam/explorer_page.dart';
+import 'package:meetteam/project_list_page.dart';
+import 'package:meetteam/project_write_page.dart';
+import 'package:meetteam/profile_write_page.dart';
+import 'package:meetteam/project_read_page.dart';
+import 'package:meetteam/user_list_page.dart';
 
-import 'UserCheckPage.dart';
+import 'user_check_page.dart';
 
 void main() {
   runApp(const MyApp());

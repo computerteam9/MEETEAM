@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:meetteam/Appbar/MainAppbar.dart';
+import 'package:meetteam/Appbar/main_appbar.dart';
 import 'package:meetteam/Color.dart';
-import 'package:meetteam/Widgets/ProjectCard.dart';
-import 'package:meetteam/Widgets/ProjectBox.dart';
+import 'package:meetteam/Widgets/project_card.dart';
+import 'package:meetteam/Widgets/project_box.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

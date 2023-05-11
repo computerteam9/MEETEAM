@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/Appbar/WriteAppbar.dart';
+import 'package:meetteam/Appbar/write_appbar.dart';
 
 class ApplicationWritePage extends StatefulWidget {
   ApplicationWritePage({super.key});

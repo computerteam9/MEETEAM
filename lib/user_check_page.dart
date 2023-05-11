@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:meetteam/Appbar/NormalAppbar.dart';
+import 'package:meetteam/Appbar/normal_appbar.dart';
 
 class UserCheckPage extends StatelessWidget {
   static const color1 = Color(0Xff4676BA);

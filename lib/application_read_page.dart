@@ -1,19 +1,19 @@
 import "package:flutter/material.dart";
-import "package:meetteam/Appbar/NormalAppbar.dart";
+import "package:meetteam/Appbar/normal_appbar.dart";
 import "package:meetteam/Color.dart";
 
 //스크롤 미구현 상태
 //body 영역에 대한 스크롤 구현
 //프로필 버튼 누르면 프로필로 이동 구현
 //그 외 각각 연결해줄 변수.. 리스트 등등..
-class ProjectReadPage extends StatefulWidget {
-  const ProjectReadPage({super.key});
+class ApplicationReadPage extends StatefulWidget {
+  const ApplicationReadPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _ProjectReadPage();
+  State<StatefulWidget> createState() => _ApplicationReadPage();
 }
 
-class _ProjectReadPage extends State<ProjectReadPage> {
+class _ApplicationReadPage extends State<ApplicationReadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
@@ -22,7 +22,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
           color: CustomColor.color3,
           alignment: Alignment.center,
           child: const Text(
-            "신청자 내역",
+            "지원",
             style: TextStyle(fontSize: 30, color: Colors.white),
           )),
       body: Container(
