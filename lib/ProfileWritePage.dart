@@ -1,9 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/NormalAppbar.dart';
 import 'package:meetteam/MainPage.dart';
+import 'package:meetteam/ProfilePage.dart';
 
 class ProfileWritePage extends StatefulWidget {
-  const ProfileWritePage({super.key});
+  final bool? changed;
+  const ProfileWritePage({Key? key, required this.changed}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => ProfileWrite();
 }
@@ -38,7 +41,7 @@ class ProfileWrite extends State<ProfileWritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-        body: Column(children: [
+        body: SingleChildScrollView(child: Column(children: [
           Container(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -63,7 +66,7 @@ class ProfileWrite extends State<ProfileWritePage> {
             Column(children: [
               Container(
                 margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 250,
+                width: 200,
                 child: TextFormField(
                     controller: nicknameController,
                     decoration: InputDecoration(
@@ -72,7 +75,7 @@ class ProfileWrite extends State<ProfileWritePage> {
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 250,
+                width: 200,
                 child: TextFormField(
                     controller: fieldController,
                     decoration: InputDecoration(
@@ -81,7 +84,7 @@ class ProfileWrite extends State<ProfileWritePage> {
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 250,
+                width: 200,
                 child: TextFormField(
                     controller: areaController,
                     decoration: InputDecoration(
@@ -105,7 +108,7 @@ class ProfileWrite extends State<ProfileWritePage> {
 
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 450,
+            width: 400,
             child: TextFormField(
                 controller: blogController,
                 decoration: InputDecoration(
@@ -130,7 +133,7 @@ class ProfileWrite extends State<ProfileWritePage> {
           //경력 표시되는 상자
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 450,
+            width: 400,
             child: TextField(
                 controller: activityController,
                 decoration: InputDecoration(
@@ -154,7 +157,7 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 450,
+            width: 400,
             child: TextField(
                 controller: careerController,
                 decoration: InputDecoration(
@@ -217,10 +220,17 @@ class ProfileWrite extends State<ProfileWritePage> {
           ElevatedButton(
             child: Text("저장"),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => MainPage()));
+              if (widget.changed == true){
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => MainPage()));
+              }else{
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => ProfilePage()));
+              }
+
+
             },
           ),
-        ]));
+        ])));
   }
 }
