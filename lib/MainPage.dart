@@ -95,24 +95,6 @@ class MainPage extends StatelessWidget {
                       autoPlayAnimationDuration: Duration(milliseconds: 800),
                       viewportFraction: 1,
                     )),
-                Positioned(
-                  bottom: 0,
-                  right: 20,
-                  child: MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/projectWrite');
-                    },
-                    color: CupertinoColors.systemGrey3,
-                    textColor: Colors.black,
-                    padding: const EdgeInsets.all(20),
-                    shape: const CircleBorder(),
-                    child: const Icon(
-                      Icons.create,
-                      size: 20,
-                    ),
-                  ),
-                )
-
               ]))
         ]));
   }
