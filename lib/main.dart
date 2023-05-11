@@ -5,7 +5,7 @@ import 'package:meetteam/profile/profile_page.dart';
 import 'package:meetteam/explorer_page.dart';
 import 'package:meetteam/Project/project_list_page.dart';
 import 'package:meetteam/Project/project_write_page.dart';
-import 'package:meetteam/profile/profile_write_page.dart';
+import 'package:meetteam/Profile/profile_write_page.dart';
 import 'package:meetteam/project/project_read_page.dart';
 import 'package:meetteam/user_list_page.dart';
 
