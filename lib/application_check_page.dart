@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:meetteam/Appbar/normal_appbar.dart";
 import "package:meetteam/Color.dart";
-import "package:meetteam/profile_write_page.dart";
+import "package:meetteam/Profile/profile_write_page.dart";
 
 class ApplicationCheckPage extends StatefulWidget {
   const ApplicationCheckPage({super.key});

@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/edit_appbar.dart';
-import '../profile_write_page.dart';
+import 'package:meetteam/profile/profile_write_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
