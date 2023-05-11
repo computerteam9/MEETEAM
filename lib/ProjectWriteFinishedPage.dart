@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import "package:meetteam/Appbar/NormalAppbar.dart";
 import "package:meetteam/Color.dart";
 
+import "ProjectReadPage.dart";
+
 class ProjectWriteFinishedPage extends StatefulWidget {
   const ProjectWriteFinishedPage({super.key});
 
@@ -15,16 +17,26 @@ class ProjectWriteFinishedPageState extends State<ProjectWriteFinishedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-      bottomNavigationBar: Container(
-        height: 60,
-        color: CustomColor.color3,
-        alignment: Alignment.center,
-        child:
-        const Text(
-          "확인",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
+      bottomNavigationBar: SizedBox(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(
+              builder: (context) => const ProjectReadPage(),
+            ));
+          },
+          child: Container(
+            height: 60,
+            color: CustomColor.color3,
+            alignment: Alignment.center,
+            child:
+            const Text(
+              "확인",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+              ),
+            ),
           ),
         ),
       ),
