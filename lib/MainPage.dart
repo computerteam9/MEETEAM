@@ -16,11 +16,7 @@ class MainPage extends StatelessWidget {
 
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProjectWritePage(),
-                ));
+            Navigator.pushNamed(context, '/projectWrite');
           },
           backgroundColor: CupertinoColors.systemGrey3,
 
@@ -51,10 +47,7 @@ class MainPage extends StatelessWidget {
                 // 내 프로젝트 리스트
                 SizedBox(child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(
-                      builder: (context) => const ProjectReadPage(),
-                    ));
+                    Navigator.pushNamed(context, '/project');
                   },
                   child: const ProjectBox(
                     title: "프로젝트 명",

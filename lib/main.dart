@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
         '/projectWrite': (context) => ProjectWritePage(),
         '/project': (context) => ProjectReadPage(),
         '/profile': (context) => ProfilePage(),
-        '/profileWrite': (context) => ProfileWritePage(),
         '/explorer': (context) => ExplorerPage(),
         '/userList': (context) => UserList(),
       });

@@ -143,7 +143,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   )
             ]),
           ),
-        ),
         ElevatedButton(
           child: Text("저장"),
           onPressed: () {
@@ -152,8 +151,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
           },
         ),
       ]),
+      )
     );
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }
