@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
-import 'profile_write_page.dart';
-import 'main.dart';
+import '../profile_write_page.dart';
+import '../main.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

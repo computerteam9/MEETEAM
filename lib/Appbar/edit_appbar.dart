@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../profile_write_page.dart';
 
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
