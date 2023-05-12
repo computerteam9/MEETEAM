@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:meetteam/Appbar/normal_appbar.dart";
 import "package:meetteam/Color.dart";
-
 import "project_read_page.dart";
 
 class ProjectWriteFinishedPage extends StatefulWidget {
@@ -51,7 +50,6 @@ class ProjectWriteFinishedPageState extends State<ProjectWriteFinishedPage> {
       ),
     );
     // TODO: implement build
-    throw UnimplementedError();
   }
 
 }

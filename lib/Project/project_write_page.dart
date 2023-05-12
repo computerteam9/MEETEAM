@@ -4,12 +4,12 @@ import 'package:meetteam/Appbar/normal_appbar.dart';
 class ProjectWritePage extends StatefulWidget {
   ProjectWritePage({super.key});
 
-  String projectTitle = _ProjectWritePageState().projectTitleController.text;
-  String requiredCareer =
+  static String projectTitle = _ProjectWritePageState().projectTitleController.text;
+  static String requiredCareer =
       _ProjectWritePageState().requiredCareerController.text;
-  String workingTime = _ProjectWritePageState().workingTimeController.text;
-  String personNumber = _ProjectWritePageState().personNumberController.text;
-  String introduceProject =
+  static String workingTime = _ProjectWritePageState().workingTimeController.text;
+  static String personNumber = _ProjectWritePageState().personNumberController.text;
+  static String introduceProject =
       _ProjectWritePageState().introduceProjectController.text;
 
   @override
