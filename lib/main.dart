@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetteam/notice_page.dart';
 import 'package:meetteam/profile/signup_page.dart';
 import 'package:meetteam/main_page.dart';
 import 'package:meetteam/profile/profile_page.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/explorer': (context) => ExplorerPage(),
         '/userList': (context) => UserList(),
         '/userCheck' : (context) => UserCheckPage(),
+        '/notice' : (context) => Notice_page(),
       });
   }
 }
