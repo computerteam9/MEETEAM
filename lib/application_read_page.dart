@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:meetteam/Appbar/normal_appbar.dart";
 import "package:meetteam/Color.dart";
+import "package:meetteam/Project/project_write_page.dart";
 
 class ApplicationReadPage extends StatefulWidget {
   const ApplicationReadPage({super.key});
@@ -30,8 +31,8 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    "프로젝트명",
+                  child: Text( // 프로젝트명
+                    ProjectWritePage.projectTitle,
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
@@ -47,8 +48,8 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                     ),
                   ),
                 ),
-                Text(
-                  "풍부하게 앞이 수 인생을 스며들어 얼마나 꾸며 위하여 밝은 운다. 기쁘며, 놀이 얼마나 심장은 기관과 얼마나 피고 목숨을 있으랴? 뼈 안고, 철환하였는가?",
+                Text( // 프로젝트 설명
+                  ProjectWritePage.introduceProject,
                   maxLines: 10,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -116,7 +117,7 @@ class _ApplicationReadPage extends State<ApplicationReadPage> {
                           ),
                         ],
                       ),
-                      Text("매주 토요일 20시")
+                      Text(ProjectWritePage.workingTime) // 기간 (모임 활동 시간)
                     ],
                   ),
                 ),
