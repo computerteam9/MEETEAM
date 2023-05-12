@@ -26,7 +26,10 @@ class _Notice_page extends State<Notice_page> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 SizedBox(width: 10.0,),
-                                Icon(Icons.person_add, size: 20),
+                                IconButton(
+                                  icon: const Icon(Icons.person_add, size: 20),
+                                  onPressed: () => {Navigator.pushNamed(context, '/userList')},
+                                ),
                                 SizedBox(width: 30.0,),
                                 //글 부분
                                 Text("내 프로젝트 신청자 += 1"),
@@ -45,7 +48,10 @@ class _Notice_page extends State<Notice_page> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         SizedBox(width: 10.0,),
-                        Icon(Icons.groups, size: 20),
+                        IconButton(
+                          icon: const Icon(Icons.groups, size: 20),
+                          onPressed: () => {},
+                        ),
                         SizedBox(width: 30.0,),
                         Text("OO프로젝트에 신청자 확정되었습니다."),
                       ],
@@ -63,7 +69,10 @@ class _Notice_page extends State<Notice_page> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         SizedBox(width: 10.0,),
-                        Icon(Icons.description, size: 20),
+                        IconButton(
+                          icon: const Icon(Icons.description, size: 20),
+                          onPressed: () => {},
+                        ),
                         SizedBox(width: 30.0,),
                         Text("OO관련 프로젝트가 모집 진행중입니다."),
                       ],
