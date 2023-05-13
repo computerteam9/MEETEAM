@@ -29,15 +29,9 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
         // 수정 버튼
         IconButton(
           icon: const Icon(Icons.edit, color: iconColor, size: 30),
-          onPressed: () => {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfileWritePage(
-                    changed: false,
-                  ),
-                ))
-          },
+          // ProfilePage로 이동시키기 위해 parameter로 flag를 넘긴다
+          onPressed: () => Navigator.pushNamed(context, '/profileWrite',
+              arguments: ProfileWritePageArguments(false)),
         )
       ],
     );

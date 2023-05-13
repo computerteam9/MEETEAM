@@ -21,20 +21,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      initialRoute: '/signup',
-      routes: {
-        '/signup': (context) => SignUpPage(),
-        '/': (context) => MainPage(),
-        '/projects': (context) => ProjectListPage(),
-        '/projectWrite': (context) => ProjectWritePage(),
-        '/project': (context) => ProjectReadPage(),
-        '/profile': (context) => ProfilePage(),
-        '/explorer': (context) => ExplorerPage(),
-        '/userList': (context) => UserList(),
-        '/userCheck' : (context) => UserCheckPage(),
-      });
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(),
+        initialRoute: '/signup',
+        routes: {
+          '/signup': (context) => SignUpPage(),
+          '/': (context) => MainPage(),
+          '/projects': (context) => ProjectListPage(),
+          '/projectWrite': (context) => ProjectWritePage(),
+          '/project': (context) => ProjectReadPage(),
+          '/profileWrite': (context) => ProfileWritePage(),
+          '/profile': (context) => ProfilePage(),
+          '/explorer': (context) => ExplorerPage(),
+          '/userList': (context) => UserList(),
+          '/userCheck': (context) => UserCheckPage(),
+        });
   }
 }

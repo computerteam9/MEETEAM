@@ -1,9 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
 
+class ProfileWritePageArguments {
+  final bool? isSignUp;
+
+  ProfileWritePageArguments(this.isSignUp);
+}
+
 class ProfileWritePage extends StatefulWidget {
-  final bool? changed;
-  const ProfileWritePage({Key? key, required this.changed}) : super(key: key);
+  const ProfileWritePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ProfileWrite();
@@ -37,6 +42,9 @@ class ProfileWrite extends State<ProfileWritePage> {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as ProfileWritePageArguments;
+
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: SingleChildScrollView(
@@ -219,10 +227,15 @@ class ProfileWrite extends State<ProfileWritePage> {
           ElevatedButton(
             child: Text("저장"),
             onPressed: () {
-              if (widget.changed == true) {
+              // 처음 회원가입 하는 경우
+              if (args.isSignUp == true) {
+                // 메인 페이지로 이동
                 Navigator.pushNamed(context, '/');
-              } else {
-                Navigator.pushNamed(context, '/profile');
+              }
+              // 프로필 수정하는 경우
+              else {
+                // 프로필 보는 페이지로 이동
+                Navigator.pop(context);
               }
             },
           ),
