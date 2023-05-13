@@ -130,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 // 개인정보동의가 되어야 가입하기 버튼을 누를 수 있음
 
                 onPressed: _CompleteSignup
-                    ? () => Navigator.pushNamed(context, '/',
+                    ? () => Navigator.pushNamed(context, '/profileWrite',
                         arguments: ProfileWritePageArguments(true))
                     : null,
               ),

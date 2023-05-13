@@ -229,8 +229,8 @@ class ProfileWrite extends State<ProfileWritePage> {
             onPressed: () {
               // 처음 회원가입 하는 경우
               if (args.isSignUp == true) {
-                // 메인 페이지로 이동
-                Navigator.pushNamed(context, '/');
+                // 모든 위젯 삭제하고 메인 페이지로 이동
+                Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
               }
               // 프로필 수정하는 경우
               else {
