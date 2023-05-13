@@ -10,21 +10,24 @@ class ExplorerPage extends StatefulWidget {
 }
 
 class _ExplorerState extends State<ExplorerPage> {
-  static const List<String> tagList = [
-    "오프라인",
-    "Javascript",
-    "백엔드",
-    "프론트엔드",
-    "안드로이드",
-    "IOS",
-    "웹",
-    "데스크탑",
-    "게임",
-    "데이터베이스",
-    "기타"
-  ];
-  // tagList의 갯수만큼 false로 초기화
-  static List<bool> isTagSelected = List.filled(tagList.length, false);
+  // DropDownButton에 들어갈 리스트
+  static const List<String> sortList = ["정렬", "최신순", "인기순", "마감임박순"];
+  static const List<String> fieldList = ["분야 선택", "웹", "모바일 앱", "게임"];
+  static const List<String> meetList = ["모임 방식", "온라인", "오프라인"];
+
+  // DropDownButton에서 선택된 값
+  static String selectedSort = sortList[0];
+  static String selectedField = fieldList[0];
+  static String selectedMeet = meetList[0];
+
+  // 현재 페이지로 들아왔을 때 검색 결과 초기화
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    selectedSort = sortList[0];
+    selectedField = fieldList[0];
+    selectedMeet = meetList[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class _ExplorerState extends State<ExplorerPage> {
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
           Container(
-              margin: const EdgeInsets.all(50),
+              margin: const EdgeInsets.fromLTRB(50, 20, 50, 30),
               child: Row(
                 children: <Widget>[
                   // Row안에 TextField 넣기 위해 Expanded 사용
@@ -58,37 +61,51 @@ class _ExplorerState extends State<ExplorerPage> {
                 ],
               )),
           Container(
-              margin: const EdgeInsets.only(left: 30, right: 30),
-              // Wrap으로 감싸서 자동 줄바꿈
-              child: Wrap(
-                  direction: Axis.horizontal,
-                  alignment: WrapAlignment.start,
-                  spacing: 5,
-                  children: [
-                    // ToggleButtons 반복 생성
-                    for (int i = 0; i < tagList.length; i++)
-                      ToggleButtons(
-                          color: Colors.black.withOpacity(0.60),
-                          selectedColor: CustomColor.color3,
-                          selectedBorderColor: CustomColor.color3,
-                          fillColor: CustomColor.color3.withOpacity(0.08),
-                          splashColor: CustomColor.color3.withOpacity(0.12),
-                          hoverColor: CustomColor.color3.withOpacity(0.04),
-                          borderRadius: BorderRadius.circular(4.0),
-                          constraints: const BoxConstraints(minHeight: 36.0),
-                          isSelected: [isTagSelected[i]],
-                          onPressed: (index) {
-                            setState(() {
-                              isTagSelected[i] = !isTagSelected[i];
-                            });
-                          },
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
-                                child: Text(tagList[i]))
-                          ]),
-                  ]))
+              margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // 정렬 선택
+                  DropdownButton<String>(
+                      value: selectedSort,
+                      items: [
+                        for (int i = 0; i < sortList.length; i++)
+                          DropdownMenuItem<String>(
+                              value: sortList[i], child: Text(sortList[i]))
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedSort = value!;
+                        });
+                      }),
+                  // 분야 선택
+                  DropdownButton<String>(
+                      value: selectedField,
+                      items: [
+                        for (int i = 0; i < fieldList.length; i++)
+                          DropdownMenuItem<String>(
+                              value: fieldList[i], child: Text(fieldList[i]))
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedField = value!;
+                        });
+                      }),
+                  // 모임 방식 선택
+                  DropdownButton<String>(
+                      value: selectedMeet,
+                      items: [
+                        for (int i = 0; i < meetList.length; i++)
+                          DropdownMenuItem<String>(
+                              value: meetList[i], child: Text(meetList[i]))
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedMeet = value!;
+                        });
+                      }),
+                ],
+              )),
         ]));
   }
 }
