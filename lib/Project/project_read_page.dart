@@ -8,6 +8,10 @@ import "package:meetteam/Project/project_write_page.dart";
 //장소(온/오프라인)
 //모집인원 n명 설정 > 분야, 최소 경력, 필요 기술 작성하도록 함.
 
+// 현재 상태
+// applied: 신청한 상태
+// created: 내가 만든 프로젝트
+// none: 신청하지 않은 상태
 enum Status { applied, created, none }
 
 class ProjectReadPage extends StatefulWidget {
@@ -18,18 +22,18 @@ class ProjectReadPage extends StatefulWidget {
 }
 
 class _ProjectReadPage extends State<ProjectReadPage> {
-  Status status = Status.none;
+  Status status = Status.applied;
   String bottomLabel = "";
 
   @override
   void initState() {
     super.initState();
     if (status == Status.applied) {
-      bottomLabel = "신청 취소";
+      bottomLabel = "지원 내역 확인";
     } else if (status == Status.created) {
       bottomLabel = "신청자 내역";
     } else {
-      bottomLabel = "프로젝트 신청";
+      bottomLabel = "지원";
     }
   }
 
@@ -41,8 +45,8 @@ class _ProjectReadPage extends State<ProjectReadPage> {
           height: 60,
           color: CustomColor.color3,
           alignment: Alignment.center,
-          child: const Text(
-            "신청자 내역",
+          child: Text(
+            bottomLabel,
             style: TextStyle(fontSize: 30, color: Colors.white),
           )),
       body: SingleChildScrollView(
