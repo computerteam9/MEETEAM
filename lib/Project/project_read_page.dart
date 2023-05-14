@@ -8,14 +8,32 @@ import "package:meetteam/Project/project_write_page.dart";
 //장소(온/오프라인)
 //모집인원 n명 설정 > 분야, 최소 경력, 필요 기술 작성하도록 함.
 
+enum Status { applied, created, none }
+
 class ProjectReadPage extends StatefulWidget {
-  const ProjectReadPage({super.key});
+  ProjectReadPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _ProjectReadPage();
 }
 
 class _ProjectReadPage extends State<ProjectReadPage> {
+  Status status = Status.none;
+  String bottomLabel = "";
+
+  @override
+  void initState() {
+    super.initState();
+    if (status == Status.applied) {
+      bottomLabel = "신청 취소";
+    } else if (status == Status.created) {
+      bottomLabel = "신청자 내역";
+    } else {
+      bottomLabel = "프로젝트 신청";
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
@@ -36,9 +54,10 @@ class _ProjectReadPage extends State<ProjectReadPage> {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                 alignment: Alignment.topLeft,
-                child: Text( //프로젝트 명
+                child: Text(
+                  //프로젝트 명
                   ProjectWritePage.projectTitle,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
                   ),
@@ -53,15 +72,16 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                   ),
                 ),
               ),
-              Text( //프로젝트 설명
+              Text(
+                //프로젝트 설명
                 ProjectWritePage.introduceProject,
                 maxLines: 10,
                 overflow: TextOverflow.ellipsis,
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 alignment: Alignment.topLeft,
-                child: Text(
+                child: const Text(
                   "리더",
                   style: TextStyle(fontSize: 20),
                 ),
@@ -114,7 +134,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Row(
-                      children: [
+                      children: const [
                         Text("오프라인  "),
                         Text(
                           "zoom",
@@ -169,7 +189,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                                   color: CustomColor.color1,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
-                              child: Text(
+                              child: const Text(
                                 "3년",
                                 style: TextStyle(color: CustomColor.color3),
                               ),
@@ -179,9 +199,9 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                         Container(
                             child: Column(
                           children: [
-                            Text("필요 기술"),
+                            const Text("필요 기술"),
                             Container(
-                              margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                              margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                               height: 30,
                               width: 30,
                               decoration: const BoxDecoration(
@@ -230,26 +250,25 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                                   color: CustomColor.color1,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
-                              child: Text(
+                              child: const Text(
                                 "5년",
                                 style: TextStyle(color: CustomColor.color3),
                               ),
                             )
                           ],
                         )),
-                        Container(
-                            child: Column(
+                        Column(
                           children: [
-                            Text("필요 기술"),
+                            const Text("필요 기술"),
                             Container(
-                              margin: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                              margin: const EdgeInsets.fromLTRB(0, 2, 0, 0),
                               height: 30,
                               width: 30,
                               decoration: const BoxDecoration(
                                   color: Colors.grey, shape: BoxShape.circle),
                             )
                           ],
-                        )),
+                        ),
                       ],
                     ),
                   ),
@@ -260,6 +279,5 @@ class _ProjectReadPage extends State<ProjectReadPage> {
         ),
       ),
     );
-    // TODO: implement build
   }
 }
