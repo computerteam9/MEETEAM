@@ -88,10 +88,11 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                       color: CustomColor.color3,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   alignment: Alignment.center,
-                  child: const Text(
-                    "프로필",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  child: ElevatedButton(
+                      child: Text("프로필", style: TextStyle(color: Colors.white)),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/profile');
+                      }),
                 ),
               ],
             ),
