@@ -106,6 +106,35 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               minLines: 1,
               maxLines: 3,
             ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              DropdownButton<String>(
+                value: selectedMeetingWay,
+                onChanged: (value) {
+                  setState(() {
+                    selectedMeetingWay = value!;
+                  });
+                },
+                items: [
+                  for (int i = 0; i < meetingWay.length; i++)
+                    DropdownMenuItem<String>(
+                      value: meetingWay[i],
+                      child: Text(meetingWay[i]),
+                    ),
+                ],
+              ),
+              Expanded(
+                child: TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      meetingTime = value;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                    hintText: '만남 시간',
+                  ),
+                ),
+              ),
+            ]),
             Column(
               children: [
                 // 지원자 수만큼 반복
@@ -146,35 +175,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     child: Text("인원 추가"))
               ],
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              DropdownButton<String>(
-                value: selectedMeetingWay,
-                onChanged: (value) {
-                  setState(() {
-                    selectedMeetingWay = value!;
-                  });
-                },
-                items: [
-                  for (int i = 0; i < meetingWay.length; i++)
-                    DropdownMenuItem<String>(
-                      value: meetingWay[i],
-                      child: Text(meetingWay[i]),
-                    ),
-                ],
-              ),
-              Expanded(
-                child: TextField(
-                  onChanged: (value) {
-                    setState(() {
-                      meetingTime = value;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    hintText: '만남 시간',
-                  ),
-                ),
-              ),
-            ]),
             Container(
                 //여기에 업로드된 파일 리스트
                 child: (() {
