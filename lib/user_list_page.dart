@@ -26,7 +26,7 @@ class UserList extends StatelessWidget {
               //각 신청자별 상자-1
               GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/UserCheckPage');
+                    Navigator.pushNamed(context, '/userCheck');
                     // Navigator.pushNamedAndRemoveUntil(
                     //     context, '/', (_) => false);
                     // Navigator.push(

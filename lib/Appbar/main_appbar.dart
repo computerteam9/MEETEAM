@@ -22,7 +22,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: const Icon(Icons.notifications_none, color: iconColor, size: 30),
         tooltip: 'notification',
-        onPressed: () => {},
+        onPressed: () => {Navigator.pushNamed(context, '/notice')},
       ),
       actions: [
         // 검색 버튼
