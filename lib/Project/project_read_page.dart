@@ -92,6 +92,9 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   alignment: Alignment.center,
                   child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: CustomColor.color3, // Background color
+                      ),
                       child: Text("프로필", style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         Navigator.pushNamed(context, '/profile');
