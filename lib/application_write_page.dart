@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/write_appbar.dart';
 
+// workingTime(신청자 가능한 시간) 변수 사용을 안함
+
 class ApplicationWritePage extends StatefulWidget {
   ApplicationWritePage({super.key});
 
-  String nickName = _ApplicationWritePageState().nickNameController.text;
-  String supportArea = _ApplicationWritePageState().supportAreaController.text;
-  String myCareer = _ApplicationWritePageState().myCareerController.text;
-  String workingTime = _ApplicationWritePageState().workingTimeController.text;
-  String introduceUser =
+  static String nickName = _ApplicationWritePageState().nickNameController.text;
+  static String supportArea = _ApplicationWritePageState().supportAreaController.text;
+  static String myCareer = _ApplicationWritePageState().myCareerController.text;
+  static String workingTime = _ApplicationWritePageState().workingTimeController.text;
+  static String introduceUser =
       _ApplicationWritePageState().introduceUserController.text;
 
   @override
@@ -106,79 +108,5 @@ class _ApplicationWritePageState extends State<ApplicationWritePage> {
       ]),
     );
     // TODO: implement build
-    throw UnimplementedError();
   }
 }
-
-/*
-child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(50),
-                child: Column(
-                    verticalDirection: VerticalDirection.down,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextField(
-                            keyboardType: TextInputType.name,
-                            controller: nickNameController,
-                            decoration: const InputDecoration(
-                              hintText: '닉네임',
-                            ),
-                          ),
-                        ]
-
-                      ),
-                      TextField(
-                        keyboardType: TextInputType.text,
-                        controller: myCareerController,
-                        decoration: const InputDecoration(
-                          hintText: '경력',
-                        ),
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            TextField(
-                              keyboardType: TextInputType.text,
-                              controller: supportAreaController,
-                              decoration: const InputDecoration(
-                                hintText: '지원 분야',
-                              ),
-                            ),
-                            TextField(
-                              keyboardType: TextInputType.datetime,
-                              controller: workingTimeController,
-                              decoration: const InputDecoration(
-                                hintText: '활동 시간',
-                              ),
-                            )
-                          ]
-                      ),
-                      TextField(
-                        keyboardType: TextInputType.text,
-                        controller: introduceProject,
-                        decoration: const InputDecoration(
-                          hintText: '한 줄 소개',
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.add, color: iconColor, size: 30),
-                        tooltip: 'search',
-                        onPressed: () => {},
-                      ),
-                    ]
-                )
-            )
-          ],
-
-        )
-
- */
-
