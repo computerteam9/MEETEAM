@@ -13,7 +13,6 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-
         body: Column(children: [
           Container(
               margin: const EdgeInsets.fromLTRB(50, 20, 50, 10),
@@ -30,7 +29,6 @@ class MainPage extends StatelessWidget {
                           Navigator.pushNamed(context, '/projects');
                         },
                         icon: const Icon(Icons.add),
-
                       ),
                     ]),
                 // 내 프로젝트 리스트
@@ -51,7 +49,7 @@ class MainPage extends StatelessWidget {
           Stack(
             children: [
               Container(
-                  margin: const EdgeInsets.fromLTRB(50,20,50,100),
+                  margin: const EdgeInsets.fromLTRB(50, 20, 50, 100),
                   // 추천 프로젝트 상단 라벨
                   child: Column(children: [
                     Row(
@@ -67,7 +65,7 @@ class MainPage extends StatelessWidget {
                           SizedBox(
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/projectRead');
+                                Navigator.pushNamed(context, '/project');
                               },
                               child: const ProjectCard(
                                 title: "프로젝트1",
@@ -80,7 +78,7 @@ class MainPage extends StatelessWidget {
                           SizedBox(
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/projectRead');
+                                Navigator.pushNamed(context, '/project');
                               },
                               child: const ProjectCard(
                                 title: "프로젝트2",
@@ -98,7 +96,8 @@ class MainPage extends StatelessWidget {
                           aspectRatio: 16 / 9,
                           autoPlayCurve: Curves.fastOutSlowIn,
                           enableInfiniteScroll: true,
-                          autoPlayAnimationDuration: Duration(milliseconds: 800),
+                          autoPlayAnimationDuration:
+                              Duration(milliseconds: 800),
                           viewportFraction: 1,
                         )),
                   ])),
@@ -110,7 +109,6 @@ class MainPage extends StatelessWidget {
                     Navigator.pushNamed(context, '/projectWrite');
                   },
                   backgroundColor: CupertinoColors.systemGrey3,
-
                   child: const Icon(
                     Icons.create,
                     color: Colors.black,
