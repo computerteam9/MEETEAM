@@ -41,30 +41,30 @@ class _ProjectReadPage extends State<ProjectReadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
           height: 60,
-          color: CustomColor.color3,
-          alignment: Alignment.center,
-          child: Text(
-            bottomLabel,
-            style: TextStyle(fontSize: 30, color: Colors.white),
-          )),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-                alignment: Alignment.topLeft,
-                child: Text(
-                  //프로젝트 명
-                  ProjectWritePage.projectTitle,
-                  style: const TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                  ),
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: CustomColor.color3, // Background color
+              ),
+              child: Text("신청자 내역",
+                  style: TextStyle(fontSize: 30, color: Colors.white)),
+              onPressed: () {
+                Navigator.pushNamed(context, '/userList');
+              })),
+      body: Container(
+        padding: EdgeInsets.all(30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
+              alignment: Alignment.topLeft,
+              child: Text(
+                "프로젝트명",
+                style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Container(
@@ -82,6 +82,40 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                 maxLines: 10,
                 overflow: TextOverflow.ellipsis,
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  height: 50,
+                  width: 50,
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                      color: Colors.grey, shape: BoxShape.circle),
+                ),
+                Container(
+                    margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    height: 50,
+                    width: 100,
+                    alignment: Alignment.topLeft,
+                    child: Text("닉네임")),
+                Container(
+                  margin: EdgeInsets.fromLTRB(100, 30, 0, 0),
+                  height: 40,
+                  width: 80,
+                  decoration: const BoxDecoration(
+                      color: CustomColor.color3,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  alignment: Alignment.center,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: CustomColor.color3, // Background color
+                      ),
+                      child: Text("프로필", style: TextStyle(color: Colors.white)),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/profile');
+                      }),
               Container(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 alignment: Alignment.topLeft,
