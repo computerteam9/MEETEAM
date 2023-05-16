@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/notice_page.dart';
-import 'package:meetteam/profile/signup_page.dart';
+import 'package:meetteam/Profile/signup_page.dart';
 import 'package:meetteam/main_page.dart';
-import 'package:meetteam/profile/profile_page.dart';
+import 'package:meetteam/Profile/profile_page.dart';
+import 'package:meetteam/Profile/profile_write_page.dart';
 import 'package:meetteam/explorer_page.dart';
 import 'package:meetteam/Project/project_list_page.dart';
 import 'package:meetteam/Project/project_write_page.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(),
-        initialRoute: '/',
+        initialRoute: '/signup',
         routes: {
           '/signup': (context) => SignUpPage(),
           '/': (context) => MainPage(),
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
           '/projectWrite': (context) => ProjectWritePage(),
           '/project': (context) => ProjectReadPage(),
           '/profile': (context) => ProfilePage(),
+          '/profileWrite': (context) => ProfileWritePage(),
           '/explorer': (context) => ExplorerPage(),
           '/userList': (context) => UserList(),
           '/userCheck': (context) => UserCheckPage(),

@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
 
 class ProfileWritePageArguments {
-  final bool? isSignUp;
+  final bool isSignUp;
 
   ProfileWritePageArguments(this.isSignUp);
 }
