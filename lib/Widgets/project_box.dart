@@ -63,7 +63,7 @@ class ProjectBox extends StatelessWidget {
               style: const TextStyle(
                   height: 1.2,
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 28,
                   color: Colors.white),
             )
           ],
