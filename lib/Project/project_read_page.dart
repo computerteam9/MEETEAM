@@ -66,7 +66,8 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              )
+            ),
               Container(
                 alignment: Alignment.topLeft,
                 child: const Text(
@@ -82,7 +83,6 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                 maxLines: 10,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -115,7 +115,8 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                       child: Text("프로필", style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         Navigator.pushNamed(context, '/profile');
-                      }),
+                      })
+                ),
               Container(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 alignment: Alignment.topLeft,
@@ -314,6 +315,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
               ),
             ],
           ),
+        ]
         ),
       ),
     );
