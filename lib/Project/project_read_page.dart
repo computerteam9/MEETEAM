@@ -17,14 +17,17 @@ class _ProjectReadPage extends State<ProjectReadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
           height: 60,
-          color: CustomColor.color3,
-          alignment: Alignment.center,
-          child: const Text(
-            "신청자 내역",
-            style: TextStyle(fontSize: 30, color: Colors.white),
-          )),
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: CustomColor.color3, // Background color
+              ),
+              child: Text("신청자 내역",
+                  style: TextStyle(fontSize: 30, color: Colors.white)),
+              onPressed: () {
+                Navigator.pushNamed(context, '/userList');
+              })),
       body: Container(
         padding: EdgeInsets.all(30),
         child: Column(
