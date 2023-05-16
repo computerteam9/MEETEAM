@@ -22,7 +22,7 @@ class ProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 360,
-        margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        margin: const EdgeInsets.fromLTRB(0, 25, 0, 10),
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
         decoration: BoxDecoration(
             color: CustomColor.color3, borderRadius: BorderRadius.circular(20)),
