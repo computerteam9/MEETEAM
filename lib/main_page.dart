@@ -30,6 +30,7 @@ class MainPage extends StatelessWidget {
                           Navigator.pushNamed(context, '/projects');
                         },
                         icon: const Icon(Icons.add),
+
                       ),
                     ]),
                 // 내 프로젝트 리스트
@@ -42,7 +43,7 @@ class MainPage extends StatelessWidget {
                     title: "프로젝트 명",
                     description: "프로젝트 설명...",
                     tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                    dDay: "진행 중",
+                    dDay: "진행중",
                     color: CustomColor.color1,
                   ),
                 )),
@@ -50,7 +51,7 @@ class MainPage extends StatelessWidget {
           Stack(
             children: [
               Container(
-                  margin: const EdgeInsets.fromLTRB(50,30,0,100),
+                  margin: const EdgeInsets.fromLTRB(50,20,50,100),
                   // 추천 프로젝트 상단 라벨
                   child: Column(children: [
                     Row(
