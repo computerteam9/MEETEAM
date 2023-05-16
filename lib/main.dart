@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetteam/notice_page.dart';
 import 'package:meetteam/application_check_page.dart';
 import 'package:meetteam/profile/signup_page.dart';
 import 'package:meetteam/main_page.dart';
@@ -21,22 +22,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(),
-        initialRoute: '/signup',
-        routes: {
-          '/signup': (context) => SignUpPage(),
-          '/': (context) => MainPage(),
-          '/projects': (context) => ProjectListPage(),
-          '/projectWrite': (context) => ProjectWritePage(),
-          '/project': (context) => ProjectReadPage(),
-          '/profile': (context) => ProfilePage(),
-          '/explorer': (context) => ExplorerPage(),
-          '/userList': (context) => UserList(),
-          '/userCheck': (context) => UserCheckPage(),
-          '/projectRead': (context) => ApplicationReadPage(),
-          '/check' : (context) => ApplicationCheckPage(),
-        });
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(),
+      initialRoute: '/signup',
+      routes: {
+        '/signup': (context) => SignUpPage(),
+        '/': (context) => MainPage(),
+        '/projects': (context) => ProjectListPage(),
+        '/projectWrite': (context) => ProjectWritePage(),
+        '/projectRead': (context) => ApplicationReadPage(),
+        '/project': (context) => ProjectReadPage(),
+        '/profile': (context) => ProfilePage(),
+        '/explorer': (context) => ExplorerPage(),
+        '/userList': (context) => UserList(),
+        '/userCheck' : (context) => UserCheckPage(),
+        '/notice' : (context) => Notice_page(),
+      });
   }
 }

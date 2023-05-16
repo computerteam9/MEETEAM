@@ -110,6 +110,8 @@ class ProfileWrite extends State<ProfileWritePage> {
             width: 400,
             child: TextFormField(
                 controller: blogController,
+                minLines: 1,
+                maxLines: 3,
                 decoration: InputDecoration(
                   hintText: '블로그',
                 )),
@@ -135,6 +137,8 @@ class ProfileWrite extends State<ProfileWritePage> {
             width: 400,
             child: TextField(
                 controller: activityController,
+                minLines: 1,
+                maxLines: 3,
                 decoration: InputDecoration(
                   hintText: '경력',
                 )),
@@ -159,6 +163,8 @@ class ProfileWrite extends State<ProfileWritePage> {
             width: 400,
             child: TextField(
                 controller: careerController,
+                minLines: 1,
+                maxLines: 3,
                 decoration: InputDecoration(
                   hintText: '활동내역',
                 )),
