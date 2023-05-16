@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meetteam/Appbar/normal_appbar.dart';
+import 'package:meetteam/Appbar/logo_appbar.dart';
 import 'package:meetteam/Profile/profile_write_page.dart';
 
 
