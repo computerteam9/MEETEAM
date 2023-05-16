@@ -28,7 +28,7 @@ class _ProjectListPage extends State<ProjectListPage> {
                       children: [
                         SizedBox(child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/check');
+                            Navigator.pushNamed(context, '/project');
                           },
                           child: const ProjectBox(
                             title: "프로젝트 1",
@@ -38,7 +38,7 @@ class _ProjectListPage extends State<ProjectListPage> {
                           ),),),
                         SizedBox(child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/check');
+                            Navigator.pushNamed(context, '/project');
                           },
                           child: const ProjectBox(
                             title: "프로젝트 2",
@@ -48,7 +48,7 @@ class _ProjectListPage extends State<ProjectListPage> {
                           ),),),
                         SizedBox(child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/check');
+                            Navigator.pushNamed(context, '/project');
                           },
                           child: const ProjectBox(
                             title: "프로젝트 3",
@@ -70,7 +70,7 @@ class _ProjectListPage extends State<ProjectListPage> {
                       children: [
                         SizedBox(child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/check');
+                            Navigator.pushNamed(context, '/project');
                           },
                           child: const ProjectBox(
                             title: "프로젝트 1",
@@ -81,7 +81,7 @@ class _ProjectListPage extends State<ProjectListPage> {
                           ),),),
                         SizedBox(child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/check');
+                            Navigator.pushNamed(context, '/project');
                           },
                           child: const ProjectBox(
                             title: "프로젝트 2",
@@ -92,7 +92,7 @@ class _ProjectListPage extends State<ProjectListPage> {
                           ),),),
                         SizedBox(child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/check');
+                            Navigator.pushNamed(context, '/project');
                           },
                           child: const ProjectBox(
                             title: "프로젝트 3",
@@ -103,7 +103,7 @@ class _ProjectListPage extends State<ProjectListPage> {
                           ),),),
                         SizedBox(child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/check');
+                            Navigator.pushNamed(context, '/project');
                           },
                           child: const ProjectBox(
                             title: "프로젝트 4",
