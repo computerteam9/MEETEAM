@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/Project/project_read_page.dart';
+import 'package:meetteam/application_write_page.dart';
 
 class SelfCheckPage extends StatelessWidget {
   static const color1 = Color(0Xff4676BA);
@@ -32,15 +33,15 @@ class SelfCheckPage extends StatelessWidget {
                     Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
-                            "닉네임",
+                          Text( //닉네임
+                            ApplicationWritePage.nickName,
                             style: TextStyle(color: color2, fontSize: 23),
                           ),
-                          Text(
-                            "전문 분야",
+                          Text( // 전문 분야
+                            ApplicationWritePage.supportArea,
                             style: TextStyle(color: color2, fontSize: 23),
                           ),
-                          Text(
+                          Text( //거주 지역
                             "거주 지역",
                             style: TextStyle(color: color2, fontSize: 23),
                           ),
@@ -60,7 +61,8 @@ class SelfCheckPage extends StatelessWidget {
               Container(
                   margin: const EdgeInsets.all(5),
                   padding: const EdgeInsets.all(10),
-                  child: Text("xxx 프로젝트 참여\n yy 아카데미 참여\n A 대회 수상",
+                  child: Text(
+                      ApplicationWritePage.myCareer,
                       style: TextStyle(fontSize: 20)),
                   height: 150,
                   width: 400,
@@ -82,7 +84,7 @@ class SelfCheckPage extends StatelessWidget {
                   margin: const EdgeInsets.all(5),
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                      "프로젝트에 참여하게 된다면\n 누구보다 성실히 임하고 계속해서\n 아이디어를 생각해낼 자신이 있습니다.",
+                      ApplicationWritePage.introduceUser,
                       style: TextStyle(fontSize: 20)),
                   height: 150,
                   width: 400,
