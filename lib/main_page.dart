@@ -71,19 +71,27 @@ class MainPage extends StatelessWidget {
                 ),
                 // 추천 프로젝트 리스트
                 CarouselSlider(
-                    items: const [
-                      ProjectCard(
-                        title: "프로젝트1",
-                        description: "설명1",
-                        nickname: "user1",
-                        dDay: "3",
-                      ),
-                      ProjectCard(
-                        title: "프로젝트2",
-                        description: "설명2",
-                        nickname: "user2",
-                        dDay: "6",
-                      ),
+                    items: [
+                      SizedBox(child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/projectRead');
+                        },
+                        child: const ProjectCard(
+                          title: "프로젝트1",
+                          description: "설명1",
+                          nickname: "user1",
+                          dDay: "3",
+                        ),),),
+                      SizedBox(child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/projectRead');
+                        },
+                        child: const ProjectCard(
+                          title: "프로젝트2",
+                          description: "설명2",
+                          nickname: "user2",
+                          dDay: "6",
+                        ),),),
                     ],
                     options: CarouselOptions(
                       height: 380.0,
