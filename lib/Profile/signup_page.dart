@@ -16,13 +16,62 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _isOK = false;
   bool _CompleteSignup = false;
 
+  bool _checkId = true;
+  bool _checkPassword = true;
+  bool _checkPassword2 = true;
+  bool _checkEmail = true;
+
+
+  @override
+  void dispose(){
+    _emailController.dispose();
+    _idController.dispose();
+    _passwordController1.dispose();
+    _passwordController2.dispose();
+    super.dispose();
+  }
+  void _checkEmailCondition(){
+    String id = _emailController.text;
+    bool isValid = id.contains(RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$'));
+    setState(() {
+      _checkEmail = isValid;
+    });
+  }
+  void _checkIdCondition() {  //아이디 조건
+    String id = _idController.text;
+    bool isValid = id.length >= 5 && id.length < 15;
+    setState(() {
+      _checkId = isValid;
+    });
+  }
+  void _checkPasswordcondition(){ //비밀번호 조건
+    String id = _passwordController1.text;
+    bool isValid = id.length>=8 && id.length<=20 &&
+        id.contains(RegExp(r'[a-zA-Z]')) && id.contains(RegExp(r'[0-9]'));
+    setState(() {
+      _checkPassword = isValid;
+    });
+  }
+  void _checkPassword2condition(){ //비밀번호 일치 조건
+    bool isValid = (_passwordController1.text==_passwordController2.text);
+    setState(() {
+      _checkPassword2 = isValid;
+    });
+  }
+
+
   void _CompleteCondition() {
     if (_emailController.text.isNotEmpty &&
+        _emailController.text.contains(RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$'))&&
         _idController.text.isNotEmpty &&
+        _idController.text.length>=5 && _idController.text.length<=15 &&
+        _passwordController1.text.length>=8 && _passwordController1.text.length<=20 &&
         _passwordController1.text.isNotEmpty &&
         _passwordController2.text.isNotEmpty &&
+        _passwordController1.text.contains(RegExp(r'[a-zA-Z]')) &&
+        _passwordController1.text.contains(RegExp(r'[0-9]'))&&
         _passwordController1.text == _passwordController2.text &&
-        _isOK) {
+        _isOK && _checkId) {
       setState(() {
         _CompleteSignup = true;
       });
@@ -56,20 +105,27 @@ class _SignUpPageState extends State<SignUpPage> {
 
               TextFormField(
                 controller: _emailController,
-                onChanged: (text) {
+                onChanged: (value) {
                   _CompleteCondition();
+                  _checkEmailCondition();
                 },
-                decoration: InputDecoration(hintText: '이메일'),
+                decoration: InputDecoration(
+                    hintText: '이메일',
+                    errorText: _checkEmail ? null : '이메일의 형식이 아닙니다.'),
               ),
               SizedBox(
                 height: 20.0,
               ),
               TextFormField(
                 controller: _idController,
-                onChanged: (text) {
+                onChanged: (value) {
                   _CompleteCondition();
+                  _checkIdCondition();
                 },
-                decoration: InputDecoration(hintText: '아이디'),
+                decoration: InputDecoration(
+                  hintText: '아이디',
+                  errorText: _checkId ? null : '아이디는 5자 이상 15자 이하이어야 합니다.',
+                ),
               ),
               SizedBox(
                 height: 20.0,
@@ -77,10 +133,13 @@ class _SignUpPageState extends State<SignUpPage> {
               TextFormField(
                 obscureText: true, // 비밀번호를 적을때 안보이도록
                 controller: _passwordController1,
-                onChanged: (text) {
+                onChanged: (value) {
                   _CompleteCondition();
+                  _checkPasswordcondition();
                 },
-                decoration: InputDecoration(hintText: '비밀번호'),
+                decoration: InputDecoration(
+                    hintText: '비밀번호',
+                    errorText: _checkPassword ? null : '비밀번호는 8자 이상 20자 이하이어야 하고 영어와 숫자를 포함해야 합니다.'),
               ),
               SizedBox(
                 height: 20.0,
@@ -88,10 +147,12 @@ class _SignUpPageState extends State<SignUpPage> {
               TextFormField(
                 obscureText: true,
                 controller: _passwordController2, // 비밀번호를 적을때 안보이도록
-                onChanged: (text) {
+                onChanged: (value) {
                   _CompleteCondition();
+                  _checkPassword2condition();
                 },
-                decoration: InputDecoration(hintText: '비밀번호 확인'),
+                decoration: InputDecoration(hintText: '비밀번호 확인',
+                    errorText: _checkPassword2 ? null : '비밀번호가 일치하지 않습니다.'),
               ),
               SizedBox(
                 height: 40.0,
