@@ -53,18 +53,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     fontSize: 20,
                   )),
               SizedBox(
-                height: 20.0,
+                height: 40.0,
               ),
-              TextFormField(
-                controller: _nameController,
-                onChanged: (text) {
-                  _CompleteCondition();
-                },
-                decoration: InputDecoration(hintText: '이름'),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
+
               TextFormField(
                 controller: _emailController,
                 onChanged: (text) {
