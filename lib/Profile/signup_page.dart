@@ -9,7 +9,6 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _passwordController1 = TextEditingController();
@@ -18,8 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _CompleteSignup = false;
 
   void _CompleteCondition() {
-    if (_nameController.text.isNotEmpty &&
-        _emailController.text.isNotEmpty &&
+    if (_emailController.text.isNotEmpty &&
         _idController.text.isNotEmpty &&
         _passwordController1.text.isNotEmpty &&
         _passwordController2.text.isNotEmpty &&
