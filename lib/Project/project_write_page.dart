@@ -51,6 +51,9 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   String selectedMeetingWay = meetingWay[0];
   String meetingTime = "";
 
+  String startPeriod = "";
+  String endPeriod = "";
+
   void addApplicantInputField() {
     // 최대 5명까지 추가 가능
     if (selectedApplicantInfo.length < 5) {
@@ -95,7 +98,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              // ),
             ]),
             TextFormField(
               decoration: const InputDecoration(
@@ -123,18 +125,37 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 ],
               ),
               Expanded(
-                child: TextField(
-                  decoration: const InputDecoration(
-                    labelText: '만남 시간',
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      meetingTime = value;
-                    });
-                  },
+                  child: TextField(
+                decoration: const InputDecoration(
+                  labelText: '만남 시간',
                 ),
-              ),
+                onChanged: (value) {
+                  setState(() {
+                    meetingTime = value;
+                  });
+                },
+              )),
             ]),
+            Row(
+              children: [
+                Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                      labelText: '시작 날짜', hintText: 'mm/dd/yyyy'),
+                  onChanged: (value) => setState(() {
+                    startPeriod = value;
+                  }),
+                )),
+                Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                      labelText: '마감 날짜', hintText: 'mm/dd/yyyy'),
+                  onChanged: (value) => setState(() {
+                    endPeriod = value;
+                  }),
+                )),
+              ],
+            ),
             Column(
               children: [
                 // 지원자 수만큼 반복
