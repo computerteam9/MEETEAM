@@ -124,14 +124,14 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               ),
               Expanded(
                 child: TextField(
+                  decoration: const InputDecoration(
+                    labelText: '만남 시간',
+                  ),
                   onChanged: (value) {
                     setState(() {
                       meetingTime = value;
                     });
                   },
-                  decoration: const InputDecoration(
-                    hintText: '만남 시간',
-                  ),
                 ),
               ),
             ]),
