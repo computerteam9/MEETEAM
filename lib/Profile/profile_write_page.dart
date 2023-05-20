@@ -46,8 +46,7 @@ class ProfileWrite extends State<ProfileWritePage> {
 
   static final TextEditingController nicknameController =
       TextEditingController();
-  static final TextEditingController fieldController = TextEditingController();
-  static final TextEditingController areaController = TextEditingController();
+  static final TextEditingController introduceController = TextEditingController();
   static final TextEditingController blogController = TextEditingController();
   static final TextEditingController careerController = TextEditingController();
   static final TextEditingController activityController =
@@ -63,7 +62,7 @@ class ProfileWrite extends State<ProfileWritePage> {
         body: SingleChildScrollView(
             child: Column(children: [
                 Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -80,17 +79,45 @@ class ProfileWrite extends State<ProfileWritePage> {
                 Row(//mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                   Container(
-                    margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                    margin: EdgeInsets.fromLTRB(40, 0, 10, 0),
                     child: Icon(Icons.account_circle, size: 100),
                   ),
                   Column(children: [
                     Container(
-                      margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                      width: 200,
+                      margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                      width: 230,
                       child: TextFormField(
                           controller: nicknameController,
                           decoration: InputDecoration(
                             labelText: '닉네임',
+                          )),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                      width: 230,
+                      child: TextFormField(
+                          controller: blogController,
+                          minLines: 1,
+                          maxLines: 3,
+                          decoration: InputDecoration(
+                            labelText: '블로그',
+                          )),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                      width: 230,
+                      child: TextField(
+                          controller: introduceController,
+                          minLines: 1,
+                          maxLines: 5,
+                          decoration: InputDecoration(
+                            labelText: '자기소개',
                           )),
                     ),
 
@@ -100,37 +127,10 @@ class ProfileWrite extends State<ProfileWritePage> {
                 SizedBox(
                   height: 30.0,
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  width: 400,
-                  child: TextFormField(
-                      controller: blogController,
-                      minLines: 1,
-                      maxLines: 3,
-                      decoration: InputDecoration(
-                        labelText: '블로그',
-                      )),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
+
 
                 Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  width: 400,
-                  child: TextField(
-                      controller: activityController,
-                      minLines: 1,
-                      maxLines: 3,
-                      decoration: InputDecoration(
-                        labelText: '자기소개',
-                      )),
-                ),
-                SizedBox(
-                  height: 11.0,
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  margin: EdgeInsets.all(20),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -196,7 +196,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                 ),
 
                 Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  margin: EdgeInsets.all(20),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -247,7 +247,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                 ElevatedButton(
                   child: Text("저장"),
                   onPressed: () {
-                    // 처음 회원가입 하는 경우
+                    //처음 회원가입 하는 경우
                     if (args.isSignUp == true)
                     {
                     // 모든 위젯 삭제하고 메인 페이지로 이동
@@ -257,8 +257,8 @@ class ProfileWrite extends State<ProfileWritePage> {
                     else
                     {
                       // 프로필 보는 페이지로 이동
-                      Navigator.pop(context);
-                    }
+                       Navigator.pop(context);
+                     }
             },
           ),
         ])));
