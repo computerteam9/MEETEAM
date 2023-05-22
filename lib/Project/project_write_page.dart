@@ -197,10 +197,12 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               children: [
                 TextButton(
                     onPressed: () => removeApplicantInputField(),
-                    child: Text("인원 삭제")),
+                    child: Text(
+                        style: TextStyle(color: CustomColor.color3), "인원 삭제")),
                 TextButton(
                     onPressed: () => addApplicantInputField(),
-                    child: Text("인원 추가"))
+                    child: Text(
+                        style: TextStyle(color: CustomColor.color3), "인원 추가"))
               ],
             ),
             // 파일 업로드
@@ -253,6 +255,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             Container(
               margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: CustomColor.color3),
                 child: Text("저장"),
                 onPressed: () {
                   Navigator.pop(context);
