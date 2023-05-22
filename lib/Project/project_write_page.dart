@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
+import 'package:meetteam/color.dart';
 
 class ApplicantInfo {
   String field = "";
@@ -39,8 +40,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     ["기술 선택", "Java", "Python", "JavaScript", "Go", "기타"]
   ];
 
-  List imageList = [];
-  List fileList = [];
   List selectedApplicantInfo = [
     [
       "분야 선택",
@@ -53,6 +52,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   String startPeriod = "";
   String endPeriod = "";
+
+  String uploadedFileName = "";
 
   void addApplicantInputField() {
     // 최대 5명까지 추가 가능
@@ -205,45 +206,59 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             // 파일 업로드
             Container(
                 //여기에 업로드된 파일 리스트
-                child: (() {
-              if (fileList.isNotEmpty) {
-                return ListView.builder(
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                        //파일 불러올 수 있게 만드는 공간 만듬
-                        );
-                  },
-                );
-              } else {}
-            })()),
-            Container(
-                //여기에 업로드된 파일 리스트
-                ),
+                child: (() {})()),
             Container(
               // margin: const EdgeInsets.all(30),
-              alignment: Alignment.centerLeft,
-              child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                IconButton(
-                  icon: Icon(Icons.image, color: iconColor, size: 30),
-                  onPressed: () {
-                    //imageList에 요소 추가하기
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.file_upload, color: iconColor, size: 30),
-                  onPressed: () {
-                    //fileList에 요소 추가하기
-                  },
-                )
-              ]),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text("프로젝트 기획안",
+                        style: TextStyle(
+                          fontSize: 17,
+                        )),
+                  ]),
             ),
+            Container(
+                alignment: Alignment.center,
+                child: () {
+                  // 업로드 된 파일 없으면 파일 업로드 버튼
+                  if (uploadedFileName == "") {
+                    return ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColor.color3),
+                        label: const Text('파일 업로드'),
+                        icon: const Icon(Icons.file_upload,
+                            color: Color(0xffffffff), size: 30),
+                        onPressed: () {
+                          setState(() => uploadedFileName = "abc.pdf");
+                        });
+                  }
+                  // 업로드 된 파일 있으면 파일 이름
+                  else {
+                    return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(uploadedFileName,
+                              style: TextStyle(fontSize: 16)),
+                          IconButton(
+                              icon: const Icon(Icons.close,
+                                  color: Colors.red, size: 25),
+                              onPressed: () {
+                                setState(() => uploadedFileName = "");
+                              })
+                        ]);
+                  }
+                }()),
             // 저장 버튼
-            ElevatedButton(
-              child: Text("저장"),
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/project');
-              },
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+              child: ElevatedButton(
+                child: Text("저장"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/project');
+                },
+              ),
             ),
           ]),
         )));
