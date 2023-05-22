@@ -86,6 +86,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
           margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
           child:
               Wrap(runSpacing: 10, alignment: WrapAlignment.center, children: [
+            // 프로젝트 제목 영역
             Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               TextFormField(
                 decoration: const InputDecoration(
@@ -99,6 +100,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 ),
               ),
             ]),
+            // 프로젝트 내용 영역
             TextFormField(
               decoration: const InputDecoration(
                 labelText: "프로젝트 내용",
@@ -108,6 +110,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               minLines: 1,
               maxLines: 3,
             ),
+            // 만남 방식, 만남 시간 영역
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               DropdownButton<String>(
                 value: selectedMeetingWay,
@@ -136,6 +139,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 },
               )),
             ]),
+            // 프로젝트 시작 날짜, 마감 날짜 영역
             Row(
               children: [
                 Expanded(
@@ -156,6 +160,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 )),
               ],
             ),
+            // 지원자 요구 스펙 영역
             Column(
               children: [
                 // 지원자 수만큼 반복
@@ -185,6 +190,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   ),
               ],
             ),
+            // 모집 인원 추가, 삭제 영역
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -196,6 +202,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     child: Text("인원 추가"))
               ],
             ),
+            // 파일 업로드
             Container(
                 //여기에 업로드된 파일 리스트
                 child: (() {
@@ -230,6 +237,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 )
               ]),
             ),
+            // 저장 버튼
             ElevatedButton(
               child: Text("저장"),
               onPressed: () {
