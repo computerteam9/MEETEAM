@@ -4,6 +4,7 @@ import 'package:meetteam/Color.dart';
 class UserInfo extends StatelessWidget {
   final String username;
   final String field;
+  final String oneline;
   final Color color3;
   final Color color2;
   final Color color1;
@@ -12,6 +13,7 @@ class UserInfo extends StatelessWidget {
       {super.key,
       required this.username,
       required this.field,
+      required this.oneline,
       this.color3 = CustomColor.color3,
       this.color1 = CustomColor.color1,
       this.color2 = Colors.black});
@@ -81,7 +83,25 @@ class UserInfo extends StatelessWidget {
                             margin: EdgeInsets.only(left: 10, right: 10),
                             child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, '/profile');
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext ctx) {
+                                      return AlertDialog(
+                                        content: Text(oneline),
+                                        actions: [
+                                          Center(
+                                            child: TextButton(
+                                              child: Text("닫기"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.only(
