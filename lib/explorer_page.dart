@@ -14,7 +14,7 @@ class _ExplorerState extends State<ExplorerPage> {
   // DropDownButton에 들어갈 리스트
   static const List<String> sortList = ["정렬", "최신순", "인기순", "마감임박순"];
   static const List<String> fieldList = ["분야 선택", "웹", "모바일 앱", "게임"];
-  static const List<String> meetList = ["모임 방식", "온라인", "오프라인"];
+  static const List<String> meetList = ["모임 방식", "온라인", "오프라인", "온오프라인"];
 
   // DropDownButton에서 선택된 값
   static String selectedSort = sortList[0];
