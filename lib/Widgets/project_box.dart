@@ -27,49 +27,58 @@ class ProjectBox extends StatelessWidget {
           child: Container(
               height: 100,
               margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.circular(20)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  const ClipOval(
-                    child: Icon(
-                      Icons.person,
-                      size: 50,
+                  Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    child: const ClipOval(
+                      child: Icon(
+                        Icons.person,
+                        size: 50,
+                      ),
                     ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style:
-                        const TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                      Text(
-                        description,
-                        style: const TextStyle(
-                            height: 2, fontSize: 10, color: Colors.white),
-                      ),
-                      Text(
-                        tag,
-                        maxLines:3,
-                        overflow: TextOverflow.ellipsis,
-                        style:
-                        const TextStyle(fontSize: 8, color: Colors.white),
-                      ),
-                    ],
+                  Container(
+                    margin: const EdgeInsets.only(left: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style:
+                          const TextStyle(fontSize: 15, color: Colors.white),
+                        ),
+                        Text(
+                          description,
+                          style: const TextStyle(
+                              height: 2, fontSize: 10, color: Colors.white),
+                        ),
+                        Text(
+                          tag,
+                          maxLines:3,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                          const TextStyle(fontSize: 8, color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(
-                    dDay,
-                    style: const TextStyle(
-                        height: 1.2,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        color: Colors.white),
+                  Container(
+                    margin: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      "D - $dDay",
+                      style: const TextStyle(
+                          height: 1.2,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                          color: Colors.white),
+                    ),
                   )
                 ],
               )),
