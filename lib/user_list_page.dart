@@ -24,12 +24,18 @@ class UserList extends StatelessWidget {
                 )),
             Expanded(
                 child: ListView(padding: EdgeInsets.all(8), children: <Widget>[
-              const UserInfo(username: "신청자 1", field: "백엔드"),
-              const UserInfo(username: "신청자 2", field: "프론트엔드"),
-              const UserInfo(username: "신청자 3", field: "앱 디자인"),
-              const UserInfo(username: "신청자 4", field: "웹 디자인"),
-              const UserInfo(username: "신청자 5", field: "프론트엔드"),
-              const UserInfo(username: "신청자 6", field: "백엔드"),
+              const UserInfo(
+                username: "신청자 1",
+                field: "백엔드",
+                oneline: "열심히 하겠습니다",
+              ),
+              const UserInfo(
+                  username: "신청자 2", field: "프론트엔드", oneline: "한줄각오"),
+              const UserInfo(
+                  username: "신청자 3", field: "앱 디자인", oneline: "자신있다"),
+              const UserInfo(username: "신청자 4", field: "웹 디자인", oneline: "파이팅"),
+              const UserInfo(username: "신청자 5", field: "프론트엔드", oneline: "뽑아줘"),
+              const UserInfo(username: "신청자 6", field: "백엔드", oneline: "흐헤"),
             ]))
           ],
         ));
