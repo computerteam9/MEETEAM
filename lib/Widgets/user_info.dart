@@ -25,7 +25,7 @@ class UserInfo extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.only(top: 20),
           padding: const EdgeInsets.all(10),
-          height: 100,
+          height: 115,
           width: 370,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
@@ -45,8 +45,8 @@ class UserInfo extends StatelessWidget {
                       children: <Widget>[
                         //닉네임
                         Container(
-                            margin: EdgeInsets.only(top: 5, left: 10),
-                            width: 60,
+                            margin: EdgeInsets.only(top: 3, left: 10),
+                            width: 100,
                             child: Text(username,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: color2, fontSize: 20))),
@@ -62,21 +62,35 @@ class UserInfo extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         //프로필 버튼
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/profile');
-                            },
-                            child: Text("프로필",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: color2, fontSize: 20))),
+                        Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/profile');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 5, bottom: 5),
+                                    backgroundColor: color1),
+                                child: Text("프로필",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: color2, fontSize: 20)))),
                         //한 줄 소개 버튼
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/profile');
-                            },
-                            child: Text("한 줄 소개",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: color2, fontSize: 20))),
+                        Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/profile');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.only(
+                                        left: 10, right: 10, top: 5, bottom: 5),
+                                    backgroundColor: color1),
+                                child: Text("한 줄 소개",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: color2, fontSize: 20)))),
                       ])
                 ],
               ),
