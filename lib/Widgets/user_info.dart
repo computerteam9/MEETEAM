@@ -1,69 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Color.dart';
 
-class ProjectBox extends StatelessWidget {
-  final String title;
-  final String description;
-  final String tag;
-  final String dDay;
-  final Color color;
+class UserInfo extends StatelessWidget {
+  final String username;
+  final String field;
+  final Color color3;
+  final Color color2;
+  final Color color1;
 
-  const ProjectBox({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.tag,
-    required this.dDay,
-    this.color = CustomColor.color3,
-  });
+  const UserInfo(
+      {super.key,
+      required this.username,
+      required this.field,
+      this.color3 = CustomColor.color3,
+      this.color1 = CustomColor.color1,
+      this.color2 = Colors.black});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 100,
-        margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(20)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            const ClipOval(
-              child: Icon(
-                Icons.person,
-                size: 50,
+    return GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, '/userCheck');
+        },
+        child: Container(
+          margin: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.all(10),
+          height: 100,
+          width: 370,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: color3, width: 5)),
+          //상자 내부 구현(이미지, column(row1개(닉네임, 지원 분야),한 줄 소개), 왕관 이미지)
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              //프로필 사진
+              Icon(Icons.account_circle, size: 70),
+              //글 부분
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //닉네임
+                        Container(
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 60,
+                            child: Text(username,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(color: color2, fontSize: 20))),
+                        //지원 분야
+                        Container(
+                            margin: EdgeInsets.only(top: 5, left: 5),
+                            width: 100,
+                            child: Text(field,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(color: color2, fontSize: 15)))
+                      ]),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //프로필 버튼
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/profile');
+                            },
+                            child: Text("프로필",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: color2, fontSize: 20))),
+                        //한 줄 소개 버튼
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/profile');
+                            },
+                            child: Text("한 줄 소개",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: color2, fontSize: 20))),
+                      ])
+                ],
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-                ),
-                Text(
-                  description,
-                  style: const TextStyle(
-                      height: 2, fontSize: 10, color: Colors.white),
-                ),
-                Text(
-                  tag,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 8, color: Colors.white),
-                ),
-              ],
-            ),
-            Text(
-              dDay,
-              style: const TextStyle(
-                  height: 1.2,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28,
-                  color: Colors.white),
-            )
-          ],
+            ],
+          ),
         ));
   }
 }
