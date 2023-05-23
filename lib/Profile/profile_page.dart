@@ -38,6 +38,9 @@ class ProfilePage extends StatelessWidget {
             ),
             Column(
               children: [
+                SizedBox(
+                  height: 30.0,
+                ),
                 Text(
                   "닉네임",
                   textAlign: TextAlign.left,
@@ -54,18 +57,19 @@ class ProfilePage extends StatelessWidget {
                 SizedBox(
                   height: 30.0,
                 ),
-                Text(
-                  "자기소개",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
               ],
             ),
-            SizedBox(width: 30.0),
-
-            Column(children: [
-              Text(ProfileWrite.nicknameController.text),
-              SizedBox(height: 30.0),
+            SizedBox(
+                width: 30.0
+            ),
+            Column(
+                children: [
+              Text(
+                  ProfileWrite.nicknameController.text
+              ),
+              SizedBox(
+                  height: 30.0
+              ),
               TextButton(
                 onPressed: () async {
                   //가져온 링크로 연결
@@ -76,17 +80,42 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: Text(ProfileWrite.blogController.text),
               ),
-              SizedBox(height: 30.0),
-              Text(ProfileWrite.introduceController.text),
-
             ])
           ]),
-          SizedBox(
-            height: 40.0,
-          ),
+          SizedBox(height: 30.0,),
 
+          Container(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  "자기소개",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
+          ),//자기소개
           SizedBox(
-            height: 20.0,
+            height: 10.0,
+          ),
+          Container(
+            margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+            child: Column(children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(ProfileWrite.introduceController.text),
+                    height: 120,
+                    width: 400,
+                  ),
+                ],
+              ),
+            ]),
+          ),
+          SizedBox(
+            height: 10.0,
           ),
           Container(
             padding: const EdgeInsets.all(20),
@@ -99,46 +128,37 @@ class ProfilePage extends StatelessWidget {
                 )
               ],
             ),
-          ),
+          ),//활동내역
           SizedBox(
             height: 10.0,
           ),
           Container(
-              margin: const EdgeInsets.all(5),
-              padding: const EdgeInsets.all(10),
-              child: Text(ProfileWrite.careerController.text),
-              height: 140,
-              width: 450,
-              decoration: BoxDecoration()),
-          SizedBox(
-            height: 10.0,
+            margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+            child: Column(children: [
+              Row(
+                children: [
+                  Text(ProfileWrite.selectedField),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  Text(ProfileWrite.selectedSort),
+                ],
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(ProfileWrite.activityController.text),
+                    height: 140,
+                    width: 400,
+                  ),
+                ],
+              ),
+            ]),
           ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            // 활동내역
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  "활동내역",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          //경력 표시되는 상자
-          Container(
-              margin: const EdgeInsets.all(5),
-              padding: const EdgeInsets.all(10),
-              child: Text(ProfileWrite.activityController.text),
-              height: 140,
-              width: 450,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: color1, width: 5))),
         ]));
   }
 }
