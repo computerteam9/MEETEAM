@@ -32,19 +32,13 @@ class MainPage extends StatelessWidget {
                       ),
                     ]),
                 // 내 프로젝트 리스트
-                SizedBox(
-                    child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/project');
-                  },
-                  child: const ProjectBox(
-                    title: "프로젝트 명",
-                    description: "프로젝트 설명...",
-                    tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                    dDay: "진행중",
-                    color: CustomColor.color1,
-                  ),
-                )),
+                const ProjectBox(
+                  title: "프로젝트 명",
+                  description: "프로젝트 설명...",
+                  tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                  dDay: "진행중",
+                  color: CustomColor.color1,
+                ),
               ])),
           Stack(
             children: [
