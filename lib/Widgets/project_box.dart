@@ -27,7 +27,7 @@ class ProjectBox extends StatelessWidget {
           child: Container(
               height: 100,
               margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
               decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.circular(20)),
@@ -44,7 +44,6 @@ class ProjectBox extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +69,7 @@ class ProjectBox extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 20),
+                    margin: const EdgeInsets.only(left: 10),
                     child: Text(
                       "D - $dDay",
                       style: const TextStyle(

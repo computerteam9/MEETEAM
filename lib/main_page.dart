@@ -36,7 +36,7 @@ class MainPage extends StatelessWidget {
                   title: "프로젝트 명",
                   description: "프로젝트 설명...",
                   tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                  dDay: "진행중",
+                  dDay: "1",
                   color: CustomColor.color1,
                 ),
               ])),
