@@ -8,11 +8,17 @@ import 'package:meetteam/Project/project_write_page.dart';
 import 'package:meetteam/Profile/profile_write_page.dart';
 import 'package:meetteam/project/project_read_page.dart';
 import 'package:meetteam/user_list_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'Project/user_check_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  // assure that all the widgets are initialized
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,20 +27,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      initialRoute: '/signup',
-      routes: {
-        '/signup': (context) => SignUpPage(),
-        '/': (context) => MainPage(),
-        '/projects': (context) => ProjectListPage(),
-        '/projectWrite': (context) => ProjectWritePage(),
-        '/project': (context) => ProjectReadPage(),
-        '/profile': (context) => ProfilePage(),
-        '/explorer': (context) => ExplorerPage(),
-        '/userList': (context) => UserList(),
-        '/userCheck' : (context) => UserCheckPage(),
-      });
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(),
+        initialRoute: '/signup',
+        routes: {
+          '/signup': (context) => SignUpPage(),
+          '/': (context) => MainPage(),
+          '/projects': (context) => ProjectListPage(),
+          '/projectWrite': (context) => ProjectWritePage(),
+          '/project': (context) => ProjectReadPage(),
+          '/profile': (context) => ProfilePage(),
+          '/explorer': (context) => ExplorerPage(),
+          '/userList': (context) => UserList(),
+          '/userCheck': (context) => UserCheckPage(),
+        });
   }
 }
