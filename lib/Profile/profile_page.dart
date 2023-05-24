@@ -9,9 +9,9 @@ class ProfilePage extends StatelessWidget {
 
   final String sort = ProfileWrite.selectedSort;
   final String field = ProfileWrite.selectedField;
-  final String link = ProfileWrite.blogController as String;
+  final String link = "";
 
-  Future<void> _urllaunch() async{
+  Future<void> _urllaunch() async {
     if (await canLaunch(link)) {
       await launch(link);
     } else {
@@ -77,7 +77,7 @@ class ProfilePage extends StatelessWidget {
               SizedBox(height: 30.0),
               TextButton(
                 onPressed: _urllaunch,
-                child: Text(ProfileWrite.blogController.text),
+                child: Text("url"),
               ),
             ])
           ]),

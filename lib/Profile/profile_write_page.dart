@@ -53,7 +53,6 @@ class ProfileWrite extends State<ProfileWritePage> {
       TextEditingController();
   static final TextEditingController introduceController =
       TextEditingController();
-  static final TextEditingController blogController = TextEditingController();
   static final TextEditingController careerController = TextEditingController();
   static final TextEditingController activityController =
       TextEditingController();
@@ -104,8 +103,7 @@ class ProfileWrite extends State<ProfileWritePage> {
               Container(
                 margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
                 width: 230,
-                child: TextFormField(
-                    controller: blogController,
+                child: TextField(
                     minLines: 1,
                     maxLines: 3,
                     decoration: InputDecoration(
@@ -262,16 +260,14 @@ class ProfileWrite extends State<ProfileWritePage> {
             child: Text("저장"),
             onPressed: () {
               //처음 회원가입 하는 경우
-              if (args.isSignUp == true)
-              {
-              // 모든 위젯 삭제하고 메인 페이지로 이동
-              Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
+              if (args.isSignUp == true) {
+                // 모든 위젯 삭제하고 메인 페이지로 이동
+                Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
               }
               // 프로필 수정하는 경우
-              else
-              {
-              //프로필 보는 페이지로 이동
-              Navigator.pop(context);
+              else {
+                //프로필 보는 페이지로 이동
+                Navigator.pop(context);
               }
             },
           ),
