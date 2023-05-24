@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:meetteam/firebase_test.dart';
 import 'package:meetteam/profile/signup_page.dart';
 import 'package:meetteam/main_page.dart';
 import 'package:meetteam/profile/profile_page.dart';
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignUpPage(),
         '/': (context) => MainPage(),
         '/projects': (context) => ProjectListPage(),
-        '/projectWrite': (context) => ProjectWritePage(),
+        '/projectWrite': (context) => Firebase_test(),
         '/project': (context) => ProjectReadPage(),
         '/profile': (context) => ProfilePage(),
         '/explorer': (context) => ExplorerPage(),
