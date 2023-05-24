@@ -1,9 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
 
+class ProfileWritePageArguments {
+  final bool isSignUp;
+
+  ProfileWritePageArguments(this.isSignUp);
+}
+
 class ProfileWritePage extends StatefulWidget {
-  final bool? changed;
-  const ProfileWritePage({Key? key, required this.changed}) : super(key: key);
+  const ProfileWritePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ProfileWrite();
@@ -12,8 +17,6 @@ class ProfileWritePage extends StatefulWidget {
 class ProfileWrite extends State<ProfileWritePage> {
   static const color1 = Color(0xff5dbaf4);
   static const List<String> tagList = [
-    "C++",
-    "Javascript",
     "백엔드",
     "프론트엔드",
     "안드로이드",
@@ -22,27 +25,49 @@ class ProfileWrite extends State<ProfileWritePage> {
     "AI",
     "게임",
     "데이터베이스",
+    "디자인",
     "기타"
   ];
+  static const List<String> sortList = ["선택", "Java", "C", "C++", "Python"];
+  static const List<String> fieldList = [
+    "선택",
+    "1년 이하",
+    "1~3년",
+    "3~5년",
+    "5년 이상"
+  ];
+
+  static String selectedSort = sortList[0];
+  static String selectedField = fieldList[0];
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    selectedSort = sortList[0];
+    selectedField = fieldList[0];
+  }
+
   static List<bool> isTagSelected = List.filled(tagList.length, false);
 
   static final TextEditingController nicknameController =
       TextEditingController();
-  static final TextEditingController fieldController = TextEditingController();
-  static final TextEditingController areaController = TextEditingController();
-  static final TextEditingController blogController = TextEditingController();
+  static final TextEditingController introduceController =
+      TextEditingController();
   static final TextEditingController careerController = TextEditingController();
   static final TextEditingController activityController =
       TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as ProfileWritePageArguments;
+
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: SingleChildScrollView(
             child: Column(children: [
           Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -59,92 +84,55 @@ class ProfileWrite extends State<ProfileWritePage> {
           Row(//mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
             Container(
-              margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
+              margin: EdgeInsets.fromLTRB(40, 0, 10, 0),
               child: Icon(Icons.account_circle, size: 100),
             ),
             Column(children: [
               Container(
-                margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 200,
+                margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                width: 230,
                 child: TextFormField(
                     controller: nicknameController,
                     decoration: InputDecoration(
-                      hintText: '닉네임',
+                      labelText: '닉네임',
                     )),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 200,
-                child: TextFormField(
-                    controller: fieldController,
-                    decoration: InputDecoration(
-                      hintText: '전문분야',
-                    )),
+              SizedBox(
+                height: 10.0,
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                width: 200,
-                child: TextFormField(
-                    controller: areaController,
+                margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                width: 230,
+                child: TextField(
+                    minLines: 1,
+                    maxLines: 3,
                     decoration: InputDecoration(
-                      hintText: '거주지역',
+                      labelText: '블로그',
+                    )),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                width: 230,
+                child: TextField(
+                    controller: introduceController,
+                    minLines: 1,
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                      labelText: '자기소개',
                     )),
               ),
             ])
           ]),
-//블로그 입력
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    "블로그",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
-                ]),
+          //블로그 입력
+          SizedBox(
+            height: 30.0,
           ),
 
           Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 400,
-            child: TextFormField(
-                controller: blogController,
-                decoration: InputDecoration(
-                  hintText: '블로그',
-                )),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-//경력입력
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    "경력",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
-                ]),
-          ),
-          //경력 표시되는 상자
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 400,
-            child: TextField(
-                controller: activityController,
-                decoration: InputDecoration(
-                  hintText: '경력',
-                )),
-          ),
-          SizedBox(
-            height: 11.0,
-          ),
-//활동내역입력
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            margin: EdgeInsets.all(20),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
@@ -154,21 +142,72 @@ class ProfileWrite extends State<ProfileWritePage> {
                   )
                 ]),
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            width: 400,
-            child: TextField(
-                controller: careerController,
-                decoration: InputDecoration(
-                  hintText: '활동내역',
-                )),
-          ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
+          ),
+          Container(
+            margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+            child: Column(children: [
+              Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  DropdownButton<String>(
+                      value: selectedSort,
+                      items: [
+                        for (int i = 0; i < sortList.length; i++)
+                          DropdownMenuItem<String>(
+                              value: sortList[i], child: Text(sortList[i]))
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedSort = value!;
+                        });
+                      }),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  DropdownButton<String>(
+                      value: selectedField,
+                      items: [
+                        for (int i = 0; i < fieldList.length; i++)
+                          DropdownMenuItem<String>(
+                              value: fieldList[i], child: Text(fieldList[i]))
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedField = value!;
+                        });
+                      }),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    //margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    width: 360,
+                    child: TextField(
+                        controller: activityController,
+                        minLines: 1,
+                        maxLines: 3,
+                        decoration: InputDecoration(
+                          labelText: '기타',
+                        )),
+                  ),
+                ],
+              ),
+            ]),
+          ),
+
+          SizedBox(
+            height: 30.0,
           ),
 
           Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            margin: EdgeInsets.all(20),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
@@ -209,7 +248,8 @@ class ProfileWrite extends State<ProfileWritePage> {
                           children: [
                             Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
+                                  horizontal: 16.0,
+                                ),
                                 child: Text(tagList[i]))
                           ]),
                   ])),
@@ -219,10 +259,15 @@ class ProfileWrite extends State<ProfileWritePage> {
           ElevatedButton(
             child: Text("저장"),
             onPressed: () {
-              if (widget.changed == true) {
-                Navigator.pushNamed(context, '/');
-              } else {
-                Navigator.pushNamed(context, '/profile');
+              //처음 회원가입 하는 경우
+              if (args.isSignUp == true) {
+                // 모든 위젯 삭제하고 메인 페이지로 이동
+                Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
+              }
+              // 프로필 수정하는 경우
+              else {
+                //프로필 보는 페이지로 이동
+                Navigator.pop(context);
               }
             },
           ),

@@ -22,7 +22,7 @@ class ProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 360,
-        margin: const EdgeInsets.fromLTRB(0, 10, 50, 10),
+        margin: const EdgeInsets.fromLTRB(0, 25, 0, 10),
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
         decoration: BoxDecoration(
             color: CustomColor.color3, borderRadius: BorderRadius.circular(20)),
@@ -30,25 +30,31 @@ class ProjectCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    const ClipOval(
-                      child: Icon(
-                        Icons.person,
-                        size: 50,
+                    Container(
+                      margin: const EdgeInsets.only(left: 20),
+                      child: const ClipOval(
+                        child: Icon(
+                          Icons.person,
+                          size: 50,
+                        ),
                       ),
                     ),
-                    Text(
-                      nickname,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.white),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                      child: Text(
+                        nickname,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.white),
+                      ),
                     ),
                     Container(
                         height: 40,
                         width: 100,
-                        margin: const EdgeInsets.only(top: 5),
+                        margin: const EdgeInsets.fromLTRB(70, 5, 0, 0),
                         decoration: BoxDecoration(
                             color: CupertinoColors.systemGrey3,
                             borderRadius: BorderRadius.circular(37)),
