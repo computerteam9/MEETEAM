@@ -15,7 +15,7 @@ class _Notice_page extends State<Notice_page> {
               child: Center(
                 child: Column(children: [
                   Container(
-                      margin: const EdgeInsets.only(top: 20),
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20,0),
                       padding: const EdgeInsets.all(10),
                       height: 70,
                       width: 430,
@@ -37,7 +37,7 @@ class _Notice_page extends State<Notice_page> {
                             ),
                       ),
                   Container(
-                    margin: const EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.fromLTRB(20, 20, 20,0),
                     padding: const EdgeInsets.all(10),
                     height: 70,
                     width: 430,
@@ -58,7 +58,7 @@ class _Notice_page extends State<Notice_page> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.fromLTRB(20, 20, 20,0),
                     padding: const EdgeInsets.all(10),
                     height: 70,
                     width: 430,

@@ -45,7 +45,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
           height: 60,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: CustomColor.color3, // Background color
+                backgroundColor: CustomColor.color3, // Background color
               ),
               child: Text("신청자 내역",
                   style: TextStyle(fontSize: 30, color: Colors.white)),
@@ -109,18 +109,15 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                     alignment: Alignment.topLeft,
                     child: Text("닉네임")), // 닉네임
                 Container(
-                  margin: EdgeInsets.fromLTRB(100, 30, 0, 0),
-                  height: 40,
-                  width: 80,
-                  decoration: const BoxDecoration(
-                      color: CustomColor.color3,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    "프로필",
-                    style: TextStyle(color: Colors.white),
+                  margin: EdgeInsets.only(left: 100),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/userCheck');
+                    },
+                    child: Text("프로필"),
+                    style: TextButton.styleFrom(foregroundColor: Colors.white, backgroundColor: CustomColor.color3),
                   ),
-                ),
+                )
               ],
             ),
             Container(

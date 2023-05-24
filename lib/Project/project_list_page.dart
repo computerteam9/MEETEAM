@@ -25,37 +25,25 @@ class _ProjectListPage extends State<ProjectListPage> {
                   children: [
                     const Text("확정 내역"),
                     Column(
-                      children: [
-                        SizedBox(child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/project');
-                          },
-                          child: const ProjectBox(
-                            title: "프로젝트 1",
-                            description: "프로젝트 설명...",
-                            tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                            dDay: "진행중",
-                          ),),),
-                        SizedBox(child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/project');
-                          },
-                          child: const ProjectBox(
-                            title: "프로젝트 2",
-                            description: "프로젝트 설명...",
-                            tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                            dDay: "진행중",
-                          ),),),
-                        SizedBox(child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/project');
-                          },
-                          child: const ProjectBox(
-                            title: "프로젝트 3",
-                            description: "프로젝트 설명...",
-                            tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                            dDay: "진행중",
-                          ),),),
+                      children: const [
+                        ProjectBox(
+                          title: "프로젝트 1",
+                          description: "프로젝트 설명...",
+                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                          dDay: "1",
+                        ),
+                        ProjectBox(
+                          title: "프로젝트 2",
+                          description: "프로젝트 설명...",
+                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                          dDay: "1",
+                        ),
+                        ProjectBox(
+                          title: "프로젝트 3",
+                          description: "프로젝트 설명...",
+                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                          dDay: "1",
+                        ),
                       ],
                     )
                   ],
@@ -67,51 +55,35 @@ class _ProjectListPage extends State<ProjectListPage> {
                   children: [
                     const Text("신청 내역"),
                     Column(
-                      children: [
-                        SizedBox(child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/project');
-                          },
-                          child: const ProjectBox(
-                            title: "프로젝트 1",
-                            description: "프로젝트 설명...",
-                            tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                            dDay: "D-7",
-                            color: CustomColor.color1,
-                          ),),),
-                        SizedBox(child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/project');
-                          },
-                          child: const ProjectBox(
-                            title: "프로젝트 2",
-                            description: "프로젝트 설명...",
-                            tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                            dDay: "D-2",
-                            color: CustomColor.color1,
-                          ),),),
-                        SizedBox(child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/project');
-                          },
-                          child: const ProjectBox(
-                            title: "프로젝트 3",
-                            description: "프로젝트 설명...",
-                            tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                            dDay: "D-5",
-                            color: CustomColor.color1,
-                          ),),),
-                        SizedBox(child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/project');
-                          },
-                          child: const ProjectBox(
-                            title: "프로젝트 4",
-                            description: "프로젝트 설명...",
-                            tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                            dDay: "D-1",
-                            color: CustomColor.color1,
-                          ),),),
+                      children: const [
+                        ProjectBox(
+                          title: "프로젝트 1",
+                          description: "프로젝트 설명...",
+                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                          dDay: "7",
+                          color: CustomColor.color1,
+                        ),
+                        ProjectBox(
+                          title: "프로젝트 2",
+                          description: "프로젝트 설명...",
+                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                          dDay: "2",
+                          color: CustomColor.color1,
+                        ),
+                        ProjectBox(
+                          title: "프로젝트 3",
+                          description: "프로젝트 설명...",
+                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                          dDay: "5",
+                          color: CustomColor.color1,
+                        ),
+                        ProjectBox(
+                          title: "프로젝트 4",
+                          description: "프로젝트 설명...",
+                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
+                          dDay: "1",
+                          color: CustomColor.color1,
+                        ),
                       ],
                     ),
                   ],
