@@ -7,6 +7,18 @@ class ProfilePage extends StatelessWidget {
   static const color1 = Color(0xff5dbaf4);
   static const iconColor = Colors.black;
 
+  final String sort = ProfileWrite.selectedSort;
+  final String field = ProfileWrite.selectedField;
+  final String link = ProfileWrite.blogController as String;
+
+  Future<void> _urllaunch() async{
+    if (await canLaunch(link)) {
+      await launch(link);
+    } else {
+      throw 'Could not launch $link';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,30 +71,19 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-                width: 30.0
-            ),
-            Column(
-                children: [
-              Text(
-                  ProfileWrite.nicknameController.text
-              ),
-              SizedBox(
-                  height: 30.0
-              ),
+            SizedBox(width: 30.0),
+            Column(children: [
+              Text(ProfileWrite.nicknameController.text),
+              SizedBox(height: 30.0),
               TextButton(
-                onPressed: () async {
-                  //가져온 링크로 연결
-                  final url = Uri.parse(ProfileWrite.blogController.text);
-                  if (await canLaunchUrl(url)) {
-                    launchUrl(url);
-                  }
-                },
+                onPressed: _urllaunch,
                 child: Text(ProfileWrite.blogController.text),
               ),
             ])
           ]),
-          SizedBox(height: 30.0,),
+          SizedBox(
+            height: 30.0,
+          ),
 
           Container(
             padding: const EdgeInsets.all(20),
@@ -95,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                 )
               ],
             ),
-          ),//자기소개
+          ), //자기소개
           SizedBox(
             height: 10.0,
           ),
@@ -128,7 +129,7 @@ class ProfilePage extends StatelessWidget {
                 )
               ],
             ),
-          ),//활동내역
+          ), //활동내역
           SizedBox(
             height: 10.0,
           ),
@@ -137,11 +138,15 @@ class ProfilePage extends StatelessWidget {
             child: Column(children: [
               Row(
                 children: [
-                  Text(ProfileWrite.selectedField),
+                  Text(
+                    sort == '선택' ? '' : sort,
+                  ),
                   SizedBox(
                     width: 20.0,
                   ),
-                  Text(ProfileWrite.selectedSort),
+                  Text(
+                    field == '선택' ? '' : field,
+                  ),
                 ],
               ),
               SizedBox(
