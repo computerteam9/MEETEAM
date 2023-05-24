@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
+import 'package:meetteam/color.dart';
 
 class ApplicantInfo {
   String field = "";
@@ -39,8 +40,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     ["기술 선택", "Java", "Python", "JavaScript", "Go", "기타"]
   ];
 
-  List imageList = [];
-  List fileList = [];
   List selectedApplicantInfo = [
     [
       "분야 선택",
@@ -50,6 +49,11 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   ];
   String selectedMeetingWay = meetingWay[0];
   String meetingTime = "";
+
+  String startPeriod = "";
+  String endPeriod = "";
+
+  String uploadedFileName = "";
 
   void addApplicantInputField() {
     // 최대 5명까지 추가 가능
@@ -83,6 +87,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
           margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
           child:
               Wrap(runSpacing: 10, alignment: WrapAlignment.center, children: [
+            // 프로젝트 제목 영역
             Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               TextFormField(
                 decoration: const InputDecoration(
@@ -95,8 +100,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              // ),
             ]),
+            // 프로젝트 내용 영역
             TextFormField(
               decoration: const InputDecoration(
                 labelText: "프로젝트 내용",
@@ -106,6 +111,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               minLines: 1,
               maxLines: 3,
             ),
+            // 만남 방식, 만남 시간 영역
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               DropdownButton<String>(
                 value: selectedMeetingWay,
@@ -123,18 +129,39 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 ],
               ),
               Expanded(
-                child: TextField(
-                  onChanged: (value) {
-                    setState(() {
-                      meetingTime = value;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    hintText: '만남 시간',
-                  ),
+                  child: TextField(
+                decoration: const InputDecoration(
+                  labelText: '만남 시간',
                 ),
-              ),
+                onChanged: (value) {
+                  setState(() {
+                    meetingTime = value;
+                  });
+                },
+              )),
             ]),
+            // 프로젝트 시작 날짜, 마감 날짜 영역
+            Row(
+              children: [
+                Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                      labelText: '시작 날짜', hintText: 'mm/dd/yyyy'),
+                  onChanged: (value) => setState(() {
+                    startPeriod = value;
+                  }),
+                )),
+                Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                      labelText: '마감 날짜', hintText: 'mm/dd/yyyy'),
+                  onChanged: (value) => setState(() {
+                    endPeriod = value;
+                  }),
+                )),
+              ],
+            ),
+            // 지원자 요구 스펙 영역
             Column(
               children: [
                 // 지원자 수만큼 반복
@@ -164,57 +191,78 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   ),
               ],
             ),
+            // 모집 인원 추가, 삭제 영역
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                     onPressed: () => removeApplicantInputField(),
-                    child: Text("인원 삭제")),
+                    child: Text(
+                        style: TextStyle(color: CustomColor.color3), "인원 삭제")),
                 TextButton(
                     onPressed: () => addApplicantInputField(),
-                    child: Text("인원 추가"))
+                    child: Text(
+                        style: TextStyle(color: CustomColor.color3), "인원 추가"))
               ],
             ),
+            // 파일 업로드
             Container(
                 //여기에 업로드된 파일 리스트
-                child: (() {
-              if (fileList.isNotEmpty) {
-                return ListView.builder(
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                        //파일 불러올 수 있게 만드는 공간 만듬
-                        );
-                  },
-                );
-              } else {}
-            })()),
-            Container(
-                //여기에 업로드된 파일 리스트
-                ),
+                child: (() {})()),
             Container(
               // margin: const EdgeInsets.all(30),
-              alignment: Alignment.centerLeft,
-              child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                IconButton(
-                  icon: Icon(Icons.image, color: iconColor, size: 30),
-                  onPressed: () {
-                    //imageList에 요소 추가하기
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.file_upload, color: iconColor, size: 30),
-                  onPressed: () {
-                    //fileList에 요소 추가하기
-                  },
-                )
-              ]),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text("프로젝트 기획안",
+                        style: TextStyle(
+                          fontSize: 17,
+                        )),
+                  ]),
             ),
-            ElevatedButton(
-              child: Text("저장"),
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/project');
-              },
+            Container(
+                alignment: Alignment.center,
+                child: () {
+                  // 업로드 된 파일 없으면 파일 업로드 버튼
+                  if (uploadedFileName == "") {
+                    return ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColor.color3),
+                        label: const Text('파일 업로드'),
+                        icon: const Icon(Icons.file_upload,
+                            color: Color(0xffffffff), size: 30),
+                        onPressed: () {
+                          setState(() => uploadedFileName = "abc.pdf");
+                        });
+                  }
+                  // 업로드 된 파일 있으면 파일 이름
+                  else {
+                    return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(uploadedFileName,
+                              style: TextStyle(fontSize: 16)),
+                          IconButton(
+                              icon: const Icon(Icons.close,
+                                  color: Colors.red, size: 25),
+                              onPressed: () {
+                                setState(() => uploadedFileName = "");
+                              })
+                        ]);
+                  }
+                }()),
+            // 저장 버튼
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: CustomColor.color3),
+                child: Text("저장"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/project');
+                },
+              ),
             ),
           ]),
         )));
