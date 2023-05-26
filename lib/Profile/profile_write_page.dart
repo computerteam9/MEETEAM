@@ -81,56 +81,52 @@ class ProfileWrite extends State<ProfileWritePage> {
                       ],
                     ),
                   ])),
-          Row(//mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
+          Row(children: [
             Container(
-              margin: EdgeInsets.fromLTRB(40, 0, 10, 0),
+              margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
               child: Icon(Icons.account_circle, size: 100),
             ),
-            Column(children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                width: 230,
-                child: TextFormField(
+            Expanded(
+              child: Column(
+                children: [
+                  TextField(
                     controller: nicknameController,
                     decoration: InputDecoration(
                       labelText: '닉네임',
-                    )),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                width: 230,
-                child: TextField(
-                    minLines: 1,
-                    maxLines: 3,
+                    ),
+                    // textAlign: TextAlign.left,
+                    // style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  TextField(
                     decoration: InputDecoration(
                       labelText: '블로그',
-                    )),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                width: 230,
-                child: TextField(
-                    controller: introduceController,
-                    minLines: 1,
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      labelText: '자기소개',
-                    )),
-              ),
-            ])
+            ),
           ]),
-          //블로그 입력
-          SizedBox(
-            height: 30.0,
+          Container(
+            margin: EdgeInsets.all(20),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "자기소개",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ]),
           ),
-
+          Container(
+            margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+            child: TextField(
+                controller: introduceController,
+                minLines: 1,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelText: '자기소개',
+                )),
+          ),
           Container(
             margin: EdgeInsets.all(20),
             child: Row(
@@ -142,14 +138,11 @@ class ProfileWrite extends State<ProfileWritePage> {
                   )
                 ]),
           ),
-          SizedBox(
-            height: 10.0,
-          ),
           Container(
             margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
             child: Column(children: [
               Row(
-                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   DropdownButton<String>(
                       value: selectedSort,
@@ -163,9 +156,6 @@ class ProfileWrite extends State<ProfileWritePage> {
                           selectedSort = value!;
                         });
                       }),
-                  SizedBox(
-                    width: 20.0,
-                  ),
                   DropdownButton<String>(
                       value: selectedField,
                       items: [
@@ -178,34 +168,19 @@ class ProfileWrite extends State<ProfileWritePage> {
                           selectedField = value!;
                         });
                       }),
-                  SizedBox(
-                    width: 20.0,
-                  ),
                 ],
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    //margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    width: 360,
-                    child: TextField(
-                        controller: activityController,
-                        minLines: 1,
-                        maxLines: 3,
-                        decoration: InputDecoration(
-                          labelText: '기타',
-                        )),
-                  ),
-                ],
+              Container(
+                child: TextField(
+                    controller: activityController,
+                    minLines: 1,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      labelText: '기타',
+                    )),
               ),
             ]),
           ),
-
-          SizedBox(
-            height: 30.0,
-          ),
-
           Container(
             margin: EdgeInsets.all(20),
             child: Row(
@@ -217,10 +192,6 @@ class ProfileWrite extends State<ProfileWritePage> {
                   )
                 ]),
           ),
-          SizedBox(
-            height: 20.0,
-          ),
-
           Container(
               margin: const EdgeInsets.only(left: 20, right: 20),
               child: Wrap(
@@ -238,7 +209,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                           splashColor: color1.withOpacity(0.12),
                           hoverColor: color1.withOpacity(0.04),
                           borderRadius: BorderRadius.circular(4.0),
-                          constraints: const BoxConstraints(minHeight: 36.0),
+                          constraints: const BoxConstraints(minHeight: 30.0),
                           isSelected: [isTagSelected[i]],
                           onPressed: (index) {
                             setState(() {

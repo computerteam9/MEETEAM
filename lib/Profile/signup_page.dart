@@ -13,7 +13,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _passwordController1 = TextEditingController();
   final TextEditingController _passwordController2 = TextEditingController();
-  bool _isOK = false;
   bool _CompleteSignup = false;
 
   bool _checkId = true;
@@ -21,57 +20,68 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _checkPassword2 = true;
   bool _checkEmail = true;
 
-
   @override
-  void dispose(){
+  void dispose() {
     _emailController.dispose();
     _idController.dispose();
     _passwordController1.dispose();
     _passwordController2.dispose();
     super.dispose();
   }
-  void _checkEmailCondition(){
+
+  void _checkEmailCondition() {
     String id = _emailController.text;
-    bool isValid = id.contains(RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$'));
+    bool isValid = id.contains(RegExp(
+        r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$'));
     setState(() {
       _checkEmail = isValid;
     });
   }
-  void _checkIdCondition() {  //아이디 조건
+
+  void _checkIdCondition() {
+    //아이디 조건
     String id = _idController.text;
     bool isValid = id.length >= 5 && id.length < 15;
     setState(() {
       _checkId = isValid;
     });
   }
-  void _checkPasswordcondition(){ //비밀번호 조건
+
+  void _checkPasswordcondition() {
+    //비밀번호 조건
     String id = _passwordController1.text;
-    bool isValid = id.length>=8 && id.length<=20 &&
-        id.contains(RegExp(r'[a-zA-Z]')) && id.contains(RegExp(r'[0-9]'));
+    bool isValid = id.length >= 8 &&
+        id.length <= 20 &&
+        id.contains(RegExp(r'[a-zA-Z]')) &&
+        id.contains(RegExp(r'[0-9]'));
     setState(() {
       _checkPassword = isValid;
     });
   }
-  void _checkPassword2condition(){ //비밀번호 일치 조건
-    bool isValid = (_passwordController1.text==_passwordController2.text);
+
+  void _checkPassword2condition() {
+    //비밀번호 일치 조건
+    bool isValid = (_passwordController1.text == _passwordController2.text);
     setState(() {
       _checkPassword2 = isValid;
     });
   }
 
-
   void _CompleteCondition() {
     if (_emailController.text.isNotEmpty &&
-        _emailController.text.contains(RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$'))&&
+        _emailController.text.contains(RegExp(
+            r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$')) &&
         _idController.text.isNotEmpty &&
-        _idController.text.length>=5 && _idController.text.length<=15 &&
-        _passwordController1.text.length>=8 && _passwordController1.text.length<=20 &&
+        _idController.text.length >= 5 &&
+        _idController.text.length <= 15 &&
+        _passwordController1.text.length >= 8 &&
+        _passwordController1.text.length <= 20 &&
         _passwordController1.text.isNotEmpty &&
         _passwordController2.text.isNotEmpty &&
         _passwordController1.text.contains(RegExp(r'[a-zA-Z]')) &&
-        _passwordController1.text.contains(RegExp(r'[0-9]'))&&
+        _passwordController1.text.contains(RegExp(r'[0-9]')) &&
         _passwordController1.text == _passwordController2.text &&
-        _isOK && _checkId) {
+        _checkId) {
       setState(() {
         _CompleteSignup = true;
       });
@@ -102,7 +112,6 @@ class _SignUpPageState extends State<SignUpPage> {
               SizedBox(
                 height: 40.0,
               ),
-
               TextFormField(
                 controller: _emailController,
                 onChanged: (value) {
@@ -139,7 +148,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
                 decoration: InputDecoration(
                     hintText: '비밀번호',
-                    errorText: _checkPassword ? null : '비밀번호는 8자 이상 20자 이하이어야 하고 영어와 숫자를 포함해야 합니다.'),
+                    errorText: _checkPassword
+                        ? null
+                        : '비밀번호는 8자 이상 20자 이하이어야 하고 영어와 숫자를 포함해야 합니다.'),
               ),
               SizedBox(
                 height: 20.0,
@@ -151,25 +162,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   _CompleteCondition();
                   _checkPassword2condition();
                 },
-                decoration: InputDecoration(hintText: '비밀번호 확인',
+                decoration: InputDecoration(
+                    hintText: '비밀번호 확인',
                     errorText: _checkPassword2 ? null : '비밀번호가 일치하지 않습니다.'),
-              ),
-              SizedBox(
-                height: 40.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Checkbox(
-                      value: _isOK,
-                      onChanged: (value) {
-                        setState(() {
-                          _isOK = value!;
-                          _CompleteCondition();
-                        });
-                      }),
-                  Text('개인정보 동의'),
-                ],
               ),
               SizedBox(
                 height: 40.0,
