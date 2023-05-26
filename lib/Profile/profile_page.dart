@@ -84,7 +84,6 @@ class ProfilePage extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-
           Container(
             padding: const EdgeInsets.all(20),
             child: Row(
@@ -96,9 +95,6 @@ class ProfilePage extends StatelessWidget {
                 )
               ],
             ),
-          ), //자기소개
-          SizedBox(
-            height: 10.0,
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
@@ -107,16 +103,11 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: Text(ProfileWrite.introduceController.text),
-                    height: 120,
-                    width: 400,
+                    child: Text("저는... ~~~"),
                   ),
                 ],
               ),
             ]),
-          ),
-          SizedBox(
-            height: 10.0,
           ),
           Container(
             padding: const EdgeInsets.all(20),
@@ -124,46 +115,58 @@ class ProfilePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 Text(
-                  "활동내역",
+                  "활동 내역",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 )
               ],
             ),
-          ), //활동내역
-          SizedBox(
-            height: 10.0,
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
             child: Column(children: [
               Row(
-                children: [
-                  Text(
-                    sort == '선택' ? '' : sort,
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Text(
-                    field == '선택' ? '' : field,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: Text(ProfileWrite.activityController.text),
-                    height: 140,
-                    width: 400,
+                    child: Text("자바 개발 (1년) \n..."),
                   ),
                 ],
               ),
             ]),
           ),
+          Container(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  "관심사",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
+          ), //활동내역
+          Wrap(
+            children: [
+              for (String label in ["백엔드", "프론트엔드", "앱", "웹", "AI"])
+                Container(
+                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0),
+                    border: Border.all(color: color1),
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  child: Text(
+                    label,
+                    style: const TextStyle(
+                      color: color1,
+                      fontSize: 14.0,
+                    ),
+                  ),
+                ),
+            ],
+          )
         ]));
   }
 }
