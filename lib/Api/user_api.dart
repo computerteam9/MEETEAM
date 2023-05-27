@@ -6,7 +6,7 @@ class UserApi {
 
   UserApi();
 
-  static void addUser(
+  static Future<void> addUser(
       String email,
       String password,
       String nickname,
@@ -44,8 +44,18 @@ class UserApi {
     });
   }
 
-  // static User getUser() {
-  //   final users = firestore.collection('users').doc('9NiS8rz74IM8ae3IZDD9');
-  //   users.get().
-  // }
+  static Future<String> verifyUser(String email, String password) async {
+    String result = '';
+    await db
+        .collection('users')
+        .where('email', isEqualTo: email)
+        .where('password', isEqualTo: password)
+        .get()
+        .then((queryResult) {
+      if (queryResult.docs.isNotEmpty) {
+        result = queryResult.docs[0].id;
+      }
+    });
+    return result;
+  }
 }
