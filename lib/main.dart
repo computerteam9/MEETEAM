@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserApi.addUser(
-        'em', 'id', 'password', 'nickname', 'introduction', 'blogUrl', [], []);
+        'em', 'password', 'nickname', 'introduction', 'blogUrl', [], []);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

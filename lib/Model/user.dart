@@ -48,7 +48,6 @@ class Spec {
 
 class User {
   String _email;
-  String _id;
   String _password;
   String _nickname;
   String _introduction;
@@ -56,10 +55,9 @@ class User {
   List<Spec> _spec = <Spec>[];
   List<Field> _interest = <Field>[];
 
-  User(this._email, this._id, this._password, this._nickname,
-      this._introduction, this._blogUrl, this._spec, this._interest) {
+  User(this._email, this._password, this._nickname, this._introduction,
+      this._blogUrl, this._spec, this._interest) {
     _email = email;
-    _id = id;
     _password = password;
     _nickname = nickname;
     _introduction = introduction;
@@ -69,7 +67,6 @@ class User {
   }
 
   String get email => _email;
-  String get id => _id;
   String get password => _password;
   String get nickname => _nickname;
   String get introduction => _introduction;

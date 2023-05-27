@@ -8,22 +8,17 @@ class UserApi {
 
   static void addUser(
       String email,
-      String id,
       String password,
       String nickname,
       String introduction,
       String blogUrl,
       List<Spec> spec,
       List<Field> interest) {
-    DocumentReference ref = db.collection("users").doc();
-    String myId = ref.id;
-
-    User newUser = User(
-        email, id, password, nickname, introduction, blogUrl, spec, interest);
+    User newUser =
+        User(email, password, nickname, introduction, blogUrl, spec, interest);
 
     db.collection('users').doc().set({
       'email': newUser.email,
-      'id': newUser.id,
       'password': newUser.password,
       'nickname': newUser.nickname,
       'introduction': newUser.introduction,
