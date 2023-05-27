@@ -10,13 +10,10 @@ import 'package:meetteam/Project/project_write_page.dart';
 import 'package:meetteam/project/project_read_page.dart';
 import 'package:meetteam/user_list_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Project/user_check_page.dart';
 import 'package:meetteam/Api/user_api.dart';
 
 void main() async {
-  // assure that all the widgets are initialized
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   UserApi();
