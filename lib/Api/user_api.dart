@@ -62,8 +62,16 @@ class UserApi {
   static Future<User> getUser(String id) {
     return db.collection('users').doc(id).get().then((doc) {
       if (doc.exists) {
+        List<Map<String, int>> spec = [];
+        List<String> interest = [];
+        for (var item in doc['spec']) {
+          spec.add(Map<String, int>.from(item));
+        }
+        for (var item in doc['interest']) {
+          interest.add(item);
+        }
         return User(doc['email'], doc['password'], doc['nickname'],
-            doc['introduction'], doc['blogUrl'], doc['spec'], doc['interest']);
+            doc['introduction'], doc['blogUrl'], spec, interest);
       } else {
         throw Exception('해당 유저가 존재하지 않습니다.');
       }
