@@ -1,24 +1,3 @@
-class Spec {
-  String _tech;
-  int _career;
-  // 0 : 신입 (1년 이하), 1 : 1~3년, 2 : 3~5, 3 : 5년 이상
-
-  Spec(this._tech, this._career) {
-    _tech = tech;
-    _career = career;
-  }
-
-  String get tech => _tech;
-  int get career => _career;
-
-  Map<String, String> toMap() {
-    return {
-      'tech': _tech.toString(),
-      'career': _career.toString(),
-    };
-  }
-}
-
 class User {
   String _email;
   String _password;
