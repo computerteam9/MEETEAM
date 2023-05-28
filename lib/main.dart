@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetteam/Api/project_api.dart';
 import 'package:meetteam/notice_page.dart';
 import 'package:meetteam/Profile/signup_page.dart';
 import 'package:meetteam/main_page.dart';
@@ -27,6 +28,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProjectApi.addProject('프로젝트1', '프로젝트1 설명', 0, '매주 토요일 18시',
+        DateTime(2023, 5, 29), DateTime(2023, 6, 5), [
+      {"파이썬": 0}
+    ], [
+      {"user1": "한줄소개"}
+    ]);
     // UserApi.addUser('def@def.com', 'passss2', 'tom', 'inttr2r', 'blog2.blog2', [
     //   {"파이썬": 0}
     // ], [
