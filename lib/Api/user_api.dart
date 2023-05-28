@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meetteam/Model/user.dart';
+import 'package:meetteam/Api/db.dart';
 
 class UserApi {
-  static FirebaseFirestore db = FirebaseFirestore.instance;
-
   UserApi();
 
   static Future<void> addUser(
@@ -17,7 +15,7 @@ class UserApi {
     User newUser =
         User(email, password, nickname, introduction, blogUrl, spec, interest);
 
-    await db
+    await DB.instance
         .collection('users')
         .where('nickname', isEqualTo: nickname)
         .get()
@@ -25,7 +23,7 @@ class UserApi {
       if (queryResult.docs.isNotEmpty) throw Exception('해당 닉네임으로 이미 가입되었습니다.');
     });
 
-    await db
+    await DB.instance
         .collection('users')
         .where('email', isEqualTo: email)
         .get()
@@ -33,7 +31,7 @@ class UserApi {
       if (queryResult.docs.isNotEmpty) throw Exception('해당 이메일로 이미 가입되었습니다.');
     });
 
-    await db.collection('users').doc().set({
+    await DB.instance.collection('users').doc().set({
       'email': newUser.email,
       'password': newUser.password,
       'nickname': newUser.nickname,
@@ -46,7 +44,7 @@ class UserApi {
 
   static Future<String> verifyUser(String email, String password) async {
     String result = '';
-    await db
+    await DB.instance
         .collection('users')
         .where('email', isEqualTo: email)
         .where('password', isEqualTo: password)
@@ -60,7 +58,7 @@ class UserApi {
   }
 
   static Future<User> getUser(String id) {
-    return db.collection('users').doc(id).get().then((doc) {
+    return DB.instance.collection('users').doc(id).get().then((doc) {
       if (doc.exists) {
         List<Map<String, int>> spec = [];
         List<String> interest = [];
