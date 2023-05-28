@@ -12,6 +12,7 @@ import 'package:meetteam/user_list_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Project/user_check_page.dart';
 import 'package:meetteam/Api/user_api.dart';
+import 'package:meetteam/Model/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +26,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserApi.verifyUser('bongu@bongu.com', 'sbw12345').then((value) {
-      print(value);
-    });
+    UserApi.addUser('def@def.com', 'passss2', 'tom', 'inttr2r', 'blog2.blog2', [
+      {"파이썬": 0}
+    ], [
+      "게임"
+    ]);
+    // UserApi.getUser('27SsFwo8kUVxVItv2avk').then((value) {
+    //   print(value);
+    //   print(value.nickname);
+    // });
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

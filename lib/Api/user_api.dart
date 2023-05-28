@@ -12,8 +12,8 @@ class UserApi {
       String nickname,
       String introduction,
       String blogUrl,
-      List<Spec> spec,
-      List<Field> interest) async {
+      List<Map<String, int>> spec,
+      List<String> interest) async {
     User newUser =
         User(email, password, nickname, introduction, blogUrl, spec, interest);
 
@@ -38,7 +38,7 @@ class UserApi {
       'password': newUser.password,
       'nickname': newUser.nickname,
       'introduction': newUser.introduction,
-      'blogUrl': newUser.blog_url,
+      'blogUrl': newUser.blogUrl,
       'spec': newUser.spec,
       'interest': newUser.interest,
     });
@@ -57,5 +57,16 @@ class UserApi {
       }
     });
     return result;
+  }
+
+  static Future<User> getUser(String id) {
+    return db.collection('users').doc(id).get().then((doc) {
+      if (doc.exists) {
+        return User(doc['email'], doc['password'], doc['nickname'],
+            doc['introduction'], doc['blogUrl'], doc['spec'], doc['interest']);
+      } else {
+        throw Exception('해당 유저가 존재하지 않습니다.');
+      }
+    });
   }
 }
