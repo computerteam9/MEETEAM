@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -38,62 +39,83 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(children: [
-          SizedBox(
-            height: 100,
-            width: 200,
-            child:
-            Row(children: [
-              Column(
-                children: <Widget>[
-                  Row(children: [
-                    Text("Id : "),
-                    TextFormField(
-                      controller: _emailController,
-                      onChanged: (value) {
-                        _CompleteCondition();
+        body: SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(50, 300, 50, 10),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget> [
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.spaceAround,
+                    children : [
+                      SizedBox(
+                        height: 40.0,
+                        width: 300,
+                        child: TextFormField(
+                          controller: _emailController,
+                          onChanged: (value) {
+                            _CompleteCondition();
+                          },
+                          decoration: InputDecoration(
+                            hintText: '이메일',
+                          ),
+                        ),
+                      ),
+                    ],),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        height: 40.0,
+                        width: 300,
+                        child: TextFormField(
+                          controller: _passwordController,
+                          onChanged: (value) {
+                            _CompleteCondition();
+                          },
+                          decoration: InputDecoration(
+                            hintText: '비밀번호',
+                          ),
+                        ),
+                      ),
+                    ],),
+                  SizedBox(
+                    height: 35.0,
+                  ),
+                  SizedBox(
+                    height: 45,
+                    width: 300,
+                    child: ElevatedButton(
+                      child: Text(
+                        "로그인",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () {
+                        if (_CompleteLogin) {
+                          Session.set(UserApi.verifyUser(
+                              _emailController.text, _passwordController.text)
+                              .toString());
+                          Navigator.pushNamed(context, '/');
+                        }
                       },
                     ),
-                  ]),
-                  Row(children: [
-                    Text("Password : "),
-                    TextFormField(
-                      controller: _passwordController,
-                      onChanged: (value) {
-                        _CompleteCondition();
-                      },
-                      decoration: InputDecoration(),
-                    ),
-                  ]),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  TextButton(
+                      onPressed: () => Navigator.pushNamed(context, '/signup'),
+                      child: Text(
+                        "아직 회원가입을 하지 않으셨나요?",
+                      )
+                  )
                 ],
               ),
-              ElevatedButton(
-                child: Text(
-                  "로그인",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                onPressed: () {
-                  if (_CompleteLogin) {
-                    Session.set(UserApi.verifyUser(
-                        _emailController.text, _passwordController.text)
-                        .toString());
-                    Navigator.pushNamed(context, '/');
-                  }
-                },
-              )
-            ]),
-          ),
-
-          TextButton(
-              onPressed: () => Navigator.pushNamed(context, '/signup'),
-              child: Text(
-                "회원 가입",
-              )
-          )
-        ]),
-      ),
+            )
+        )
     );
-    // TODO: implement build
   }
 }
