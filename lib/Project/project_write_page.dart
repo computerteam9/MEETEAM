@@ -204,52 +204,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                         style: TextStyle(color: CustomColor.color3), "인원 추가"))
               ],
             ),
-            // 파일 업로드
-            Container(
-                //여기에 업로드된 파일 리스트
-                child: (() {})()),
-            Container(
-              // margin: const EdgeInsets.all(30),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text("프로젝트 기획안",
-                        style: TextStyle(
-                          fontSize: 17,
-                        )),
-                  ]),
-            ),
-            Container(
-                alignment: Alignment.center,
-                child: () {
-                  // 업로드 된 파일 없으면 파일 업로드 버튼
-                  if (uploadedFileName == "") {
-                    return ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColor.color3),
-                        label: const Text('파일 업로드'),
-                        icon: const Icon(Icons.file_upload,
-                            color: Color(0xffffffff), size: 30),
-                        onPressed: () {
-                          setState(() => uploadedFileName = "abc.pdf");
-                        });
-                  }
-                  // 업로드 된 파일 있으면 파일 이름
-                  else {
-                    return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(uploadedFileName,
-                              style: TextStyle(fontSize: 16)),
-                          IconButton(
-                              icon: const Icon(Icons.close,
-                                  color: Colors.red, size: 25),
-                              onPressed: () {
-                                setState(() => uploadedFileName = "");
-                              })
-                        ]);
-                  }
-                }()),
             // 저장 버튼
             Container(
               margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
