@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/Api/user_api.dart';
 import 'package:meetteam/Api/session.dart';
+import '../Model/user.dart';
 
 class ProfileWritePageArguments {
   final bool isSignUp;
@@ -231,11 +232,12 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           ElevatedButton(
             child: Text("저장"),
-            onPressed: () {
+            onPressed: () async {
+              String id = Session.get();
               UserApi.updateUser(
-                  'id',
-                  'email',
-                  'password',
+                  id,
+                  UserApi.getUser(id).then((user) => {user.email}).toString(),
+                  UserApi.getUser(id).then((user) => {user.email}).toString(),
                   nicknameController.text,
                   introduceController.text,
                   'blogUrl', //blog
