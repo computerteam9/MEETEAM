@@ -43,7 +43,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     super.dispose();
   }
 
-  static const meetingWay = ["만남 방식", "온라인", "오프라인"];
+  static const meetingWay = ["만남 방식", "온라인", "오프라인", "온오프라인"];
   static const applicantLabel = [
     ["분야 선택", "개발", "디자인", "기획", "기타"],
     ["경력 선택", "신입", "경력", "무관"],
