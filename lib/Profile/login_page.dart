@@ -40,45 +40,51 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(children: [
-          Row(children: [
-            Column(
-              children: <Widget>[
-                Row(children: [
-                  Text("Id : "),
-                  TextFormField(
-                    controller: _emailController,
-                    onChanged: (value) {
-                      _CompleteCondition();
-                    },
-                  ),
-                ]),
-                Row(children: [
-                  Text("Password : "),
-                  TextFormField(
-                    controller: _passwordController,
-                    onChanged: (value) {
-                      _CompleteCondition();
-                    },
-                    decoration: InputDecoration(),
-                  ),
-                ]),
-              ],
-            ),
-            ElevatedButton(
-              child: Text(
-                "로그인",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+          SizedBox(
+            height: 100,
+            width: 200,
+            child:
+            Row(children: [
+              Column(
+                children: <Widget>[
+                  Row(children: [
+                    Text("Id : "),
+                    TextFormField(
+                      controller: _emailController,
+                      onChanged: (value) {
+                        _CompleteCondition();
+                      },
+                    ),
+                  ]),
+                  Row(children: [
+                    Text("Password : "),
+                    TextFormField(
+                      controller: _passwordController,
+                      onChanged: (value) {
+                        _CompleteCondition();
+                      },
+                      decoration: InputDecoration(),
+                    ),
+                  ]),
+                ],
               ),
-              onPressed: () {
-                if (_CompleteLogin) {
-                  Session.set(UserApi.verifyUser(
-                          _emailController.text, _passwordController.text)
-                      .toString());
-                  Navigator.pushNamed(context, '/');
-                }
-              },
-            )
-          ]),
+              ElevatedButton(
+                child: Text(
+                  "로그인",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () {
+                  if (_CompleteLogin) {
+                    Session.set(UserApi.verifyUser(
+                        _emailController.text, _passwordController.text)
+                        .toString());
+                    Navigator.pushNamed(context, '/');
+                  }
+                },
+              )
+            ]),
+          ),
+
           TextButton(
               onPressed: () => Navigator.pushNamed(context, '/signup'),
               child: Text(
