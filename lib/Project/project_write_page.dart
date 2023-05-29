@@ -90,7 +90,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               TextFormField(
                 decoration: const InputDecoration(
-                  labelText: "프로젝트 제목",
+                  labelText: "프로젝트 제목", hintText: 'ex: 그룹 버킷리스트 공유 앱 개발'
                 ),
                 textAlign: TextAlign.start,
                 controller: projectTitleController,
@@ -103,7 +103,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             // 프로젝트 내용 영역
             TextFormField(
               decoration: const InputDecoration(
-                labelText: "프로젝트 내용",
+                labelText: "프로젝트 내용", hintText: '프로젝트 시작 동기, 서비스 계획, 사용자 타겟팅, 우대 사항, 그 외 기타 등등'
               ),
               textAlign: TextAlign.start,
               controller: introduceProjectController,
