@@ -32,7 +32,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController personNumberController = TextEditingController();
   TextEditingController introduceProjectController = TextEditingController();
 
-  static const iconColor = Colors.black;
   static const meetingWay = ["만남 방식", "온라인", "오프라인"];
   static const applicantLabel = [
     ["분야 선택", "개발", "디자인", "기획", "기타"],
@@ -131,7 +130,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               Expanded(
                   child: TextField(
                 decoration: const InputDecoration(
-                  labelText: '만남 시간',
+                  labelText: '만남 장소 및 시간',
                 ),
                 onChanged: (value) {
                   setState(() {
