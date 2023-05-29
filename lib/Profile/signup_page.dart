@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/logo_appbar.dart';
 import 'package:meetteam/Profile/profile_write_page.dart';
-
 import '../Api/user_api.dart';
+import 'package:meetteam/Api/session.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -190,6 +190,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
                       ] //interest 관심사
                   );
+                  Session.set(_idController);
                   _CompleteSignup
                       ? () =>
                       Navigator.pushNamed(context, '/profileWrite',
