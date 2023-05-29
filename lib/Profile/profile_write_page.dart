@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
+import 'package:meetteam/Api/user_api.dart';
+import 'package:meetteam/Api/session.dart';
 
 class ProfileWritePageArguments {
   final bool isSignUp;
@@ -230,6 +232,21 @@ class ProfileWrite extends State<ProfileWritePage> {
           ElevatedButton(
             child: Text("저장"),
             onPressed: () {
+              UserApi.updateUser(
+                  'id',
+                  'email',
+                  'password',
+                  nicknameController.text,
+                  introduceController.text,
+                  'blogUrl', //blog
+                  [
+                    {} // ex) python: 3 >> 파이썬 3년
+                  ], //spec
+                  [
+
+                  ] //interest 관심사
+              );
+
               //처음 회원가입 하는 경우
               if (args.isSignUp == true) {
                 // 모든 위젯 삭제하고 메인 페이지로 이동
