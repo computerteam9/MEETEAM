@@ -33,13 +33,16 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController introduceProjectController = TextEditingController();
   TextEditingController startPeriodController = TextEditingController();
   TextEditingController endPeriodController = TextEditingController();
+  TextEditingController recruitPeriodController = TextEditingController();
 
   bool checkStartPeriod = true;
   bool checkEndPeriod = true;
+  bool checkRecruitPeriod = true;
 
   dispose() {
     startPeriodController.dispose();
     endPeriodController.dispose();
+    recruitPeriodController.dispose();
     super.dispose();
   }
 
@@ -62,6 +65,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   String startPeriod = "";
   String endPeriod = "";
+  String recruitPeriod = "";
 
   String uploadedFileName = "";
 
@@ -85,6 +89,14 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
         selectedApplicantInfo.removeLast();
       });
     }
+  }
+
+  void checkRecruitPeriodCondition() {
+    String id = recruitPeriodController.text;
+    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    setState(() {
+      checkRecruitPeriod = isValid;
+    });
   }
 
   void checkStartPeriodCondition() {
@@ -136,6 +148,19 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               minLines: 1,
               maxLines: 3,
             ),
+                Expanded(
+                  child: TextField(
+                    controller: recruitPeriodController,
+                    onChanged: (value) => setState(() {
+                      checkRecruitPeriodCondition();
+                      recruitPeriod = value;
+                    }),
+                    decoration: InputDecoration(
+                        labelText: '프로젝트 모집 마감 날짜',
+                        hintText: 'mm/dd/yyyy',
+                        errorText: checkRecruitPeriod ? null : '형식과 맞지 않습니다.'),
+                  ),
+                ),
             // 만남 방식, 만남 시간 영역
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               DropdownButton<String>(
@@ -176,7 +201,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       startPeriod = value;
                     }),
                     decoration: InputDecoration(
-                        labelText: '시작 날짜',
+                        labelText: '프로젝트 시작 날짜',
                         hintText: 'mm/dd/yyyy',
                         errorText: checkStartPeriod ? null : '형식과 맞지 않습니다.'),
                   ),
@@ -189,7 +214,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       endPeriod = value;
                     }),
                     decoration: InputDecoration(
-                        labelText: '종료 날짜',
+                        labelText: '프로젝트 종료 날짜',
                         hintText: 'mm/dd/yyyy',
                         errorText: checkEndPeriod ? null : '형식과 맞지 않습니다.'),
                   ),
