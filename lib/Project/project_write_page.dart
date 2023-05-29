@@ -31,6 +31,17 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController workingTimeController = TextEditingController();
   TextEditingController personNumberController = TextEditingController();
   TextEditingController introduceProjectController = TextEditingController();
+  TextEditingController startPeriodController = TextEditingController();
+  TextEditingController endPeriodController = TextEditingController();
+
+  bool checkStartPeriod = true;
+  bool checkEndPeriod = true;
+
+  dispose() {
+    startPeriodController.dispose();
+    endPeriodController.dispose();
+    super.dispose();
+  }
 
   static const meetingWay = ["만남 방식", "온라인", "오프라인"];
   static const applicantLabel = [
@@ -76,6 +87,22 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     }
   }
 
+  void checkStartPeriodCondition() {
+    String id = startPeriodController.text;
+    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    setState(() {
+      checkStartPeriod = isValid;
+    });
+  }
+
+  void checkEndPeriodCondition() {
+    String id = endPeriodController.text;
+    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    setState(() {
+      checkEndPeriod = isValid;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,8 +117,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               TextFormField(
                 decoration: const InputDecoration(
-                  labelText: "프로젝트 제목", hintText: 'ex: 그룹 버킷리스트 공유 앱 개발'
-                ),
+                    labelText: "프로젝트 제목", hintText: 'ex: 그룹 버킷리스트 공유 앱 개발'),
                 textAlign: TextAlign.start,
                 controller: projectTitleController,
                 style: const TextStyle(
@@ -103,8 +129,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             // 프로젝트 내용 영역
             TextFormField(
               decoration: const InputDecoration(
-                labelText: "프로젝트 내용", hintText: '프로젝트 시작 동기, 서비스 계획, 사용자 타겟팅, 우대 사항, 그 외 기타 등등'
-              ),
+                  labelText: "프로젝트 내용",
+                  hintText: '프로젝트 시작 동기, 서비스 계획, 사용자 타겟팅, 우대 사항, 그 외 기타 등등'),
               textAlign: TextAlign.start,
               controller: introduceProjectController,
               minLines: 1,
@@ -143,21 +169,31 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             Row(
               children: [
                 Expanded(
-                    child: TextField(
-                  decoration: InputDecoration(
-                      labelText: '시작 날짜', hintText: 'mm/dd/yyyy'),
-                  onChanged: (value) => setState(() {
-                    startPeriod = value;
-                  }),
-                )),
+                  child: TextField(
+                    controller: startPeriodController,
+                    onChanged: (value) => setState(() {
+                      checkStartPeriodCondition();
+                      startPeriod = value;
+                    }),
+                    decoration: InputDecoration(
+                        labelText: '시작 날짜',
+                        hintText: 'mm/dd/yyyy',
+                        errorText: checkStartPeriod ? null : '형식과 맞지 않습니다.'),
+                  ),
+                ),
                 Expanded(
-                    child: TextField(
-                  decoration: InputDecoration(
-                      labelText: '마감 날짜', hintText: 'mm/dd/yyyy'),
-                  onChanged: (value) => setState(() {
-                    endPeriod = value;
-                  }),
-                )),
+                  child: TextField(
+                    controller: endPeriodController,
+                    onChanged: (value) => setState(() {
+                      checkEndPeriodCondition();
+                      endPeriod = value;
+                    }),
+                    decoration: InputDecoration(
+                        labelText: '종료 날짜',
+                        hintText: 'mm/dd/yyyy',
+                        errorText: checkEndPeriod ? null : '형식과 맞지 않습니다.'),
+                  ),
+                ),
               ],
             ),
             // 지원자 요구 스펙 영역
