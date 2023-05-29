@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetteam/Api/project_api.dart';
 import 'package:meetteam/notice_page.dart';
 import 'package:meetteam/Profile/signup_page.dart';
 import 'package:meetteam/main_page.dart';
@@ -9,15 +10,18 @@ import 'package:meetteam/Project/project_list_page.dart';
 import 'package:meetteam/Project/project_write_page.dart';
 import 'package:meetteam/project/project_read_page.dart';
 import 'package:meetteam/user_list_page.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Project/user_check_page.dart';
+import 'package:meetteam/Api/db.dart';
+import 'package:meetteam/Api/user_api.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:meetteam/Api/session.dart';
 
 void main() async {
-  // assure that all the widgets are initialized
-
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
+  DB();
+  Session();
   runApp(MyApp());
 }
 
@@ -26,6 +30,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserApi.verifyUser("abc@abc.com", "passss").then((id) {
+      Session.set(id);
+      print(Session.get());
+    });
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
