@@ -14,12 +14,14 @@ import 'Project/user_check_page.dart';
 import 'package:meetteam/Api/db.dart';
 import 'package:meetteam/Api/user_api.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:meetteam/Api/session.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
   DB();
+  Session();
   runApp(MyApp());
 }
 
@@ -28,21 +30,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProjectApi.addProject('프로젝트1', '프로젝트1 설명', 0, '매주 토요일 18시',
-        DateTime(2023, 5, 29), DateTime(2023, 6, 5), [
-      {"파이썬": 0}
-    ], [
-      {"user1": "한줄소개"}
-    ]);
-    // UserApi.addUser('def@def.com', 'passss2', 'tom', 'inttr2r', 'blog2.blog2', [
-    //   {"파이썬": 0}
-    // ], [
-    //   "게임"
-    // ]);
-    UserApi.getUser('L7XzFMgGBeOnaa3NXNPL').then((value) {
-      print(value);
-      print(value.interest);
+    UserApi.verifyUser("abc@abc.com", "passss").then((id) {
+      Session.set(id);
+      print(Session.get());
     });
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
