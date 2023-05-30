@@ -52,20 +52,21 @@ class _ProjectReadPage extends State<ProjectReadPage> {
   void pageLaunch() async {
     String id = Session.get();
 
-    await UserApi.getUser(id).then((user) =>
+    UserApi.getUser(id).then((user) =>
     {
       projectId = user.project as String,
     });
 
-    await ProjectApi.getProject(projectId).then((project) =>
+    ProjectApi.getProject(projectId).then((project) =>
     {
       title = project.title,
       description = project.description,
       meetingWay = project.meetingWay,
       leaderId = project.leaderId,
+      meetingTime = project.meetingTime,
     });
 
-    await UserApi.getUser(leaderId).then((user) =>
+    UserApi.getUser(leaderId).then((user) =>
     {
       leaderNickname = user.nickname,
     });
@@ -164,19 +165,24 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(100, 10, 0, 0),
+                margin: EdgeInsets.only(top: 10),
                 height: 30,
                 alignment: Alignment.topLeft,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Row(
-                      children: const [
-                        Text("오프라인  "),
+                      children: [
                         Text(
-                          "zoom",
+                          meetingWay == 1 ? '온라인' :
+                          meetingWay == 2 ? '오프라인' :
+                          meetingWay == 3 ? '온오프라인' : '',
+                        ),
+                        Text(
+                          meetingTime,
                           style: TextStyle(color: Colors.blueAccent),
                         ),
+
                       ],
                     ),
                     Text(ProjectWritePage.workingTime) //기간
