@@ -94,6 +94,20 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     }
   }
 
+  List<Map<String, int>> getMinSpecOfApplicants (
+      List selectedApplicantInfo, List<String> fieldList){
+
+    List<Map<String, int>> resultList = [];
+
+    for(int i=0; i < selectedApplicantInfo.length; i++){
+      resultList.add({
+        selectedApplicantInfo[2][i] :
+        fieldList.indexOf(selectedApplicantInfo[1][i])});
+    }
+
+    return resultList;
+  }
+
   void checkRecruitPeriodCondition() {
     String id = recruitPeriodController.text;
     bool isValid = id.length == 10 &&
@@ -286,7 +300,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       meetingTime,
                       DateTime.parse(startPeriod),
                       DateTime.parse(endPeriod),
-                      [], // String int // 파이썬, 3
+                      getMinSpecOfApplicants(
+                          selectedApplicantInfo, applicantLabel[1]), // String int // 파이썬, 3
                       [], // 신청자 user Id, 한 줄 소개
                       Session.get() // 리더 Id
                   );
