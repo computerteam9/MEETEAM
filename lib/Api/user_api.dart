@@ -41,6 +41,7 @@ class UserApi {
       'blogUrl': newUser.blogUrl,
       'spec': newUser.spec,
       'interest': newUser.interest,
+      'project': newUser.project,
     });
 
     return documentRef.id;
@@ -76,15 +77,8 @@ class UserApi {
         for (var item in doc['project']) {
           project.add(List<String>.from(item));
         }
-        return User(
-            doc['email'],
-            doc['password'],
-            doc['nickname'],
-            doc['introduction'],
-            doc['blogUrl'],
-            spec,
-            interest,
-            doc['project']);
+        return User(doc['email'], doc['password'], doc['nickname'],
+            doc['introduction'], doc['blogUrl'], spec, interest, project);
       } else {
         throw Exception('해당 유저가 존재하지 않습니다.');
       }
