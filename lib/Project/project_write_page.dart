@@ -36,16 +36,16 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController introduceProjectController = TextEditingController();
   TextEditingController startPeriodController = TextEditingController();
   TextEditingController endPeriodController = TextEditingController();
-  TextEditingController recruitPeriodController = TextEditingController();
+  TextEditingController deadLineController = TextEditingController();
 
   bool checkStartPeriod = true;
   bool checkEndPeriod = true;
-  bool checkRecruitPeriod = true;
+  bool checkDeadLine = true;
 
   dispose() {
     startPeriodController.dispose();
     endPeriodController.dispose();
-    recruitPeriodController.dispose();
+    deadLineController.dispose();
     super.dispose();
   }
 
@@ -68,7 +68,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   String startPeriod = "";
   String endPeriod = "";
-  String recruitPeriod = "";
+  String deadLine = "";
 
   String uploadedFileName = "";
 
@@ -94,12 +94,12 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     }
   }
 
-  void checkRecruitPeriodCondition() {
-    String id = recruitPeriodController.text;
+  void checkDeadLineCondition() {
+    String id = deadLineController.text;
     bool isValid = id.length == 10 &&
         id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
     setState(() {
-      checkRecruitPeriod = isValid;
+      checkDeadLine = isValid;
     });
   }
 
@@ -156,15 +156,15 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             ),
             Expanded(
               child: TextField(
-                controller: recruitPeriodController,
+                controller: deadLineController,
                 onChanged: (value) => setState(() {
-                  checkRecruitPeriodCondition();
-                  recruitPeriod = value;
+                  checkDeadLineCondition();
+                  deadLine = value;
                 }),
                 decoration: InputDecoration(
                     labelText: '프로젝트 모집 마감 날짜',
                     hintText: 'mm/dd/yyyy',
-                    errorText: checkRecruitPeriod ? null : '형식과 맞지 않습니다.'),
+                    errorText: checkDeadLine ? null : '형식과 맞지 않습니다.'),
               ),
             ),
             // 만남 방식, 만남 시간 영역
@@ -284,11 +284,14 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       introduceProjectController.text,
                       meetingWay.indexOf(selectedMeetingWay),
                       meetingTime,
+
                       DateTime.parse(startPeriod),
                       DateTime.parse(endPeriod),
                       [],
                       [],
-                      Session.get());
+                      Session.get(),
+                      DateTime.parse(deadLine),
+                  );
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
                 },
