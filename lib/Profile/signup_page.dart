@@ -181,7 +181,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       UserApi.addUser(
                         _emailController.text, // email
                         _passwordController1.text, // password
-                        _idController.text, // nickname
+                        _nickNameController.text, // nickname
                         '', // introduction
                         '', // blog
                         [
