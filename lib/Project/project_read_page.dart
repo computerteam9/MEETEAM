@@ -35,6 +35,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
   String meetingTime = "";
   String leaderId = "";
   String leaderNickname = "";
+  List<Map<String, int>> _minSpec = <Map<String, int>>[];
 
   @override
   void initState() {
@@ -46,6 +47,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
     } else {
       bottomLabel = "지원";
     }
+
     String id = Session.get();
 
     // UserApi.getUser(id).then((user) => {
@@ -60,6 +62,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
         meetingWay = project.meetingWay;
         leaderId = project.leaderId;
         meetingTime = project.meetingTime;
+        _minSpec = project.minSpec;
       });
     });
 
@@ -168,11 +171,11 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                 Row(
                   children: [
                     Text(
-                      meetingWay == 1
+                      meetingWay == 0
                           ? '온라인'
-                          : meetingWay == 2
+                          : meetingWay == 1
                               ? '오프라인'
-                              : meetingWay == 3
+                              : meetingWay == 2
                                   ? '온오프라인'
                                   : '',
                     ),
@@ -208,7 +211,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                   height: 50,
                   width: 80,
                   alignment: Alignment.topLeft,
-                  child: Text("백엔드")),
+                  child: Text(_minSpec.isNotEmpty ? _minSpec[0].keys.first : '')),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
                 height: 60,
@@ -229,8 +232,10 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                               color: CustomColor.color1,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          child: const Text(
-                            "3년",
+                          child: Text(
+                            _minSpec.isNotEmpty && _minSpec[0].values.isNotEmpty
+                                ? _minSpec[0].values.elementAt(0).toString()
+                                : '',
                             style: TextStyle(color: CustomColor.color3),
                           ),
                         )
@@ -269,7 +274,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                   height: 50,
                   width: 80,
                   alignment: Alignment.topLeft,
-                  child: Text("프론트엔드")),
+                  child: Text(_minSpec.isNotEmpty && _minSpec[0].keys.length > 1 ? _minSpec[0].keys.elementAt(1) : '')),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
                 height: 60,
@@ -290,8 +295,10 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                               color: CustomColor.color1,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          child: const Text(
-                            "5년",
+                          child: Text(
+                            _minSpec.isNotEmpty && _minSpec[0].values.length > 1
+                                ? _minSpec[0].values.elementAt(1).toString()
+                                : '',
                             style: TextStyle(color: CustomColor.color3),
                           ),
                         )
