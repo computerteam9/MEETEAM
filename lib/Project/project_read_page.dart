@@ -51,10 +51,9 @@ class _ProjectReadPage extends State<ProjectReadPage> {
   void pageLaunch() async {
     String id = Session.get();
 
-    // UserApi.getUser(id).then((user) => {
-    //       // projectId = user.project as String,
-    //     });
-    projectId = "q4oj64rKP4G8phj4lPQf";
+    UserApi.getUser(id).then((user) => {
+      projectId = user.project[0][0],
+    });
 
     ProjectApi.getProject(projectId).then((project) {
       setState(() {
@@ -66,9 +65,9 @@ class _ProjectReadPage extends State<ProjectReadPage> {
       });
     });
 
-    // UserApi.getUser(leaderId).then((user) => {
-    //       leaderNickname = user.nickname,
-    //     });
+     UserApi.getUser(leaderId).then((user) => {
+           leaderNickname = user.nickname,
+        });
   }
 
   @override
