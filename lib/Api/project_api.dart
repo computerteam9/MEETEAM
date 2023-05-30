@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meetteam/Model/project.dart';
 import 'package:meetteam/Api/db.dart';
 import 'package:intl/intl.dart';
@@ -5,7 +6,7 @@ import 'package:intl/intl.dart';
 class ProjectApi {
   ProjectApi();
 
-  static Future<void> addProject(
+  static Future<String> addProject(
       String title,
       String description,
       int meetingWay,
@@ -17,8 +18,8 @@ class ProjectApi {
       String leaderId) async {
     Project newProject = Project(title, description, meetingWay, meetingTime,
         startDate, endDate, minSpec, applicants, leaderId);
-
-    await DB.instance.collection('projects').doc().set({
+    DocumentReference documentRef = DB.instance.collection('projects').doc();
+    await documentRef.set({
       'title': newProject.title,
       'description': newProject.description,
       'meetingWay': newProject.meetingWay,
@@ -29,5 +30,7 @@ class ProjectApi {
       'applicants': newProject.applicants,
       'leaderId': newProject.leaderId,
     });
+
+    return documentRef.id;
   }
 }
