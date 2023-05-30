@@ -63,10 +63,10 @@ class ProfileWrite extends State<ProfileWritePage> {
       TextEditingController();
 
   //선택된 Tag 내용만을 넘겨주는 메서드
-  List<String> getSelectedTag(List<String> tagList, List<bool> isTagSelected){
+  List<String> getSelectedTag(List<String> tagList, List<bool> isTagSelected) {
     List<String> resultList = [];
-    
-    for(int i = 0; i < isTagSelected.length; i++ ){
+
+    for (int i = 0; i < isTagSelected.length; i++) {
       if (isTagSelected[i]) {
         resultList.add(tagList[i]);
       }
@@ -74,19 +74,18 @@ class ProfileWrite extends State<ProfileWritePage> {
     return resultList;
   }
 
-  List<String> getSelectedSpec(
-      List<String> tagList, List<bool> isTagSelected,
-      List<String> sortList, List<bool> selectedSort){
+  List<String> getSelectedSpec(List<String> tagList, List<bool> isTagSelected,
+      List<String> sortList, List<bool> selectedSort) {
     List<String> resultList = [];
 
-    for(int i = 0; i < isTagSelected.length; i++ ){
+    for (int i = 0; i < isTagSelected.length; i++) {
       if (isTagSelected[i]) {
         resultList.add(tagList[i]);
       }
     }
     return resultList;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final args =
@@ -262,18 +261,21 @@ class ProfileWrite extends State<ProfileWritePage> {
             child: Text("저장"),
             onPressed: () async {
               String id = Session.get();
-              UserApi.updateUser(
-                  id,
-                  UserApi.getUser(id).then((user) => {user.email}).toString(),
-                  UserApi.getUser(id).then((user) => {user.email}).toString(),
-                  nicknameController.text,
-                  introduceController.text,
-                  blogUrlController.text, //blog
-                  [
-                    {} // ex) python: 3 >> 파이썬 3~5년
-                  ], //spec
-                  getSelectedTag(tagList, isTagSelected) //interest 관심사
-              );
+              UserApi.getUser(id).then((user) => {
+                    UserApi.updateUser(
+                      id,
+                      user.email,
+                      user.password,
+                      nicknameController.text,
+                      introduceController.text,
+                      blogUrlController.text, //blog
+                      [
+                        {} // ex) python: 3 >> 파이썬 3~5년
+                      ], //spec
+                      getSelectedTag(tagList, isTagSelected), //interest 관심사
+                      user.project,
+                    )
+                  });
 
               //처음 회원가입 하는 경우
               if (args.isSignUp == true) {
