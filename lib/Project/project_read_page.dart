@@ -46,9 +46,6 @@ class _ProjectReadPage extends State<ProjectReadPage> {
     } else {
       bottomLabel = "지원";
     }
-  }
-
-  void pageLaunch() async {
     String id = Session.get();
 
     // UserApi.getUser(id).then((user) => {
@@ -73,7 +70,6 @@ class _ProjectReadPage extends State<ProjectReadPage> {
 
   @override
   Widget build(BuildContext context) {
-    pageLaunch();
     return Scaffold(
       appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
       bottomNavigationBar: SizedBox(
