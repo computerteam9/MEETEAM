@@ -116,16 +116,9 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushNamed(context, '/');
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Please fill input')),
+                          const SnackBar(content: Text('잘못된 이메일 또는 비밀번호입니다.')),
                         );
                       }
-                      // if (_CompleteLogin) {
-                      //
-                      //   Session.set(UserApi.verifyUser(
-                      //       _emailController.text, _passwordController.text)
-                      //       .toString());
-                      //   Navigator.pushNamed(context, '/');
-                      // }
                     },
                   ),
                 ),
