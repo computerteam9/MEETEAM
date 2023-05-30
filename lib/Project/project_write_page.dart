@@ -33,9 +33,22 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController workingTimeController = TextEditingController();
   TextEditingController personNumberController = TextEditingController();
   TextEditingController introduceProjectController = TextEditingController();
+  TextEditingController startPeriodController = TextEditingController();
+  TextEditingController endPeriodController = TextEditingController();
+  TextEditingController recruitPeriodController = TextEditingController();
 
-  static const iconColor = Colors.black;
-  static const meetingWay = ["만남 방식", "온라인", "오프라인"];
+  bool checkStartPeriod = true;
+  bool checkEndPeriod = true;
+  bool checkRecruitPeriod = true;
+
+  dispose() {
+    startPeriodController.dispose();
+    endPeriodController.dispose();
+    recruitPeriodController.dispose();
+    super.dispose();
+  }
+
+  static const meetingWay = ["만남 방식", "온라인", "오프라인", "온오프라인"];
   static const applicantLabel = [
     ["분야 선택", "개발", "디자인", "기획", "기타"],
     ["경력 선택", "신입", "경력", "무관"],
@@ -54,6 +67,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   String startPeriod = "";
   String endPeriod = "";
+  String recruitPeriod = "";
 
   String uploadedFileName = "";
 
@@ -79,6 +93,30 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     }
   }
 
+  void checkRecruitPeriodCondition() {
+    String id = recruitPeriodController.text;
+    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    setState(() {
+      checkRecruitPeriod = isValid;
+    });
+  }
+
+  void checkStartPeriodCondition() {
+    String id = startPeriodController.text;
+    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    setState(() {
+      checkStartPeriod = isValid;
+    });
+  }
+
+  void checkEndPeriodCondition() {
+    String id = endPeriodController.text;
+    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    setState(() {
+      checkEndPeriod = isValid;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,8 +131,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               TextFormField(
                 decoration: const InputDecoration(
-                  labelText: "프로젝트 제목",
-                ),
+                    labelText: "프로젝트 제목", hintText: 'ex: 그룹 버킷리스트 공유 앱 개발'),
                 textAlign: TextAlign.start,
                 controller: projectTitleController,
                 style: const TextStyle(
@@ -106,13 +143,26 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             // 프로젝트 내용 영역
             TextFormField(
               decoration: const InputDecoration(
-                labelText: "프로젝트 내용",
-              ),
+                  labelText: "프로젝트 내용",
+                  hintText: '프로젝트 시작 동기, 서비스 계획, 사용자 타겟팅, 우대 사항, 그 외 기타 등등'),
               textAlign: TextAlign.start,
               controller: introduceProjectController,
               minLines: 1,
               maxLines: 3,
             ),
+                Expanded(
+                  child: TextField(
+                    controller: recruitPeriodController,
+                    onChanged: (value) => setState(() {
+                      checkRecruitPeriodCondition();
+                      recruitPeriod = value;
+                    }),
+                    decoration: InputDecoration(
+                        labelText: '프로젝트 모집 마감 날짜',
+                        hintText: 'mm/dd/yyyy',
+                        errorText: checkRecruitPeriod ? null : '형식과 맞지 않습니다.'),
+                  ),
+                ),
             // 만남 방식, 만남 시간 영역
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               DropdownButton<String>(
@@ -133,7 +183,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               Expanded(
                   child: TextField(
                 decoration: const InputDecoration(
-                  labelText: '만남 시간',
+                  labelText: '만남 장소 및 시간',
                 ),
                 onChanged: (value) {
                   setState(() {
@@ -146,21 +196,31 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             Row(
               children: [
                 Expanded(
-                    child: TextField(
-                  decoration: InputDecoration(
-                      labelText: '시작 날짜', hintText: 'mm/dd/yyyy'),
-                  onChanged: (value) => setState(() {
-                    startPeriod = value;
-                  }),
-                )),
+                  child: TextField(
+                    controller: startPeriodController,
+                    onChanged: (value) => setState(() {
+                      checkStartPeriodCondition();
+                      startPeriod = value;
+                    }),
+                    decoration: InputDecoration(
+                        labelText: '프로젝트 시작 날짜',
+                        hintText: 'mm/dd/yyyy',
+                        errorText: checkStartPeriod ? null : '형식과 맞지 않습니다.'),
+                  ),
+                ),
                 Expanded(
-                    child: TextField(
-                  decoration: InputDecoration(
-                      labelText: '마감 날짜', hintText: 'mm/dd/yyyy'),
-                  onChanged: (value) => setState(() {
-                    endPeriod = value;
-                  }),
-                )),
+                  child: TextField(
+                    controller: endPeriodController,
+                    onChanged: (value) => setState(() {
+                      checkEndPeriodCondition();
+                      endPeriod = value;
+                    }),
+                    decoration: InputDecoration(
+                        labelText: '프로젝트 종료 날짜',
+                        hintText: 'mm/dd/yyyy',
+                        errorText: checkEndPeriod ? null : '형식과 맞지 않습니다.'),
+                  ),
+                ),
               ],
             ),
             // 지원자 요구 스펙 영역
@@ -207,52 +267,6 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                         style: TextStyle(color: CustomColor.color3), "인원 추가"))
               ],
             ),
-            // 파일 업로드
-            Container(
-                //여기에 업로드된 파일 리스트
-                child: (() {})()),
-            Container(
-              // margin: const EdgeInsets.all(30),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text("프로젝트 기획안",
-                        style: TextStyle(
-                          fontSize: 17,
-                        )),
-                  ]),
-            ),
-            Container(
-                alignment: Alignment.center,
-                child: () {
-                  // 업로드 된 파일 없으면 파일 업로드 버튼
-                  if (uploadedFileName == "") {
-                    return ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColor.color3),
-                        label: const Text('파일 업로드'),
-                        icon: const Icon(Icons.file_upload,
-                            color: Color(0xffffffff), size: 30),
-                        onPressed: () {
-                          setState(() => uploadedFileName = "abc.pdf");
-                        });
-                  }
-                  // 업로드 된 파일 있으면 파일 이름
-                  else {
-                    return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(uploadedFileName,
-                              style: TextStyle(fontSize: 16)),
-                          IconButton(
-                              icon: const Icon(Icons.close,
-                                  color: Colors.red, size: 25),
-                              onPressed: () {
-                                setState(() => uploadedFileName = "");
-                              })
-                        ]);
-                  }
-                }()),
             // 저장 버튼
             Container(
               margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),

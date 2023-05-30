@@ -12,8 +12,8 @@ class UserApi {
       String blogUrl,
       List<Map<String, int>> spec,
       List<String> interest) async {
-    User newUser =
-        User(email, password, nickname, introduction, blogUrl, spec, interest);
+    User newUser = User(
+        email, password, nickname, introduction, blogUrl, spec, interest, []);
 
     await DB.instance
         .collection('users')
@@ -62,14 +62,25 @@ class UserApi {
       if (doc.exists) {
         List<Map<String, int>> spec = [];
         List<String> interest = [];
+        List<List<String>> project = [];
         for (var item in doc['spec']) {
           spec.add(Map<String, int>.from(item));
         }
         for (var item in doc['interest']) {
           interest.add(item);
         }
-        return User(doc['email'], doc['password'], doc['nickname'],
-            doc['introduction'], doc['blogUrl'], spec, interest);
+        for (var item in doc['project']) {
+          project.add(List<String>.from(item));
+        }
+        return User(
+            doc['email'],
+            doc['password'],
+            doc['nickname'],
+            doc['introduction'],
+            doc['blogUrl'],
+            spec,
+            interest,
+            doc['project']);
       } else {
         throw Exception('해당 유저가 존재하지 않습니다.');
       }
@@ -84,9 +95,11 @@ class UserApi {
       String introduction,
       String blogUrl,
       List<Map<String, int>> spec,
-      List<String> interest) async {
-    User newUser =
-        User(email, password, nickname, introduction, blogUrl, spec, interest);
+
+      List<String> interest,
+      List<List<String>> project) async {
+    User newUser = User(email, password, nickname, introduction, blogUrl, spec,
+        interest, project);
 
     if (nickname != newUser.nickname) {
       await DB.instance
@@ -116,6 +129,7 @@ class UserApi {
       'blogUrl': newUser.blogUrl,
       'spec': newUser.spec,
       'interest': newUser.interest,
+      'project': newUser.project,
     });
   }
 }

@@ -9,9 +9,11 @@ class User {
   List<Map<String, int>> _spec;
   // List<분야>
   List<String> _interest = <String>[];
+  // 0번째 : 자신이 리더인 프로젝트의 id, 1번째 : 자신이 신청한/멤버인 프로젝트의 id
+  List<List<String>> _project = <List<String>>[];
 
   User(this._email, this._password, this._nickname, this._introduction,
-      this._blogUrl, this._spec, this._interest) {
+      this._blogUrl, this._spec, this._interest, this._project) {
     _email = email;
     _password = password;
     _nickname = nickname;
@@ -19,6 +21,7 @@ class User {
     _blogUrl = blogUrl;
     _spec = spec;
     _interest = interest;
+    _project = project;
   }
 
   String get email => _email;
@@ -28,4 +31,5 @@ class User {
   String get blogUrl => _blogUrl;
   List<Map<String, int>> get spec => _spec;
   List<String> get interest => _interest;
+  List<List<String>> get project => _project;
 }

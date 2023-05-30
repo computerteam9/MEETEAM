@@ -13,10 +13,13 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: bgColor,
       // 중앙 로고
-      title: const Text(
-        "MEETEAM",
-        style: TextStyle(
-            color: titleColor, fontSize: 20.0, fontWeight: FontWeight.w700),
+      title: TextButton(
+        onPressed: () => {Navigator.pushNamed(context, '/')},
+        child: const Text(
+          "MEETEAM",
+          style: TextStyle(
+              color: titleColor, fontSize: 20.0, fontWeight: FontWeight.w700),
+        ),
       ),
       centerTitle: true,
       // 뒤로가기 버튼

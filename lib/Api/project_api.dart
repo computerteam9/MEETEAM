@@ -13,9 +13,10 @@ class ProjectApi {
       DateTime startDate,
       DateTime endDate,
       List<Map<String, int>> minSpec,
-      List<Map<String, String>> applicants) async {
+      List<Map<String, String>> applicants,
+      String leaderId) async {
     Project newProject = Project(title, description, meetingWay, meetingTime,
-        startDate, endDate, minSpec, applicants);
+        startDate, endDate, minSpec, applicants, leaderId);
 
     await DB.instance.collection('projects').doc().set({
       'title': newProject.title,
@@ -26,6 +27,7 @@ class ProjectApi {
       'endDate': DateFormat('yyyy-MM-dd').format(newProject.endDate),
       'minSpec': newProject.minSpec,
       'applicants': newProject.applicants,
+      'leaderId': newProject.leaderId,
     });
   }
 }
