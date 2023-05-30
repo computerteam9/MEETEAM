@@ -73,6 +73,19 @@ class ProfileWrite extends State<ProfileWritePage> {
     }
     return resultList;
   }
+
+  List<String> getSelectedSpec(
+      List<String> tagList, List<bool> isTagSelected,
+      List<String> sortList, List<bool> selectedSort){
+    List<String> resultList = [];
+
+    for(int i = 0; i < isTagSelected.length; i++ ){
+      if (isTagSelected[i]) {
+        resultList.add(tagList[i]);
+      }
+    }
+    return resultList;
+  }
   
   @override
   Widget build(BuildContext context) {

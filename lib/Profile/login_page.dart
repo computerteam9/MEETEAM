@@ -17,15 +17,23 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _CompleteLogin = false;
 
-  void _CompleteCondition() {
+  void _CompleteCondition() async {
     String email = _emailController.text;
     String password = _passwordController.text;
+    bool isId = true;
 
-    String userId = UserApi.verifyUser(email, password).toString();
+
+    await UserApi.verifyUser(email, password).then((userId)=>{
+      if (userId =='') [
+          isId = false
+      ]
+
+    });
 
     //로그인에 대한 id 체크 조건 추가
     if (_emailController.text.isNotEmpty &&
-        _passwordController.text.isNotEmpty
+        _passwordController.text.isNotEmpty &&
+        isId
         ) {
       setState(() {
         _CompleteLogin = true;

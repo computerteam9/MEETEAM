@@ -177,7 +177,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 // 개인정보동의가 되어야 가입하기 버튼을 누를 수 있음
 
                 onPressed: () async {
-                  if(_CompleteSignup) {
+                  if(_CompleteSignup){
                     UserApi.addUser(
                         _emailController.text,
                         //email
@@ -196,10 +196,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         [
                         ] //interest 관심사
                     );
-                    Session.set(_idController);
 
                     Navigator.pushNamed(context, '/profileWrite',
                         arguments: ProfileWritePageArguments(true));
+
+                    Session.set(await UserApi.verifyUser(
+                        _emailController.text, _passwordController1.text).
+                    then((userId) => {})
+                    );
 
                 }
                   else {
