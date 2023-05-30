@@ -178,37 +178,38 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 onPressed: () async {
                   if(_CompleteSignup){
-                    UserApi.addUser(
-                        _emailController.text,
-                        //email
-                        _passwordController1.text,
-                        //password
-                        _idController.text,
-                        //nickname
-                        '',
-                        //introduction
-                        '',
-                        //blog
-                        [
-                          {} // ex) python: 3 >> 파이썬 3년
-                        ],
-                        //spec
-                        [
-                        ] //interest 관심사
-                    );
+                      await UserApi.addUser(
+                          _emailController.text,
+                          //email
+                          _passwordController1.text,
+                          //password
+                          _idController.text,
+                          //nickname
+                          '',
+                          //introduction
+                          '',
+                          //blog
+                          [
+                            {} // ex) python: 3 >> 파이썬 3년
+                          ],
+                          //spec
+                          [
+                          ] //interest 관심사
+                      );
 
-                    Navigator.pushNamed(context, '/profileWrite',
-                        arguments: ProfileWritePageArguments(true));
 
-                    Session.set(await UserApi.verifyUser(
-                        _emailController.text, _passwordController1.text).
-                    then((userId) => {})
-                    );
+                      Session.set(await UserApi.verifyUser(
+                          _emailController.text, _passwordController1.text).
+                      then((userId) => {})
+                      );
 
-                }
+                      Navigator.pushNamed(context, '/profileWrite',
+                          arguments: ProfileWritePageArguments(true));
+                    }
                   else {
                     null;
                   }
+
                 }
               ),
             ],
