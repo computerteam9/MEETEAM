@@ -2,14 +2,26 @@ import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/edit_appbar.dart';
 import 'package:meetteam/Profile/profile_write_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:meetteam/Api/user_api.dart';
+import 'package:meetteam/Api/session.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
+  @override
+  _ProfilePage createState() => _ProfilePage();
+}
+
+class _ProfilePage extends State<ProfilePage> {
   static const color1 = Color(0xff5dbaf4);
   static const iconColor = Colors.black;
 
   final String sort = ProfileWrite.selectedSort;
   final String field = ProfileWrite.selectedField;
   final String link = "";
+  static String nickname = "";
+  static String blogUrl = "";
+  static String introduction = "";
 
   Future<void> _urllaunch() async {
     if (await canLaunch(link)) {
@@ -19,8 +31,21 @@ class ProfilePage extends StatelessWidget {
     }
   }
 
+  void pageLaunch() async {
+    String id = Session.get();
+
+    await UserApi.getUser(id).then((user) => {
+          nickname = user.nickname, //닉네임
+          blogUrl = user.blogUrl, //블로그
+          introduction = user.introduction, //자기소개
+          user.spec, //활동 내역
+          user.interest, //관심사
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    pageLaunch();
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
@@ -73,11 +98,11 @@ class ProfilePage extends StatelessWidget {
             ),
             SizedBox(width: 30.0),
             Column(children: [
-              Text(ProfileWrite.nicknameController.text),
+              Text(nickname),
               SizedBox(height: 30.0),
               TextButton(
                 onPressed: _urllaunch,
-                child: Text("url"),
+                child: Text(blogUrl),
               ),
             ])
           ]),
@@ -103,7 +128,7 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: Text("저는... ~~~"),
+                    child: Text(introduction),
                   ),
                 ],
               ),
