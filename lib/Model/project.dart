@@ -10,9 +10,19 @@ class Project {
   List<Map<String, int>> _minSpec;
   // List<Map<지원자 user ID, 한줄소개>>
   List<Map<String, String>> _applicants;
+  // 리더의 user ID
+  String _leaderId;
 
-  Project(this._title, this._description, this._meetingWay, this._meetingTime,
-      this._startDate, this._endDate, this._minSpec, this._applicants) {
+  Project(
+      this._title,
+      this._description,
+      this._meetingWay,
+      this._meetingTime,
+      this._startDate,
+      this._endDate,
+      this._minSpec,
+      this._applicants,
+      this._leaderId) {
     _title = _title;
     _description = _description;
     _meetingWay = _meetingWay;
@@ -21,6 +31,7 @@ class Project {
     _endDate = _endDate;
     _minSpec = _minSpec;
     _applicants = _applicants;
+    _leaderId = _leaderId;
   }
 
   String get title => _title;
@@ -31,4 +42,5 @@ class Project {
   DateTime get endDate => _endDate;
   List<Map<String, int>> get minSpec => _minSpec;
   List<Map<String, String>> get applicants => _applicants;
+  String get leaderId => _leaderId;
 }
