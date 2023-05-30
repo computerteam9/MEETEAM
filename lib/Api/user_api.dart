@@ -41,7 +41,7 @@ class UserApi {
       'blogUrl': newUser.blogUrl,
       'spec': newUser.spec,
       'interest': newUser.interest,
-      'project': newUser.project.map((list) => list.toList()).toList(),
+      'project': newUser.project,
     });
 
     return documentRef.id;
@@ -126,7 +126,8 @@ class UserApi {
       'blogUrl': newUser.blogUrl,
       'spec': newUser.spec,
       'interest': newUser.interest,
-      'project': newUser.project.map((list) => list.toList()).toList(),
+      'project': newUser.project,
+
     });
   }
 }
