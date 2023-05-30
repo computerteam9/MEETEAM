@@ -177,25 +177,34 @@ class _SignUpPageState extends State<SignUpPage> {
                 // 개인정보동의가 되어야 가입하기 버튼을 누를 수 있음
 
                 onPressed: () async {
-                  UserApi.addUser(
-                      _emailController.text, //email
-                      _passwordController1.text, //password
-                      _idController.text, //nickname
-                      '', //introduction
-                      '', //blog
-                      [
-                        {} // ex) python: 3 >> 파이썬 3년
-                      ], //spec
-                      [
+                  if(_CompleteSignup) {
+                    UserApi.addUser(
+                        _emailController.text,
+                        //email
+                        _passwordController1.text,
+                        //password
+                        _idController.text,
+                        //nickname
+                        '',
+                        //introduction
+                        '',
+                        //blog
+                        [
+                          {} // ex) python: 3 >> 파이썬 3년
+                        ],
+                        //spec
+                        [
+                        ] //interest 관심사
+                    );
+                    Session.set(_idController);
 
-                      ] //interest 관심사
-                  );
-                  Session.set(_idController);
-                  _CompleteSignup
-                      ? () =>
-                      Navigator.pushNamed(context, '/profileWrite',
-                          arguments: ProfileWritePageArguments(true))
-                      : null;
+                    Navigator.pushNamed(context, '/profileWrite',
+                        arguments: ProfileWritePageArguments(true));
+
+                }
+                  else {
+                    null;
+                  }
                 }
               ),
             ],
