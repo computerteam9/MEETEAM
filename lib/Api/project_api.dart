@@ -33,4 +33,33 @@ class ProjectApi {
 
     return documentRef.id;
   }
+
+  static Future<Project> getProject(String projectId) async {
+    return DB.instance.collection('projects').doc(projectId).get().then((doc) {
+      if (doc.exists) {
+        List<Map<String, int>> minSpec = [];
+        List<Map<String, String>> applicants = [];
+
+        for (var item in doc['minSpec']) {
+          minSpec.add(Map<String, int>.from(item));
+        }
+        for (var item in doc['applicants']) {
+          applicants.add(Map<String, String>.from(item));
+        }
+
+        return Project(
+            doc['title'],
+            doc['description'],
+            doc['meetingWay'],
+            doc['meetingTime'],
+            DateTime.parse(doc['startDate']),
+            DateTime.parse(doc['endDate']),
+            minSpec,
+            applicants,
+            doc['leaderId']);
+      } else {
+        throw Exception('해당 프로젝트가 존재하지 않습니다.');
+      }
+    });
+  }
 }
