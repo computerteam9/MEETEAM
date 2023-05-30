@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meetteam/Api/session.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/color.dart';
 import 'package:meetteam/Api/project_api.dart';
@@ -95,7 +96,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   void checkRecruitPeriodCondition() {
     String id = recruitPeriodController.text;
-    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    bool isValid = id.length == 10 &&
+        id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
     setState(() {
       checkRecruitPeriod = isValid;
     });
@@ -103,7 +105,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   void checkStartPeriodCondition() {
     String id = startPeriodController.text;
-    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    bool isValid = id.length == 10 &&
+        id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
     setState(() {
       checkStartPeriod = isValid;
     });
@@ -111,7 +114,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   void checkEndPeriodCondition() {
     String id = endPeriodController.text;
-    bool isValid = id.length == 10 && id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+    bool isValid = id.length == 10 &&
+        id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
     setState(() {
       checkEndPeriod = isValid;
     });
@@ -150,19 +154,19 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               minLines: 1,
               maxLines: 3,
             ),
-                Expanded(
-                  child: TextField(
-                    controller: recruitPeriodController,
-                    onChanged: (value) => setState(() {
-                      checkRecruitPeriodCondition();
-                      recruitPeriod = value;
-                    }),
-                    decoration: InputDecoration(
-                        labelText: '프로젝트 모집 마감 날짜',
-                        hintText: 'mm/dd/yyyy',
-                        errorText: checkRecruitPeriod ? null : '형식과 맞지 않습니다.'),
-                  ),
-                ),
+            Expanded(
+              child: TextField(
+                controller: recruitPeriodController,
+                onChanged: (value) => setState(() {
+                  checkRecruitPeriodCondition();
+                  recruitPeriod = value;
+                }),
+                decoration: InputDecoration(
+                    labelText: '프로젝트 모집 마감 날짜',
+                    hintText: 'mm/dd/yyyy',
+                    errorText: checkRecruitPeriod ? null : '형식과 맞지 않습니다.'),
+              ),
+            ),
             // 만남 방식, 만남 시간 영역
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               DropdownButton<String>(
@@ -282,13 +286,9 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       meetingTime,
                       DateTime.parse(startPeriod),
                       DateTime.parse(endPeriod),
-                      [
-
-                      ],
-                      [
-
-                      ]
-                  );
+                      [],
+                      [],
+                      Session.get());
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
                 },
