@@ -23,9 +23,10 @@ class _LoginPageState extends State<LoginPage> {
 
     String userId = UserApi.verifyUser(email, password).toString();
 
+    //로그인에 대한 id 체크 조건 추가
     if (_emailController.text.isNotEmpty &&
-        _passwordController.text.isNotEmpty &&
-        userId != '') {
+        _passwordController.text.isNotEmpty
+        ) {
       setState(() {
         _CompleteLogin = true;
       });
@@ -100,12 +101,23 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     onPressed: () {
-                      if (_CompleteLogin) {
+                      if (_formKey.currentState!.validate() && _CompleteLogin) {
                         Session.set(UserApi.verifyUser(
                             _emailController.text, _passwordController.text)
                             .toString());
                         Navigator.pushNamed(context, '/');
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Please fill input')),
+                        );
                       }
+                      // if (_CompleteLogin) {
+                      //
+                      //   Session.set(UserApi.verifyUser(
+                      //       _emailController.text, _passwordController.text)
+                      //       .toString());
+                      //   Navigator.pushNamed(context, '/');
+                      // }
                     },
                   ),
                 ),
