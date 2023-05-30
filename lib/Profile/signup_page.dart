@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/logo_appbar.dart';
 import 'package:meetteam/Profile/profile_write_page.dart';
+import '../Api/user_api.dart';
+import 'package:meetteam/Api/session.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -174,10 +176,40 @@ class _SignUpPageState extends State<SignUpPage> {
                 //5개의 값이 입력되어야 하고 비밀번호와 비밀번호 확인의 값이 같아야하고
                 // 개인정보동의가 되어야 가입하기 버튼을 누를 수 있음
 
-                onPressed: _CompleteSignup
-                    ? () => Navigator.pushNamed(context, '/profileWrite',
-                        arguments: ProfileWritePageArguments(true))
-                    : null,
+                onPressed: () async {
+                  if(_CompleteSignup){
+                    UserApi.addUser(
+                        _emailController.text,
+                        //email
+                        _passwordController1.text,
+                        //password
+                        _idController.text,
+                        //nickname
+                        '',
+                        //introduction
+                        '',
+                        //blog
+                        [
+                          {} // ex) python: 3 >> 파이썬 3년
+                        ],
+                        //spec
+                        [
+                        ] //interest 관심사
+                    );
+
+                    Navigator.pushNamed(context, '/profileWrite',
+                        arguments: ProfileWritePageArguments(true));
+
+                    Session.set(await UserApi.verifyUser(
+                        _emailController.text, _passwordController1.text).
+                    then((userId) => {})
+                    );
+
+                }
+                  else {
+                    null;
+                  }
+                }
               ),
             ],
           ),

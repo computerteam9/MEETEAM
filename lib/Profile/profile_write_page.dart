@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
+import 'package:meetteam/Api/user_api.dart';
+import 'package:meetteam/Api/session.dart';
+import '../Model/user.dart';
 
 class ProfileWritePageArguments {
   final bool isSignUp;
@@ -56,7 +59,34 @@ class ProfileWrite extends State<ProfileWritePage> {
   static final TextEditingController careerController = TextEditingController();
   static final TextEditingController activityController =
       TextEditingController();
+  static final TextEditingController blogUrlController =
+      TextEditingController();
 
+  //선택된 Tag 내용만을 넘겨주는 메서드
+  List<String> getSelectedTag(List<String> tagList, List<bool> isTagSelected){
+    List<String> resultList = [];
+    
+    for(int i = 0; i < isTagSelected.length; i++ ){
+      if (isTagSelected[i]) {
+        resultList.add(tagList[i]);
+      }
+    }
+    return resultList;
+  }
+
+  List<String> getSelectedSpec(
+      List<String> tagList, List<bool> isTagSelected,
+      List<String> sortList, List<bool> selectedSort){
+    List<String> resultList = [];
+
+    for(int i = 0; i < isTagSelected.length; i++ ){
+      if (isTagSelected[i]) {
+        resultList.add(tagList[i]);
+      }
+    }
+    return resultList;
+  }
+  
   @override
   Widget build(BuildContext context) {
     final args =
@@ -98,6 +128,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                     // style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   TextField(
+                    controller: blogUrlController,
                     decoration: InputDecoration(
                       labelText: '블로그',
                     ),
@@ -229,7 +260,21 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           ElevatedButton(
             child: Text("저장"),
-            onPressed: () {
+            onPressed: () async {
+              String id = Session.get();
+              UserApi.updateUser(
+                  id,
+                  UserApi.getUser(id).then((user) => {user.email}).toString(),
+                  UserApi.getUser(id).then((user) => {user.email}).toString(),
+                  nicknameController.text,
+                  introduceController.text,
+                  blogUrlController.text, //blog
+                  [
+                    {} // ex) python: 3 >> 파이썬 3~5년
+                  ], //spec
+                  getSelectedTag(tagList, isTagSelected) //interest 관심사
+              );
+
               //처음 회원가입 하는 경우
               if (args.isSignUp == true) {
                 // 모든 위젯 삭제하고 메인 페이지로 이동

@@ -95,6 +95,7 @@ class UserApi {
       String introduction,
       String blogUrl,
       List<Map<String, int>> spec,
+
       List<String> interest,
       List<List<String>> project) async {
     User newUser = User(email, password, nickname, introduction, blogUrl, spec,

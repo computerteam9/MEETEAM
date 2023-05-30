@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/color.dart';
+import 'package:meetteam/Api/project_api.dart';
 
 class ApplicantInfo {
   String field = "";
@@ -20,6 +21,7 @@ class ProjectWritePage extends StatefulWidget {
       _ProjectWritePageState().workingTimeController.text;
   static String introduceProject =
       _ProjectWritePageState().introduceProjectController.text;
+  //이후 삭제 예정
 
   @override
   State<StatefulWidget> createState() => _ProjectWritePageState();
@@ -273,6 +275,20 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     backgroundColor: CustomColor.color3),
                 child: Text("저장"),
                 onPressed: () {
+                  ProjectApi.addProject(
+                      projectTitleController.text,
+                      introduceProjectController.text,
+                      meetingWay.indexOf(selectedMeetingWay),
+                      meetingTime,
+                      DateTime.parse(startPeriod),
+                      DateTime.parse(endPeriod),
+                      [
+
+                      ],
+                      [
+
+                      ]
+                  );
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
                 },

@@ -15,6 +15,7 @@ import 'package:meetteam/Api/db.dart';
 import 'package:meetteam/Api/user_api.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meetteam/Api/session.dart';
+import 'package:meetteam/Profile/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,8 +40,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(),
-        initialRoute: '/',
+        initialRoute: '/login',
         routes: {
+          '/login': (context) => LoginPage(),
           '/signup': (context) => SignUpPage(),
           '/': (context) => MainPage(),
           '/projects': (context) => ProjectListPage(),
