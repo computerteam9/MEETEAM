@@ -34,10 +34,12 @@ class ProfileWrite extends State<ProfileWritePage> {
   static const List<String> sortList = ["선택", "Java", "C", "C++", "Python"];
   static const List<String> fieldList = [
     "선택",
-    "1년 이하",
-    "1~3년",
-    "3~5년",
-    "5년 이상"
+    "1년 미만",
+    "1년차",
+    "2년차",
+    "3년차",
+    "4년차",
+    "5년차 이상",
   ];
 
   static String selectedSort = sortList[0];
