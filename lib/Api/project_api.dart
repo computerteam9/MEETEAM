@@ -15,9 +15,10 @@ class ProjectApi {
       DateTime endDate,
       List<Map<String, int>> minSpec,
       List<Map<String, String>> applicants,
-      String leaderId) async {
+      String leaderId,
+      DateTime deadline) async {
     Project newProject = Project(title, description, meetingWay, meetingTime,
-        startDate, endDate, minSpec, applicants, leaderId);
+        startDate, endDate, minSpec, applicants, leaderId, deadline);
     DocumentReference documentRef = DB.instance.collection('projects').doc();
     await documentRef.set({
       'title': newProject.title,
@@ -29,6 +30,7 @@ class ProjectApi {
       'minSpec': newProject.minSpec,
       'applicants': newProject.applicants,
       'leaderId': newProject.leaderId,
+      'deadline': DateFormat('yyyy-MM-dd').format(newProject.deadline)
     });
 
     return documentRef.id;
@@ -56,7 +58,8 @@ class ProjectApi {
             DateTime.parse(doc['endDate']),
             minSpec,
             applicants,
-            doc['leaderId']);
+            doc['leaderId'],
+            DateTime.parse(doc['deadline']));
       } else {
         throw Exception('해당 프로젝트가 존재하지 않습니다.');
       }
