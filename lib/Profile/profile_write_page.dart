@@ -59,7 +59,21 @@ class ProfileWrite extends State<ProfileWritePage> {
   static final TextEditingController careerController = TextEditingController();
   static final TextEditingController activityController =
       TextEditingController();
+  static final TextEditingController blogUrlController =
+      TextEditingController();
 
+  //선택된 Tag 내용만을 넘겨주는 메서드
+  List<String> getSelectedTag(List<String> tagList, List<bool> isTagSelected){
+    List<String> resultList = [];
+    
+    for(int i = 0; i < isTagSelected.length; i++ ){
+      if (isTagSelected[i]) {
+        resultList.add(tagList[i]);
+      }
+    }
+    return resultList;
+  }
+  
   @override
   Widget build(BuildContext context) {
     final args =
@@ -101,6 +115,7 @@ class ProfileWrite extends State<ProfileWritePage> {
                     // style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   TextField(
+                    controller: blogUrlController,
                     decoration: InputDecoration(
                       labelText: '블로그',
                     ),
@@ -240,13 +255,11 @@ class ProfileWrite extends State<ProfileWritePage> {
                   UserApi.getUser(id).then((user) => {user.email}).toString(),
                   nicknameController.text,
                   introduceController.text,
-                  'blogUrl', //blog
+                  blogUrlController.text, //blog
                   [
-                    {} // ex) python: 3 >> 파이썬 3년
+                    {} // ex) python: 3 >> 파이썬 3~5년
                   ], //spec
-                  [
-
-                  ] //interest 관심사
+                  getSelectedTag(tagList, isTagSelected) //interest 관심사
               );
 
               //처음 회원가입 하는 경우
