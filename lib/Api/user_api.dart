@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meetteam/Model/user.dart';
 import 'package:meetteam/Api/db.dart';
 
 class UserApi {
   UserApi();
 
-  static Future<void> addUser(
+  static Future<String> addUser(
       String email,
       String password,
       String nickname,
@@ -14,6 +15,7 @@ class UserApi {
       List<String> interest) async {
     User newUser = User(
         email, password, nickname, introduction, blogUrl, spec, interest, []);
+    DocumentReference documentRef = DB.instance.collection('users').doc();
 
     await DB.instance
         .collection('users')
@@ -31,7 +33,7 @@ class UserApi {
       if (queryResult.docs.isNotEmpty) throw Exception('해당 이메일로 이미 가입되었습니다.');
     });
 
-    await DB.instance.collection('users').doc().set({
+    await documentRef.set({
       'email': newUser.email,
       'password': newUser.password,
       'nickname': newUser.nickname,
@@ -40,6 +42,8 @@ class UserApi {
       'spec': newUser.spec,
       'interest': newUser.interest,
     });
+
+    return documentRef.id;
   }
 
   static Future<String> verifyUser(String email, String password) async {
@@ -95,7 +99,6 @@ class UserApi {
       String introduction,
       String blogUrl,
       List<Map<String, int>> spec,
-
       List<String> interest,
       List<List<String>> project) async {
     User newUser = User(email, password, nickname, introduction, blogUrl, spec,
