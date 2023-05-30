@@ -76,7 +76,8 @@ class ProfileWrite extends State<ProfileWritePage> {
     return resultList;
   }
 
-  List<Map<String, int>> getSelectedSpec(String selectedSorted, int selectedFieldIndex) {
+  List<Map<String, int>> getSelectedSpec(
+      String selectedSorted, int selectedFieldIndex) {
     List<Map<String, int>> specList = [];
     specList.add({selectedSorted: selectedFieldIndex});
     return specList;
@@ -258,18 +259,7 @@ class ProfileWrite extends State<ProfileWritePage> {
             onPressed: () async {
               String id = Session.get();
 
-              //처음 회원가입 하는 경우
-              if (args.isSignUp == true) {
-                // 모든 위젯 삭제하고 메인 페이지로 이동
-                Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
-              }
-              // 프로필 수정하는 경우
-              else {
-                //프로필 보는 페이지로 이동
-                Navigator.pop(context);
-              }
-
-              await UserApi.getUser(id).then((user) => {
+              UserApi.getUser(id).then((user) {
                 UserApi.updateUser(
                   id,
                   user.email,
@@ -277,10 +267,22 @@ class ProfileWrite extends State<ProfileWritePage> {
                   nicknameController.text,
                   introduceController.text,
                   blogUrlController.text, //blog
-                  getSelectedSpec(selectedSort, fieldList.indexOf(selectedField)), //spec
+                  getSelectedSpec(
+                      selectedSort, fieldList.indexOf(selectedField)), //spec
                   getSelectedTag(tagList, isTagSelected), //interest 관심사
                   user.project,
-                )
+                );
+
+                // 처음 회원가입을 하는 경우
+                if (args.isSignUp == true) {
+                  // 모든 위젯 삭제하고 메인 페이지로 이동
+                  Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false);
+                }
+                // 프로필 수정하는 경우
+                else {
+                  //프로필 보는 페이지로 이동
+                  Navigator.pop(context);
+                }
               });
             },
           ),
