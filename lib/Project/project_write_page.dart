@@ -52,7 +52,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   static const meetingWay = ["만남 방식", "온라인", "오프라인", "온오프라인"];
   static const applicantLabel = [
     ["분야 선택", "개발", "디자인", "기획", "기타"],
-    ["경력 선택", "신입", "경력", "무관"],
+    ["경력 선택", "1년 미만", "1~3년차", "3~5년차", "5년차 이상", "무관"],
     ["기술 선택", "Java", "Python", "JavaScript", "Go", "기타"]
   ];
 
@@ -286,9 +286,10 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       meetingTime,
                       DateTime.parse(startPeriod),
                       DateTime.parse(endPeriod),
-                      [],
-                      [],
-                      Session.get());
+                      [], // String int // 파이썬, 3
+                      [], // 신청자 user Id, 한 줄 소개
+                      Session.get() // 리더 Id
+                  );
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
                 },
