@@ -74,16 +74,10 @@ class ProfileWrite extends State<ProfileWritePage> {
     return resultList;
   }
 
-  List<String> getSelectedSpec(List<String> tagList, List<bool> isTagSelected,
-      List<String> sortList, List<bool> selectedSort) {
-    List<String> resultList = [];
-
-    for (int i = 0; i < isTagSelected.length; i++) {
-      if (isTagSelected[i]) {
-        resultList.add(tagList[i]);
-      }
-    }
-    return resultList;
+  List<Map<String, int>> getSelectedSpec(String selectedSorted, int selectedFieldIndex) {
+    List<Map<String, int>> specList = [];
+    specList.add({selectedSorted: selectedFieldIndex});
+    return specList;
   }
 
   @override
@@ -261,21 +255,6 @@ class ProfileWrite extends State<ProfileWritePage> {
             child: Text("저장"),
             onPressed: () async {
               String id = Session.get();
-              UserApi.getUser(id).then((user) => {
-                    UserApi.updateUser(
-                      id,
-                      user.email,
-                      user.password,
-                      nicknameController.text,
-                      introduceController.text,
-                      blogUrlController.text, //blog
-                      [
-                        {} // ex) python: 3 >> 파이썬 3~5년
-                      ], //spec
-                      getSelectedTag(tagList, isTagSelected), //interest 관심사
-                      user.project,
-                    )
-                  });
 
               //처음 회원가입 하는 경우
               if (args.isSignUp == true) {
@@ -287,6 +266,20 @@ class ProfileWrite extends State<ProfileWritePage> {
                 //프로필 보는 페이지로 이동
                 Navigator.pop(context);
               }
+
+              await UserApi.getUser(id).then((user) => {
+                UserApi.updateUser(
+                  id,
+                  user.email,
+                  user.password,
+                  nicknameController.text,
+                  introduceController.text,
+                  blogUrlController.text, //blog
+                  getSelectedSpec(selectedSort, fieldList.indexOf(selectedField)), //spec
+                  getSelectedTag(tagList, isTagSelected), //interest 관심사
+                  user.project,
+                )
+              });
             },
           ),
         ])));
