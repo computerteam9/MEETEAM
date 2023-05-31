@@ -137,12 +137,10 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     });
   }
 
-  List<List<String>> getNewUserProject(
-      List<List<String>> userProject, String newProject) {
-    List<List<String>> resultProject = userProject;
-    List<String> tmp = resultProject[0];
-    tmp.add(newProject);
-    resultProject[0] = tmp;
+  Map<String, List<String>> getNewUserPrject(
+      Map<String, List<String>> userProject, String newProject) {
+    Map<String, List<String>> resultProject = userProject;
+    resultProject["leader"]?.add(newProject);
 
     return resultProject;
   }
@@ -350,20 +348,17 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     introduceProjectController.text,
                     meetingWay.indexOf(selectedMeetingWay),
                     meetingTime,
-                    getDateTime(startPeriod),
-                    getDateTime(endPeriod),
-                    getMinSpecOfApplicants(
-                      selectedApplicantInfo,
-                      applicantLabel[1],
-                    ),
-                    [],
+                    DateTime.parse(startPeriod),
+                    DateTime.parse(endPeriod),
+                    getMinSpecOfApplicants(selectedApplicantInfo,
+                        applicantLabel[1]), // String int // 파이썬, 3
+                    [], // 신청자 user Id, 한 줄 소개
                     userId,
                     getDateTime(deadLine),
                   ).then((projectId) {
                     UserApi.getUser(userId).then((user) {
-                      List<List<String>> newProjectList =
-                          getNewUserProject(user.project, projectId);
-
+                      Map<String, List<String>> newProjectList =
+                          getNewUserPrject(user.project, projectId);
                       UserApi.updateUser(
                         userId,
                         user.email,
