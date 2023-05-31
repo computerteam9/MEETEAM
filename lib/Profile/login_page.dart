@@ -104,10 +104,10 @@ class _LoginPageState extends State<LoginPage> {
                         "로그인",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      onPressed: () {
+                      onPressed: ()  {
                         if (_formKey.currentState!.validate() &&
                             _CompleteLogin) {
-                          UserApi.verifyUser(_emailController.text,
+                           UserApi.verifyUser(_emailController.text,
                                   _passwordController.text)
                               .then((userId) {
                             Session.set(userId);
