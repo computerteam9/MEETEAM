@@ -33,21 +33,22 @@ class _ProfilePage extends State<ProfilePage> {
     }
   }
 
-  void pageLaunch() async {
+  @override
+  void initState() {
+    super.initState();
     String id = Session.get();
-
-    await UserApi.getUser(id).then((user) => {
-          nickname = user.nickname, //닉네임
-          blogUrl = user.blogUrl, //블로그
-          introduction = user.introduction, //자기소개
-          spec = user.spec, //활동 내역
-          interest = user.interest, //관심사
-        });
+    UserApi.getUser(id).then((user) {
+      print(user);
+      nickname = user.nickname; //닉네임
+      blogUrl = user.blogUrl; //블로그
+      introduction = user.introduction; //자기소개
+      spec = user.spec; //활동 내역
+      interest = user.interest; //관심사
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    pageLaunch();
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
