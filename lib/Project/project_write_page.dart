@@ -3,6 +3,7 @@ import 'package:meetteam/Api/session.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/color.dart';
 import 'package:meetteam/Api/project_api.dart';
+import 'package:meetteam/Api/user_api.dart';
 
 class ApplicantInfo {
   String field = "";
@@ -119,6 +120,16 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     setState(() {
       checkEndPeriod = isValid;
     });
+  }
+
+  List<List<String>> getNewUserPrject(
+      List<List<String>> userProject, String newProject) {
+    List<List<String>> resultProject = userProject;
+    List<String> tmp = resultProject[0];
+    tmp.add(newProject);
+    resultProject[0] = tmp;
+
+    return resultProject;
   }
 
   @override
@@ -279,19 +290,36 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     backgroundColor: CustomColor.color3),
                 child: Text("저장"),
                 onPressed: () {
-                  ProjectApi.addProject(
-                      projectTitleController.text,
-                      introduceProjectController.text,
-                      meetingWay.indexOf(selectedMeetingWay),
-                      meetingTime,
+                  String userId = Session.get();
 
-                      DateTime.parse(startPeriod),
-                      DateTime.parse(endPeriod),
-                      [],
-                      [],
-                      Session.get(),
-                      DateTime.parse(deadLine),
-                  );
+                  ProjectApi.addProject(
+                    projectTitleController.text,
+                    introduceProjectController.text,
+                    meetingWay.indexOf(selectedMeetingWay),
+                    meetingTime,
+                    DateTime.parse(startPeriod),
+                    DateTime.parse(endPeriod),
+                    [],
+                    [],
+                    userId,
+                    DateTime.parse(deadLine),
+                  ).then((projectId) {
+                    UserApi.getUser(userId).then((user) {
+                      List<List<String>> newProjectList =
+                          getNewUserPrject(user.project, projectId);
+                      UserApi.updateUser(
+                          userId,
+                          user.email,
+                          user.password,
+                          user.nickname,
+                          user.introduction,
+                          user.blogUrl,
+                          user.spec,
+                          user.interest,
+                          newProjectList);
+                    });
+                  });
+
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
                 },
