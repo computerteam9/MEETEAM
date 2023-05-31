@@ -3,6 +3,7 @@ import 'package:meetteam/Api/session.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/color.dart';
 import 'package:meetteam/Api/project_api.dart';
+import 'package:meetteam/Api/user_api.dart';
 
 class ApplicantInfo {
   String field = "";
@@ -119,6 +120,16 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     setState(() {
       checkEndPeriod = isValid;
     });
+  }
+
+  List<List<String>> getNewUserPrject (List<List<String>> userProject, String newProject){
+    
+    List<List<String>> resultProject = userProject;
+    List<String> tmp = [];
+    tmp.add(newProject);
+    resultProject.add(tmp);
+    
+    return resultProject;
   }
 
   @override
@@ -279,6 +290,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     backgroundColor: CustomColor.color3),
                 child: Text("저장"),
                 onPressed: () {
+                  String userId = Session.get();
+
                   ProjectApi.addProject(
                       projectTitleController.text,
                       introduceProjectController.text,
@@ -289,9 +302,30 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       DateTime.parse(endPeriod),
                       [],
                       [],
-                      Session.get(),
+                      userId,
                       DateTime.parse(deadLine),
-                  );
+                  ).then((projectId){
+
+
+
+
+                  UserApi.getUser(userId).then((user){
+                    List<List<String>> newProjectList = getNewUserPrject(user.project, projectId);
+                    UserApi.updateUser(
+                        userId,
+                        user.email,
+                        user.password,
+                        user.nickname,
+                        user.introduction,
+                        user.blogUrl,
+                        user.spec,
+                        user.interest,
+                        newProjectList
+                    );
+                  });
+                  });
+
+
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
                 },
