@@ -22,6 +22,8 @@ class _ProfilePage extends State<ProfilePage> {
   static String nickname = "";
   static String blogUrl = "";
   static String introduction = "";
+  List<Map<String, int>> spec = <Map<String, int>>[];
+  List<String> interest = <String>[];
 
   Future<void> _urllaunch() async {
     if (await canLaunch(link)) {
@@ -38,8 +40,8 @@ class _ProfilePage extends State<ProfilePage> {
           nickname = user.nickname, //닉네임
           blogUrl = user.blogUrl, //블로그
           introduction = user.introduction, //자기소개
-          user.spec, //활동 내역
-          user.interest, //관심사
+          spec = user.spec, //활동 내역
+          interest = user.interest, //관심사
         });
   }
 
@@ -148,16 +150,18 @@ class _ProfilePage extends State<ProfilePage> {
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-            child: Column(children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Text("자바 개발 (1년) \n..."),
-                  ),
-                ],
-              ),
-            ]),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: spec.map((item) {
+                    String stringValue = item.keys.first;
+                    int intValue = item.values.first;
+                    return Text('$stringValue ($intValue 년)');
+                  }).toList(),
+                ),
+              ],
+            ),
           ),
           Container(
             padding: const EdgeInsets.all(20),
@@ -173,7 +177,7 @@ class _ProfilePage extends State<ProfilePage> {
           ), //활동내역
           Wrap(
             children: [
-              for (String label in ["백엔드", "프론트엔드", "앱", "웹", "AI"])
+              for (String label in interest)
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),

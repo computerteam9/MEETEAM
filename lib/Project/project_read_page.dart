@@ -51,6 +51,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
     String id = Session.get();
 
     UserApi.getUser(id).then((user) => {
+
           projectId = user.project[0][0],
         });
 
@@ -64,6 +65,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
         _minSpec = project.minSpec;
       });
     });
+
 
     UserApi.getUser(leaderId).then((user) => {
           leaderNickname = user.nickname,
