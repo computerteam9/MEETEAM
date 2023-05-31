@@ -16,6 +16,17 @@ class _ProfilePage extends State<ProfilePage> {
   static const color1 = Color(0xff5dbaf4);
   static const iconColor = Colors.black;
 
+  static const List<String> fieldList = [
+    "선택",
+    "1년 미만",
+    "1년차",
+    "2년차",
+    "3년차",
+    "4년차",
+    "5년차 이상",
+  ];
+
+
   final String sort = ProfileWrite.selectedSort;
   final String field = ProfileWrite.selectedField;
   final String link = "";
@@ -34,7 +45,7 @@ class _ProfilePage extends State<ProfilePage> {
   }
 
   @override
-  void initState() {
+  void initState () {
     super.initState();
     String id = Session.get();
     UserApi.getUser(id).then((user) {
@@ -158,7 +169,8 @@ class _ProfilePage extends State<ProfilePage> {
                   children: spec.map((item) {
                     String stringValue = item.keys.first;
                     int intValue = item.values.first;
-                    return Text('$stringValue ($intValue 년)');
+                    String field = fieldList[intValue];
+                    return Text('$stringValue ($field)');
                   }).toList(),
                 ),
               ],
@@ -178,7 +190,7 @@ class _ProfilePage extends State<ProfilePage> {
           ), //활동내역
           Wrap(
             children: [
-              for (String label in interest)
+              for (int i = 0; i < interest.length; i++)
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
@@ -188,7 +200,7 @@ class _ProfilePage extends State<ProfilePage> {
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   child: Text(
-                    label,
+                    interest[i],
                     style: const TextStyle(
                       color: color1,
                       fontSize: 14.0,
