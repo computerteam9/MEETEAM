@@ -40,22 +40,23 @@ class _ProjectReadPage extends State<ProjectReadPage> {
   @override
   void initState() {
     super.initState();
-    if (status == Status.applied) {
-      bottomLabel = "지원 내역 확인";
-    } else if (status == Status.created) {
-      bottomLabel = "신청자 내역";
-    } else {
-      bottomLabel = "지원";
-    }
+    status = Status.applied;
+    // if (status == Status.applied) {
+    //   bottomLabel = "지원 내역 확인";
+    // } else if (status == Status.created) {
+    //   bottomLabel = "신청자 내역";
+    // } else {
+    //   bottomLabel = "지원";
+    // }
 
     String id = Session.get();
 
-    UserApi.getUser(id).then((user) {
+    UserApi.getUser(id).then((user) async {
       setState(() {
         projectId = user.project["leader"]![0];
       });
 
-      ProjectApi.getProject(projectId).then((project) {
+      await ProjectApi.getProject(projectId).then((project) {
         setState(() {
           title = project.title;
           description = project.description;
@@ -66,13 +67,12 @@ class _ProjectReadPage extends State<ProjectReadPage> {
         });
       });
 
-      UserApi.getUser(leaderId).then((user) {
+      await UserApi.getUser(leaderId).then((user) {
         setState(() {
           leaderNickname = user.nickname;
         });
       });
     });
-
   }
 
   @override
