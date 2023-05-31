@@ -160,45 +160,45 @@ class _ProjectReadPage extends State<ProjectReadPage> {
           Container(
             margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
             alignment: Alignment.topLeft,
-            child:
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            height: 30,
-            alignment: Alignment.topLeft,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Text(
-                      "모임",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    SizedBox(
-                      width: 120,
-                    ),
-                    Text(
-                      meetingWay == 0
-                          ? '온라인'
-                          : meetingWay == 1
-                              ? '오프라인'
-                              : meetingWay == 2
-                                  ? '온오프라인'
-                                  : '',
-                      style: TextStyle(color: Colors.blueAccent),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "/    "+ meetingTime,
-                    ),
-                  ],
-                ),
-                Text(ProjectWritePage.workingTime) //기간
-              ],
+            child: Container(
+              margin: EdgeInsets.only(top: 10),
+              height: 30,
+              alignment: Alignment.topLeft,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Text(
+                        "모임",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      SizedBox(
+                        width: 120,
+                      ),
+                      Text(
+                        meetingWay == 0
+                            ? '온라인'
+                            : meetingWay == 1
+                                ? '오프라인'
+                                : meetingWay == 2
+                                    ? '온오프라인'
+                                    : '',
+                        style: TextStyle(color: Colors.blueAccent),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "/    " + meetingTime,
+                      ),
+                    ],
+                  ),
+                  Text(ProjectWritePage.workingTime) //기간
+                ],
+              ),
             ),
-          ),),
+          ),
           SizedBox(
             height: 20,
           ),
@@ -246,13 +246,22 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                               color: CustomColor.color1,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          child: Text(
-                            _minSpec.isNotEmpty && _minSpec[0].values.isNotEmpty
-                                ? _minSpec[0].values.elementAt(0).toString()
-                                : '',
-                            style: TextStyle(color: CustomColor.color3),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                _minSpec.isNotEmpty &&
+                                        _minSpec[0].values.isNotEmpty
+                                    ? _minSpec[0].values.elementAt(0).toString()
+                                    : '',
+                                style: TextStyle(color: CustomColor.color3),
+                              ),
+                              Text(" 년차"),
+                            ],
                           ),
-                        )
+                        ),
                       ],
                     )),
                     Container(
@@ -311,11 +320,19 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                               color: CustomColor.color1,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          child: Text(
-                            _minSpec.isNotEmpty && _minSpec[0].values.length > 1
-                                ? _minSpec[0].values.elementAt(1).toString()
-                                : '',
-                            style: TextStyle(color: CustomColor.color3),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                _minSpec.isNotEmpty && _minSpec[0].values.length > 1
+                                    ? _minSpec[0].values.elementAt(1).toString()
+                                    : '',
+                                style: TextStyle(color: CustomColor.color3),
+                              ),
+                              Text(" 년차"),
+                            ],
                           ),
                         )
                       ],
