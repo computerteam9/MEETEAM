@@ -160,20 +160,23 @@ class _ProjectReadPage extends State<ProjectReadPage> {
           Container(
             margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
             alignment: Alignment.topLeft,
-            child: const Text(
-              "모임",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
+            child:
           Container(
             margin: EdgeInsets.only(top: 10),
             height: 30,
             alignment: Alignment.topLeft,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   children: [
+                    const Text(
+                      "모임",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(
+                      width: 120,
+                    ),
                     Text(
                       meetingWay == 0
                           ? '온라인'
@@ -182,16 +185,22 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                               : meetingWay == 2
                                   ? '온오프라인'
                                   : '',
+                      style: TextStyle(color: Colors.blueAccent),
+                    ),
+                    SizedBox(
+                      width: 10,
                     ),
                     Text(
-                      meetingTime,
-                      style: TextStyle(color: Colors.blueAccent),
+                      "/    "+ meetingTime,
                     ),
                   ],
                 ),
                 Text(ProjectWritePage.workingTime) //기간
               ],
             ),
+          ),),
+          SizedBox(
+            height: 20,
           ),
           Container(
             alignment: Alignment.topLeft,
