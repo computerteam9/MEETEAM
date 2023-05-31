@@ -53,7 +53,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   static const meetingWay = ["만남 방식", "온라인", "오프라인", "온오프라인"];
   static const applicantLabel = [
     ["분야 선택", "개발", "디자인", "기획", "기타"],
-    ["경력 선택", "신입", "경력", "무관"],
+    ["경력 선택", "1년 미만", "1~3년차", "3~5년차", "5년차 이상", "무관"],
     ["기술 선택", "Java", "Python", "JavaScript", "Go", "기타"]
   ];
 
@@ -93,6 +93,20 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
         selectedApplicantInfo.removeLast();
       });
     }
+  }
+
+  List<Map<String, int>> getMinSpecOfApplicants (
+      List selectedApplicantInfo, List<String> fieldList){
+
+    List<Map<String, int>> resultList = [];
+
+    for(int i=0; i < selectedApplicantInfo.length; i++){
+      resultList.add({
+        selectedApplicantInfo[2][i] :
+        fieldList.indexOf(selectedApplicantInfo[1][i])});
+    }
+
+    return resultList;
   }
 
   void checkDeadLineCondition() {
@@ -293,14 +307,15 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   String userId = Session.get();
 
                   ProjectApi.addProject(
-                    projectTitleController.text,
-                    introduceProjectController.text,
-                    meetingWay.indexOf(selectedMeetingWay),
-                    meetingTime,
-                    DateTime.parse(startPeriod),
-                    DateTime.parse(endPeriod),
-                    [],
-                    [],
+                      projectTitleController.text,
+                      introduceProjectController.text,
+                      meetingWay.indexOf(selectedMeetingWay),
+                      meetingTime,
+                      DateTime.parse(startPeriod),
+                      DateTime.parse(endPeriod),
+                      getMinSpecOfApplicants(
+                          selectedApplicantInfo, applicantLabel[1]), // String int // 파이썬, 3
+                      [], // 신청자 user Id, 한 줄 소개
                     userId,
                     DateTime.parse(deadLine),
                   ).then((projectId) {
