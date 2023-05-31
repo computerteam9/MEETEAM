@@ -50,24 +50,29 @@ class _ProjectReadPage extends State<ProjectReadPage> {
 
     String id = Session.get();
 
-    UserApi.getUser(id).then((user) => {
-          projectId = user.project["leader"]![0],
-        });
-
-    ProjectApi.getProject(projectId).then((project) {
+    UserApi.getUser(id).then((user) {
       setState(() {
-        title = project.title;
-        description = project.description;
-        meetingWay = project.meetingWay;
-        leaderId = project.leaderId;
-        meetingTime = project.meetingTime;
-        _minSpec = project.minSpec;
+        projectId = user.project["leader"]![0];
+      });
+
+      ProjectApi.getProject(projectId).then((project) {
+        setState(() {
+          title = project.title;
+          description = project.description;
+          meetingWay = project.meetingWay;
+          leaderId = project.leaderId;
+          meetingTime = project.meetingTime;
+          _minSpec = project.minSpec;
+        });
+      });
+
+      UserApi.getUser(leaderId).then((user) {
+        setState(() {
+          leaderNickname = user.nickname;
+        });
       });
     });
 
-    UserApi.getUser(leaderId).then((user) => {
-          leaderNickname = user.nickname,
-        });
   }
 
   @override
