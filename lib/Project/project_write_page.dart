@@ -53,16 +53,14 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   static const meetingWay = ["만남 방식", "온라인", "오프라인", "온오프라인"];
   static const applicantLabel = [
-    ["분야 선택", "개발", "디자인", "기획", "기타"],
+    ["기술 선택", "Java", "Python", "JavaScript", "Go", "기타"],
     ["경력 선택", "1년 미만", "1~3년차", "3~5년차", "5년차 이상", "무관"],
-    ["기술 선택", "Java", "Python", "JavaScript", "Go", "기타"]
   ];
 
   List selectedApplicantInfo = [
     [
-      "분야 선택",
-      "경력 선택",
       "기술 선택",
+      "경력 선택",
     ]
   ];
   String selectedMeetingWay = meetingWay[0];
@@ -79,9 +77,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     if (selectedApplicantInfo.length < 5) {
       setState(() {
         selectedApplicantInfo.add([
-          "분야 선택",
-          "경력 선택",
           "기술 선택",
+          "경력 선택",
         ]);
       });
     }
@@ -102,8 +99,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
     for (int i = 0; i < selectedApplicantInfo.length; i++) {
       resultList.add({
-        selectedApplicantInfo[2][i]:
-            fieldList.indexOf(selectedApplicantInfo[1][i])
+        selectedApplicantInfo[i][0]:
+            fieldList.indexOf(selectedApplicantInfo[i][1])
       });
     }
 
@@ -113,7 +110,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   void checkDeadLineCondition() {
     String id = deadLineController.text;
     bool isValid = id.length == 10 &&
-        id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+        id.contains(RegExp(r'^([0-9]{4})/?([0-9]{2})/?([0-9]{2})$'));
     setState(() {
       checkDeadLine = isValid;
     });
@@ -122,7 +119,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   void checkStartPeriodCondition() {
     String id = startPeriodController.text;
     bool isValid = id.length == 10 &&
-        id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+        id.contains(RegExp(r'^([0-9]{4})/?([0-9]{2})/?([0-9]{2})$'));
     setState(() {
       checkStartPeriod = isValid;
     });
@@ -131,7 +128,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   void checkEndPeriodCondition() {
     String id = endPeriodController.text;
     bool isValid = id.length == 10 &&
-        id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
+        id.contains(RegExp(r'^([0-9]{4})/?([0-9]{2})/?([0-9]{2})$'));
     setState(() {
       checkEndPeriod = isValid;
     });
@@ -204,7 +201,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 }),
                 decoration: InputDecoration(
                   labelText: '프로젝트 모집 마감 날짜',
-                  hintText: 'mm/dd/yyyy',
+                  hintText: 'yyyy/mm/dd',
                   errorText: checkDeadLine ? null : '형식과 맞지 않습니다.',
                 ),
               ),
@@ -258,7 +255,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     }),
                     decoration: InputDecoration(
                       labelText: '프로젝트 시작 날짜',
-                      hintText: 'mm/dd/yyyy',
+                      hintText: 'yyyy/mm/dd',
                       errorText: checkStartPeriod ? null : '형식과 맞지 않습니다.',
                     ),
                   ),
@@ -274,7 +271,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     }),
                     decoration: InputDecoration(
                       labelText: '프로젝트 종료 날짜',
-                      hintText: 'mm/dd/yyyy',
+                      hintText: 'yyyy/mm/dd',
                       errorText: checkEndPeriod ? null : '형식과 맞지 않습니다.',
                     ),
                   ),
@@ -290,7 +287,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      // 지원자 정보 입력 (분야, 경력, 기술)
+                      // 지원자 정보 입력 (기술, 경력)
                       for (int j = 0; j < applicantLabel.length; j++)
                         DropdownButton<String>(
                           value: selectedApplicantInfo[i][j],
@@ -300,7 +297,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                             });
                           },
                           items: [
-                            // 각 분야, 경력, 기술 드롭다운 메뉴
+                            // 각 기술, 경력 드롭다운 메뉴
                             for (int k = 0; k < applicantLabel[j].length; k++)
                               DropdownMenuItem<String>(
                                 value: applicantLabel[j][k],
@@ -348,8 +345,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     introduceProjectController.text,
                     meetingWay.indexOf(selectedMeetingWay),
                     meetingTime,
-                    DateTime.parse(startPeriod),
-                    DateTime.parse(endPeriod),
+                    getDateTime(startPeriod),
+                    getDateTime(endPeriod),
                     getMinSpecOfApplicants(selectedApplicantInfo,
                         applicantLabel[1]), // String int // 파이썬, 3
                     [], // 신청자 user Id, 한 줄 소개
