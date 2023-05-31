@@ -31,11 +31,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserApi.verifyUser("abc@abc.com", "passss").then((id) {
-      Session.set(id);
-      print(Session.get());
-    });
-
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
