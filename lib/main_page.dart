@@ -49,7 +49,6 @@ class _MainPage extends State<MainPage> {
       List<String> tags = [];
 
       for (var item in myProject!.minSpec) {
-        print(item);
         tags.add(item.keys.first);
       }
 
