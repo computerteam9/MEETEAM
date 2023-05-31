@@ -6,14 +6,67 @@ import 'package:meetteam/Color.dart';
 import 'package:meetteam/Widgets/project_card.dart';
 import 'package:meetteam/Widgets/project_box.dart';
 import 'package:meetteam/Api/session.dart';
+import 'package:meetteam/Api/user_api.dart';
+import 'Api/project_api.dart';
+import 'Model/project.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
+  State<StatefulWidget> createState() => _MainPage();
+}
+
+class _MainPage extends State<MainPage> {
+  static Project? myProject = null;
+
+  @override
+  void initState() {
+    super.initState();
+    String id = Session.get();
+    if (id != "") {
+      UserApi.getUser(id).then((user) async {
+        Map<String, List<String>> projects = user.project;
+
+        if (projects["member"]?.isNotEmpty == true) {
+          await ProjectApi.getProject(projects["member"]![0]).then((project) {
+            setState(() => myProject = project);
+          });
+        }
+
+        if (projects["leader"]?.isNotEmpty == true) {
+          await ProjectApi.getProject(projects["leader"]![0]).then((project) {
+            setState(() => myProject = project);
+          });
+        }
+      });
+    }
+  }
+
+  StatelessWidget getMyProjectWidget() {
+    if (myProject != null) {
+      Duration dDay = DateTime.now().difference(myProject!.deadline);
+      List<String> tags = [];
+
+      for (var item in myProject!.minSpec) {
+        print(item);
+        tags.add(item.keys.first);
+      }
+
+      return ProjectBox(
+        title: myProject!.title,
+        description: myProject!.description,
+        tag: tags.join(", ") + ' 개발자 모집중',
+        dDay: dDay.inDays.toString(),
+        color: CustomColor.color1,
+      );
+    }
+
+    return const Text("프로젝트가 없습니다.");
+  }
+
+  @override
   Widget build(BuildContext context) {
-    print('!');
-    print(Session.get());
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
@@ -34,14 +87,8 @@ class MainPage extends StatelessWidget {
                         icon: const Icon(Icons.add),
                       ),
                     ]),
-                // 내 프로젝트 리스트
-                const ProjectBox(
-                  title: "프로젝트 명",
-                  description: "프로젝트 설명...",
-                  tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                  dDay: "1",
-                  color: CustomColor.color1,
-                ),
+                // 내 프로젝트
+                getMyProjectWidget(),
               ])),
           Stack(
             children: [
