@@ -5,12 +5,15 @@ import 'package:meetteam/Appbar/main_appbar.dart';
 import 'package:meetteam/Color.dart';
 import 'package:meetteam/Widgets/project_card.dart';
 import 'package:meetteam/Widgets/project_box.dart';
+import 'package:meetteam/Api/session.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print('!');
+    print(Session.get());
     return Scaffold(
         appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
         body: Column(children: [
