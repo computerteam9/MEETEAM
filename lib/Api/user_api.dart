@@ -127,6 +127,7 @@ class UserApi {
       'spec': newUser.spec,
       'interest': newUser.interest,
       'project': newUser.project,
+
     });
   }
 }

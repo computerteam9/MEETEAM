@@ -12,6 +12,8 @@ class Project {
   List<Map<String, String>> _applicants;
   // 리더의 user ID
   String _leaderId;
+  // 프로젝트 접수 마감 날짜
+  DateTime _deadline;
 
   Project(
       this._title,
@@ -22,7 +24,8 @@ class Project {
       this._endDate,
       this._minSpec,
       this._applicants,
-      this._leaderId) {
+      this._leaderId,
+      this._deadline) {
     _title = _title;
     _description = _description;
     _meetingWay = _meetingWay;
@@ -32,6 +35,7 @@ class Project {
     _minSpec = _minSpec;
     _applicants = _applicants;
     _leaderId = _leaderId;
+    _deadline = _deadline;
   }
 
   String get title => _title;
@@ -43,4 +47,5 @@ class Project {
   List<Map<String, int>> get minSpec => _minSpec;
   List<Map<String, String>> get applicants => _applicants;
   String get leaderId => _leaderId;
+  DateTime get deadline => _deadline;
 }

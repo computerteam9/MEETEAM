@@ -3,6 +3,7 @@ import 'package:meetteam/Api/session.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/color.dart';
 import 'package:meetteam/Api/project_api.dart';
+import 'package:meetteam/Api/user_api.dart';
 
 class ApplicantInfo {
   String field = "";
@@ -36,16 +37,16 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   TextEditingController introduceProjectController = TextEditingController();
   TextEditingController startPeriodController = TextEditingController();
   TextEditingController endPeriodController = TextEditingController();
-  TextEditingController recruitPeriodController = TextEditingController();
+  TextEditingController deadLineController = TextEditingController();
 
   bool checkStartPeriod = true;
   bool checkEndPeriod = true;
-  bool checkRecruitPeriod = true;
+  bool checkDeadLine = true;
 
   dispose() {
     startPeriodController.dispose();
     endPeriodController.dispose();
-    recruitPeriodController.dispose();
+    deadLineController.dispose();
     super.dispose();
   }
 
@@ -68,7 +69,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
 
   String startPeriod = "";
   String endPeriod = "";
-  String recruitPeriod = "";
+  String deadLine = "";
 
   String uploadedFileName = "";
 
@@ -108,12 +109,12 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     return resultList;
   }
 
-  void checkRecruitPeriodCondition() {
-    String id = recruitPeriodController.text;
+  void checkDeadLineCondition() {
+    String id = deadLineController.text;
     bool isValid = id.length == 10 &&
         id.contains(RegExp(r'^([0-9]{2})/?([0-9]{2})/?([0-9]{4})$'));
     setState(() {
-      checkRecruitPeriod = isValid;
+      checkDeadLine = isValid;
     });
   }
 
@@ -133,6 +134,16 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     setState(() {
       checkEndPeriod = isValid;
     });
+  }
+
+  List<List<String>> getNewUserPrject(
+      List<List<String>> userProject, String newProject) {
+    List<List<String>> resultProject = userProject;
+    List<String> tmp = resultProject[0];
+    tmp.add(newProject);
+    resultProject[0] = tmp;
+
+    return resultProject;
   }
 
   @override
@@ -170,15 +181,15 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
             ),
             Expanded(
               child: TextField(
-                controller: recruitPeriodController,
+                controller: deadLineController,
                 onChanged: (value) => setState(() {
-                  checkRecruitPeriodCondition();
-                  recruitPeriod = value;
+                  checkDeadLineCondition();
+                  deadLine = value;
                 }),
                 decoration: InputDecoration(
                     labelText: '프로젝트 모집 마감 날짜',
                     hintText: 'mm/dd/yyyy',
-                    errorText: checkRecruitPeriod ? null : '형식과 맞지 않습니다.'),
+                    errorText: checkDeadLine ? null : '형식과 맞지 않습니다.'),
               ),
             ),
             // 만남 방식, 만남 시간 영역
@@ -293,6 +304,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     backgroundColor: CustomColor.color3),
                 child: Text("저장"),
                 onPressed: () {
+                  String userId = Session.get();
+
                   ProjectApi.addProject(
                       projectTitleController.text,
                       introduceProjectController.text,
@@ -303,8 +316,25 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       getMinSpecOfApplicants(
                           selectedApplicantInfo, applicantLabel[1]), // String int // 파이썬, 3
                       [], // 신청자 user Id, 한 줄 소개
-                      Session.get() // 리더 Id
-                  );
+                    userId,
+                    DateTime.parse(deadLine),
+                  ).then((projectId) {
+                    UserApi.getUser(userId).then((user) {
+                      List<List<String>> newProjectList =
+                          getNewUserPrject(user.project, projectId);
+                      UserApi.updateUser(
+                          userId,
+                          user.email,
+                          user.password,
+                          user.nickname,
+                          user.introduction,
+                          user.blogUrl,
+                          user.spec,
+                          user.interest,
+                          newProjectList);
+                    });
+                  });
+
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
                 },
