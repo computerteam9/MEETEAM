@@ -122,13 +122,13 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     });
   }
 
-  List<List<String>> getNewUserPrject (List<List<String>> userProject, String newProject){
-    
+  List<List<String>> getNewUserPrject(
+      List<List<String>> userProject, String newProject) {
     List<List<String>> resultProject = userProject;
-    List<String> tmp = [];
+    List<String> tmp = resultProject[0];
     tmp.add(newProject);
-    resultProject.add(tmp);
-    
+    resultProject[0] = tmp;
+
     return resultProject;
   }
 
@@ -293,38 +293,32 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   String userId = Session.get();
 
                   ProjectApi.addProject(
-                      projectTitleController.text,
-                      introduceProjectController.text,
-                      meetingWay.indexOf(selectedMeetingWay),
-                      meetingTime,
-
-                      DateTime.parse(startPeriod),
-                      DateTime.parse(endPeriod),
-                      [],
-                      [],
-                      userId,
-                      DateTime.parse(deadLine),
-                  ).then((projectId){
-
-
-
-
-                  UserApi.getUser(userId).then((user){
-                    List<List<String>> newProjectList = getNewUserPrject(user.project, projectId);
-                    UserApi.updateUser(
-                        userId,
-                        user.email,
-                        user.password,
-                        user.nickname,
-                        user.introduction,
-                        user.blogUrl,
-                        user.spec,
-                        user.interest,
-                        newProjectList
-                    );
+                    projectTitleController.text,
+                    introduceProjectController.text,
+                    meetingWay.indexOf(selectedMeetingWay),
+                    meetingTime,
+                    DateTime.parse(startPeriod),
+                    DateTime.parse(endPeriod),
+                    [],
+                    [],
+                    userId,
+                    DateTime.parse(deadLine),
+                  ).then((projectId) {
+                    UserApi.getUser(userId).then((user) {
+                      List<List<String>> newProjectList =
+                          getNewUserPrject(user.project, projectId);
+                      UserApi.updateUser(
+                          userId,
+                          user.email,
+                          user.password,
+                          user.nickname,
+                          user.introduction,
+                          user.blogUrl,
+                          user.spec,
+                          user.interest,
+                          newProjectList);
+                    });
                   });
-                  });
-
 
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/project');
