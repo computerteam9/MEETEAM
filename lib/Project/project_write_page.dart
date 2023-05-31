@@ -136,7 +136,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     });
   }
 
-  List<List<String>> getNewUserPrject(
+  List<List<String>> getNewUserProject(
       List<List<String>> userProject, String newProject) {
     List<List<String>> resultProject = userProject;
     List<String> tmp = resultProject[0];
@@ -332,7 +332,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     UserApi.getUser(userId).then((user) {
 
                       List<List<String>> newProjectList =
-                          getNewUserPrject(user.project, projectId);
+                          getNewUserProject(user.project, projectId);
 
                       UserApi.updateUser(
                           userId,
