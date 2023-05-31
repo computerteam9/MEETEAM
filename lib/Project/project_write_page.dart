@@ -160,37 +160,44 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
-        body: SingleChildScrollView(
-            child: Container(
-          margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-          child:
-              Wrap(runSpacing: 10, alignment: WrapAlignment.center, children: [
+      backgroundColor: Colors.white,
+      appBar: BaseAppbar(key: UniqueKey(), appBar: AppBar()),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
+        child: Column(
+          children: [
             // 프로젝트 제목 영역
-            Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-              TextFormField(
-                decoration: const InputDecoration(
-                    labelText: "프로젝트 제목", hintText: 'ex: 그룹 버킷리스트 공유 앱 개발'),
-                textAlign: TextAlign.start,
-                controller: projectTitleController,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: "프로젝트 제목",
+                    hintText: 'ex: 그룹 버킷리스트 공유 앱 개발',
+                  ),
+                  textAlign: TextAlign.start,
+                  controller: projectTitleController,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ]),
+              ],
+            ),
             // 프로젝트 내용 영역
             TextFormField(
               decoration: const InputDecoration(
-                  labelText: "프로젝트 내용",
-                  hintText: '프로젝트 시작 동기, 서비스 계획, 사용자 타겟팅, 우대 사항, 그 외 기타 등등'),
+                labelText: "프로젝트 내용",
+                hintText: '프로젝트 시작 동기, 서비스 계획, 사용자 타겟팅, 우대 사항, 그 외 기타 등등',
+              ),
               textAlign: TextAlign.start,
               controller: introduceProjectController,
               minLines: 1,
               maxLines: 3,
             ),
-            Expanded(
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+              width: double.infinity, // 너비를 확장하여 부모의 너비에 맞추도록 설정
               child: TextField(
                 controller: deadLineController,
                 onChanged: (value) => setState(() {
@@ -198,44 +205,53 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   deadLine = value;
                 }),
                 decoration: InputDecoration(
-                    labelText: '프로젝트 모집 마감 날짜',
-                    hintText: 'mm/dd/yyyy',
-                    errorText: checkDeadLine ? null : '형식과 맞지 않습니다.'),
+                  labelText: '프로젝트 모집 마감 날짜',
+                  hintText: 'mm/dd/yyyy',
+                  errorText: checkDeadLine ? null : '형식과 맞지 않습니다.',
+                ),
               ),
             ),
             // 만남 방식, 만남 시간 영역
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              DropdownButton<String>(
-                value: selectedMeetingWay,
-                onChanged: (value) {
-                  setState(() {
-                    selectedMeetingWay = value!;
-                  });
-                },
-                items: [
-                  for (int i = 0; i < meetingWay.length; i++)
-                    DropdownMenuItem<String>(
-                      value: meetingWay[i],
-                      child: Text(meetingWay[i]),
-                    ),
-                ],
-              ),
-              Expanded(
-                  child: TextField(
-                decoration: const InputDecoration(
-                  labelText: '만남 장소 및 시간',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DropdownButton<String>(
+                  value: selectedMeetingWay,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedMeetingWay = value!;
+                    });
+                  },
+                  items: [
+                    for (int i = 0; i < meetingWay.length; i++)
+                      DropdownMenuItem<String>(
+                        value: meetingWay[i],
+                        child: Text(meetingWay[i]),
+                      ),
+                  ],
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    meetingTime = value;
-                  });
-                },
-              )),
-            ]),
+                SizedBox(width: 10),
+                Expanded(
+                  // 너비를 확장하여 남은 공간을 모두 차지하도록 설정
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      labelText: '만남 장소 및 시간',
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        meetingTime = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
             // 프로젝트 시작 날짜, 마감 날짜 영역
             Row(
               children: [
                 Expanded(
+                  // 너비를 확장하여 남은 공간을 모두 차지하도록 설정
                   child: TextField(
                     controller: startPeriodController,
                     onChanged: (value) => setState(() {
@@ -243,12 +259,15 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       startPeriod = value;
                     }),
                     decoration: InputDecoration(
-                        labelText: '프로젝트 시작 날짜',
-                        hintText: 'mm/dd/yyyy',
-                        errorText: checkStartPeriod ? null : '형식과 맞지 않습니다.'),
+                      labelText: '프로젝트 시작 날짜',
+                      hintText: 'mm/dd/yyyy',
+                      errorText: checkStartPeriod ? null : '형식과 맞지 않습니다.',
+                    ),
                   ),
                 ),
+                SizedBox(width: 10),
                 Expanded(
+                  // 너비를 확장하여 남은 공간을 모두 차지하도록 설정
                   child: TextField(
                     controller: endPeriodController,
                     onChanged: (value) => setState(() {
@@ -256,13 +275,15 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                       endPeriod = value;
                     }),
                     decoration: InputDecoration(
-                        labelText: '프로젝트 종료 날짜',
-                        hintText: 'mm/dd/yyyy',
-                        errorText: checkEndPeriod ? null : '형식과 맞지 않습니다.'),
+                      labelText: '프로젝트 종료 날짜',
+                      hintText: 'mm/dd/yyyy',
+                      errorText: checkEndPeriod ? null : '형식과 맞지 않습니다.',
+                    ),
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 10),
             // 지원자 요구 스펙 영역
             Column(
               children: [
@@ -298,13 +319,19 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                    onPressed: () => removeApplicantInputField(),
-                    child: Text(
-                        style: TextStyle(color: CustomColor.color3), "인원 삭제")),
+                  onPressed: () => removeApplicantInputField(),
+                  child: Text("인원 삭제"),
+                  style: TextButton.styleFrom(
+                    foregroundColor: CustomColor.color3,
+                  ),
+                ),
                 TextButton(
-                    onPressed: () => addApplicantInputField(),
-                    child: Text(
-                        style: TextStyle(color: CustomColor.color3), "인원 추가"))
+                  onPressed: () => addApplicantInputField(),
+                  child: Text("인원 추가"),
+                  style: TextButton.styleFrom(
+                    foregroundColor: CustomColor.color3,
+                  ),
+                ),
               ],
             ),
             // 저장 버튼
@@ -312,7 +339,8 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
               margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: CustomColor.color3),
+                  backgroundColor: CustomColor.color3,
+                ),
                 child: Text("저장"),
                 onPressed: () {
                   String userId = Session.get();
@@ -324,27 +352,29 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     meetingTime,
                     getDateTime(startPeriod),
                     getDateTime(endPeriod),
-                    getMinSpecOfApplicants(selectedApplicantInfo,
-                        applicantLabel[1]), // String int // 파이썬, 3
-                    [], // 신청자 user Id, 한 줄 소개
+                    getMinSpecOfApplicants(
+                      selectedApplicantInfo,
+                      applicantLabel[1],
+                    ),
+                    [],
                     userId,
                     getDateTime(deadLine),
                   ).then((projectId) {
                     UserApi.getUser(userId).then((user) {
-
                       List<List<String>> newProjectList =
                           getNewUserProject(user.project, projectId);
 
                       UserApi.updateUser(
-                          userId,
-                          user.email,
-                          user.password,
-                          user.nickname,
-                          user.introduction,
-                          user.blogUrl,
-                          user.spec,
-                          user.interest,
-                          newProjectList);
+                        userId,
+                        user.email,
+                        user.password,
+                        user.nickname,
+                        user.introduction,
+                        user.blogUrl,
+                        user.spec,
+                        user.interest,
+                        newProjectList,
+                      );
 
                       Navigator.pop(context);
                       Navigator.pushNamed(context, '/project');
@@ -353,7 +383,9 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                 },
               ),
             ),
-          ]),
-        )));
+          ],
+        ),
+      ),
+    );
   }
 }
