@@ -95,15 +95,15 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     }
   }
 
-  List<Map<String, int>> getMinSpecOfApplicants (
-      List selectedApplicantInfo, List<String> fieldList){
-
+  List<Map<String, int>> getMinSpecOfApplicants(
+      List selectedApplicantInfo, List<String> fieldList) {
     List<Map<String, int>> resultList = [];
 
-    for(int i=0; i < selectedApplicantInfo.length; i++){
+    for (int i = 0; i < selectedApplicantInfo.length; i++) {
       resultList.add({
-        selectedApplicantInfo[2][i] :
-        fieldList.indexOf(selectedApplicantInfo[1][i])});
+        selectedApplicantInfo[2][i]:
+            fieldList.indexOf(selectedApplicantInfo[1][i])
+      });
     }
 
     return resultList;
@@ -136,12 +136,10 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     });
   }
 
-  List<List<String>> getNewUserPrject(
-      List<List<String>> userProject, String newProject) {
-    List<List<String>> resultProject = userProject;
-    List<String> tmp = resultProject[0];
-    tmp.add(newProject);
-    resultProject[0] = tmp;
+  Map<String, List<String>> getNewUserPrject(
+      Map<String, List<String>> userProject, String newProject) {
+    Map<String, List<String>> resultProject = userProject;
+    resultProject["leader"]?.add(newProject);
 
     return resultProject;
   }
@@ -307,20 +305,20 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   String userId = Session.get();
 
                   ProjectApi.addProject(
-                      projectTitleController.text,
-                      introduceProjectController.text,
-                      meetingWay.indexOf(selectedMeetingWay),
-                      meetingTime,
-                      DateTime.parse(startPeriod),
-                      DateTime.parse(endPeriod),
-                      getMinSpecOfApplicants(
-                          selectedApplicantInfo, applicantLabel[1]), // String int // 파이썬, 3
-                      [], // 신청자 user Id, 한 줄 소개
+                    projectTitleController.text,
+                    introduceProjectController.text,
+                    meetingWay.indexOf(selectedMeetingWay),
+                    meetingTime,
+                    DateTime.parse(startPeriod),
+                    DateTime.parse(endPeriod),
+                    getMinSpecOfApplicants(selectedApplicantInfo,
+                        applicantLabel[1]), // String int // 파이썬, 3
+                    [], // 신청자 user Id, 한 줄 소개
                     userId,
                     DateTime.parse(deadLine),
                   ).then((projectId) {
                     UserApi.getUser(userId).then((user) {
-                      List<List<String>> newProjectList =
+                      Map<String, List<String>> newProjectList =
                           getNewUserPrject(user.project, projectId);
                       UserApi.updateUser(
                           userId,

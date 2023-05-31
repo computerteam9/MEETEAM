@@ -14,7 +14,15 @@ class UserApi {
       List<Map<String, int>> spec,
       List<String> interest) async {
     User newUser = User(
-        email, password, nickname, introduction, blogUrl, spec, interest, []);
+      email,
+      password,
+      nickname,
+      introduction,
+      blogUrl,
+      spec,
+      interest,
+      {"leader": [], "member": []},
+    );
     DocumentReference documentRef = DB.instance.collection('users').doc();
 
     await DB.instance
@@ -67,15 +75,15 @@ class UserApi {
       if (doc.exists) {
         List<Map<String, int>> spec = [];
         List<String> interest = [];
-        List<List<String>> project = [];
+        Map<String, List<String>> project = {};
         for (var item in doc['spec']) {
           spec.add(Map<String, int>.from(item));
         }
         for (var item in doc['interest']) {
           interest.add(item);
         }
-        for (var item in doc['project']) {
-          project.add(List<String>.from(item));
+        for (var item in doc['project'].keys) {
+          project[item] = List<String>.from(doc['project'][item]);
         }
         return User(doc['email'], doc['password'], doc['nickname'],
             doc['introduction'], doc['blogUrl'], spec, interest, project);
@@ -94,7 +102,7 @@ class UserApi {
       String blogUrl,
       List<Map<String, int>> spec,
       List<String> interest,
-      List<List<String>> project) async {
+      Map<String, List<String>> project) async {
     User newUser = User(email, password, nickname, introduction, blogUrl, spec,
         interest, project);
 
@@ -127,7 +135,6 @@ class UserApi {
       'spec': newUser.spec,
       'interest': newUser.interest,
       'project': newUser.project,
-
     });
   }
 }
