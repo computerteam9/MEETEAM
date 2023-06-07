@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/write_appbar.dart';
+import "package:meetteam/Api/session.dart";
+import "package:meetteam/Api/user_api.dart";
 
 // workingTime(신청자 가능한 시간) 변수 사용을 안함
 
@@ -27,6 +29,12 @@ class _ApplicationWritePageState extends State<ApplicationWritePage> {
   TextEditingController introduceUserController = TextEditingController();
 
   static const iconColor = Colors.black;
+
+  @override
+  void dispose() {
+    introduceUserController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
