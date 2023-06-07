@@ -44,7 +44,7 @@ class _MainPage extends State<MainPage> {
 
   StatelessWidget getMyProjectWidget() {
     if (myProject != null) {
-      Duration dDay = DateTime.now().difference(myProject!.deadline);
+      Duration dDay = myProject!.deadline.difference(DateTime.now());
       List<String> tags = [];
 
       for (var item in myProject!.minSpec) {
