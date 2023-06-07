@@ -77,11 +77,11 @@ class ProfileWrite extends State<ProfileWritePage> {
 
   @override
   void dispose() {
-    super.dispose();
     nicknameController.dispose();
     introduceController.dispose();
     // activityController.dispose();
     blogUrlController.dispose();
+    super.dispose();
   }
 
   //선택된 Tag 내용만을 넘겨주는 메서드
