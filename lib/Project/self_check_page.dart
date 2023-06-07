@@ -34,11 +34,11 @@ class SelfCheckPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text( //닉네임
-                            ApplicationWritePage.nickName,
+                            "",
                             style: TextStyle(color: color2, fontSize: 23),
                           ),
                           Text( // 전문 분야
-                            ApplicationWritePage.supportArea,
+                            "",
                             style: TextStyle(color: color2, fontSize: 23),
                           ),
                           Text( //거주 지역
@@ -62,7 +62,7 @@ class SelfCheckPage extends StatelessWidget {
                   margin: const EdgeInsets.all(5),
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                      ApplicationWritePage.myCareer,
+                      "",
                       style: TextStyle(fontSize: 20)),
                   height: 150,
                   width: 400,
