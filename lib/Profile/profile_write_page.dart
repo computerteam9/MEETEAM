@@ -75,7 +75,14 @@ class ProfileWrite extends State<ProfileWritePage> {
     });
   }
 
-
+  @override
+  void dispose() {
+    super.dispose();
+    nicknameController.dispose();
+    introduceController.dispose();
+    // activityController.dispose();
+    blogUrlController.dispose();
+  }
 
   //선택된 Tag 내용만을 넘겨주는 메서드
   List<String> getSelectedTag(List<String> tagList, List<bool> isTagSelected) {
