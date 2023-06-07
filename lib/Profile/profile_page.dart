@@ -6,13 +6,14 @@ import 'package:meetteam/Api/user_api.dart';
 import 'package:meetteam/Api/session.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final dynamic updatedData;
+  const ProfilePage({super.key, this.updatedData});
 
   @override
-  _ProfilePage createState() => _ProfilePage();
+  createState() => _ProfilePageState();
 }
 
-class _ProfilePage extends State<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage> {
   static const color1 = Color(0xff5dbaf4);
   static const iconColor = Colors.black;
 
@@ -25,7 +26,6 @@ class _ProfilePage extends State<ProfilePage> {
     "4년차",
     "5년차 이상",
   ];
-
 
   final String sort = ProfileWrite.selectedSort;
   final String field = ProfileWrite.selectedField;
@@ -45,7 +45,7 @@ class _ProfilePage extends State<ProfilePage> {
   }
 
   @override
-  void initState () {
+  void initState() {
     super.initState();
     String id = Session.get();
     UserApi.getUser(id).then((user) {
