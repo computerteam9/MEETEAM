@@ -7,9 +7,11 @@ class ApplicationWritePage extends StatefulWidget {
   ApplicationWritePage({super.key});
 
   static String nickName = _ApplicationWritePageState().nickNameController.text;
-  static String supportArea = _ApplicationWritePageState().supportAreaController.text;
+  static String supportArea =
+      _ApplicationWritePageState().supportAreaController.text;
   static String myCareer = _ApplicationWritePageState().myCareerController.text;
-  static String workingTime = _ApplicationWritePageState().workingTimeController.text;
+  static String workingTime =
+      _ApplicationWritePageState().workingTimeController.text;
   static String introduceUser =
       _ApplicationWritePageState().introduceUserController.text;
 
