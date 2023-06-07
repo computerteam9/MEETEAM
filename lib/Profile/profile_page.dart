@@ -49,7 +49,7 @@ class _ProfilePage extends State<ProfilePage> {
     super.initState();
     String id = Session.get();
     UserApi.getUser(id).then((user) {
-      print(user);
+      print(id);
       setState(() {
         nickname = user.nickname; //닉네임
         blogUrl = user.blogUrl; //블로그
