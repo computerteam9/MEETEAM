@@ -134,7 +134,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     });
   }
 
-  Map<String, List<String>> getNewUserPrject(
+  Map<String, List<String>> getNewUserProject(
       Map<String, List<String>> userProject, String newProject) {
     Map<String, List<String>> resultProject = userProject;
     resultProject["leader"]?.add(newProject);
