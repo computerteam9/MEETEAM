@@ -50,11 +50,13 @@ class _ProfilePage extends State<ProfilePage> {
     String id = Session.get();
     UserApi.getUser(id).then((user) {
       print(user);
-      nickname = user.nickname; //닉네임
-      blogUrl = user.blogUrl; //블로그
-      introduction = user.introduction; //자기소개
-      spec = user.spec; //활동 내역
-      interest = user.interest; //관심사
+      setState(() {
+        nickname = user.nickname; //닉네임
+        blogUrl = user.blogUrl; //블로그
+        introduction = user.introduction; //자기소개
+        spec = user.spec; //활동 내역
+        interest = user.interest; //관심사
+      });
     });
   }
 
