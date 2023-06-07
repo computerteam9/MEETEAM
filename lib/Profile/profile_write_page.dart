@@ -256,7 +256,7 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           ElevatedButton(
             child: Text("저장"),
-            onPressed: () async {
+            onPressed: () {
               String id = Session.get();
 
               UserApi.getUser(id).then((user) {
