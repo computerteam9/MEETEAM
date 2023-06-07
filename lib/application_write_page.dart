@@ -6,9 +6,6 @@ import 'package:meetteam/Appbar/write_appbar.dart';
 class ApplicationWritePage extends StatefulWidget {
   ApplicationWritePage({super.key});
 
-  static String introduceUser =
-      _ApplicationWritePageState().introduceUserController.text;
-
   @override
   State<StatefulWidget> createState() => _ApplicationWritePageState();
 }
@@ -17,6 +14,12 @@ class _ApplicationWritePageState extends State<ApplicationWritePage> {
   TextEditingController introduceUserController = TextEditingController();
 
   static const iconColor = Colors.black;
+
+  @override
+  void dispose() {
+    introduceUserController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
