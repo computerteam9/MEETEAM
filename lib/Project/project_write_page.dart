@@ -355,7 +355,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                   ).then((projectId) {
                     UserApi.getUser(userId).then((user) {
                       Map<String, List<String>> newProjectList =
-                          getNewUserPrject(user.project, projectId);
+                          getNewUserProject(user.project, projectId);
                       UserApi.updateUser(
                         userId,
                         user.email,
