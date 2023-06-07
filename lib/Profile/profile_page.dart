@@ -36,7 +36,7 @@ class _ProfilePage extends State<ProfilePage> {
   List<Map<String, int>> spec = <Map<String, int>>[];
   List<String> interest = <String>[];
 
-  Future<void> _urllaunch() async {
+  Future<void> _urlLaunch() async {
     if (await canLaunch(link)) {
       await launch(link);
     } else {
@@ -117,7 +117,7 @@ class _ProfilePage extends State<ProfilePage> {
               Text(nickname),
               SizedBox(height: 30.0),
               TextButton(
-                onPressed: _urllaunch,
+                onPressed: _urlLaunch,
                 child: Text(blogUrl),
               ),
             ])
