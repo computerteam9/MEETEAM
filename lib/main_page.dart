@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,10 +21,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPage extends State<MainPage> {
   static Project? myProject = null;
+  static List<String> recommandId = [];
+
   @override
   void initState() {
     super.initState();
     String id = Session.get();
+    List<String> projectId = [];
     if (id != "") {
       UserApi.getUser(id).then((user) async {
         Map<String, List<String>> projects = user.project;
@@ -38,6 +43,29 @@ class _MainPage extends State<MainPage> {
             setState(() => myProject = project);
           });
         }
+
+        String spec = user.spec[0].keys.first;
+
+        await ProjectApi.getSameMinSpecId(spec).then((projects){
+          if(projects.isEmpty){
+            ProjectApi.getAllProjectIds().then((allProjectId){
+              projectId = allProjectId;
+            });
+          }
+          else {
+            projectId = projects;
+          }
+            Random random = Random(DateTime
+                .now()
+                .minute);
+            int randNum = random.nextInt(projectId.length);
+            for(int i=0; i<3; i++) {
+              setState(() {
+                recommandId.add(projectId[randNum]);
+              });
+            }
+
+        });
       });
     }
   }
