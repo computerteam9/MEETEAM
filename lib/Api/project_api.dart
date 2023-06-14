@@ -65,4 +65,32 @@ class ProjectApi {
       }
     });
   }
+
+  static Future<List<String>> getAllProjectIds() async {
+    List<String> documentIds = [];
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('collectionName').get();
+
+    querySnapshot.docs.forEach((doc) {
+      documentIds.add(doc.id);
+    });
+
+    return documentIds;
+  }
+
+  static Future<List<String>> getSameMinSpecId(String targetValue) async {
+    List<String> documentIds = [];
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('collectionName')
+        .where('minSpec', isGreaterThanOrEqualTo: {targetValue: null})
+        .where('minSpec', isLessThanOrEqualTo: {targetValue: '\uf8ff'})
+        .get();
+
+    querySnapshot.docs.forEach((doc) {
+      documentIds.add(doc.id);
+    });
+
+    return documentIds;
+  }
 }
