@@ -69,11 +69,12 @@ class ProjectApi {
   static Future<List<String>> getAllProjectIds() async {
     List<String> documentIds = [];
 
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('collectionName').get();
+    QuerySnapshot querySnapshot =
+        await DB.instance.collection('projects').get();
 
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       documentIds.add(doc.id);
-    });
+    }
 
     return documentIds;
   }
@@ -82,14 +83,14 @@ class ProjectApi {
     List<String> documentIds = [];
 
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('collectionName')
-        .where('minSpec', isGreaterThanOrEqualTo: {targetValue: null})
-        .where('minSpec', isLessThanOrEqualTo: {targetValue: '\uf8ff'})
-        .get();
+        .collection('projects')
+        .where('minSpec', isGreaterThanOrEqualTo: {targetValue: null}).where(
+            'minSpec',
+            isLessThanOrEqualTo: {targetValue: '\uf8ff'}).get();
 
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       documentIds.add(doc.id);
-    });
+    }
 
     return documentIds;
   }
