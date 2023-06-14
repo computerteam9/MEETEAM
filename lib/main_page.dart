@@ -59,12 +59,11 @@ class _MainPage extends State<MainPage> {
                 .now()
                 .minute);
             int randNum = random.nextInt(projectId.length);
-            for(int i=0; i<3; i++) {
+            for(int i=0; i<3 && i<projectId.length; i++) {
               setState(() {
                 recommandId.add(projectId[randNum]);
               });
             }
-
         });
       });
     }
