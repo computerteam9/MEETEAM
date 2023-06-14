@@ -44,9 +44,10 @@ class _MainPage extends State<MainPage> {
           });
         }
 
-        String spec = user.spec[0].keys.first;
+        String field = user.spec[0].keys.first;
+        int career = user.spec[0].values.first;
 
-        ProjectApi.getSameMinSpecId(spec).then((projects) {
+        ProjectApi.getSameMinSpecId(field, career).then((projects) {
           ProjectApi.getAllProjectIds().then((allProjectId) {
             setState(() => projectId = projects);
 

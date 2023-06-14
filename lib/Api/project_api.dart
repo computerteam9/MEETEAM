@@ -79,14 +79,14 @@ class ProjectApi {
     return documentIds;
   }
 
-  static Future<List<String>> getSameMinSpecId(String targetValue) async {
+  static Future<List<String>> getSameMinSpecId(String field, int career) async {
     List<String> documentIds = [];
 
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+    QuerySnapshot querySnapshot = await DB.instance
         .collection('projects')
-        .where('minSpec', isGreaterThanOrEqualTo: {targetValue: null}).where(
+        .where('minSpec', isGreaterThanOrEqualTo: {field: 0}).where(
             'minSpec',
-            isLessThanOrEqualTo: {targetValue: '\uf8ff'}).get();
+            isLessThanOrEqualTo: {field: career}).get();
 
     for (var doc in querySnapshot.docs) {
       documentIds.add(doc.id);
