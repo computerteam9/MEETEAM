@@ -19,6 +19,12 @@ class _ApplicationWritePageState extends State<ApplicationWritePage> {
   static const iconColor = Colors.black;
 
   @override
+  void dispose() {
+    introduceUserController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,

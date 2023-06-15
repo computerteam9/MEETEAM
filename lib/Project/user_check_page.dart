@@ -83,7 +83,7 @@ class UserCheckPage extends StatelessWidget {
                   margin: const EdgeInsets.all(5),
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                      ApplicationWritePage.introduceUser,
+                      "",
                       style: TextStyle(fontSize: 20)),
                   height: 150,
                   width: 400,
