@@ -33,11 +33,11 @@ class UserCheckPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text( // 닉네임
-                            ApplicationWritePage.nickName,
+                            "",
                             style: TextStyle(color: color2, fontSize: 23),
                           ),
                           Text( // 전문 분야
-                            ApplicationWritePage.supportArea,
+                            "",
                             style: TextStyle(color: color2, fontSize: 23),
                           ),
                           Text(
@@ -60,7 +60,8 @@ class UserCheckPage extends StatelessWidget {
               Container(
                   margin: const EdgeInsets.all(5),
                   padding: const EdgeInsets.all(10),
-                  child: Text(ApplicationWritePage.myCareer,
+                  child: Text(
+                      "",
                       style: TextStyle(fontSize: 20)),
                   height: 150,
                   width: 400,

@@ -60,11 +60,22 @@ class ProfileWrite extends State<ProfileWritePage> {
       TextEditingController();
   static final TextEditingController introduceController =
       TextEditingController();
-  static final TextEditingController careerController = TextEditingController();
   static final TextEditingController activityController =
       TextEditingController();
   static final TextEditingController blogUrlController =
       TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+    String id = Session.get();
+    UserApi.getUser(id).then((user) {
+      nicknameController.text = user.nickname;
+      introduceController.text = user.introduction;
+      // activityController.text = user. // user에는 기타를 받지 않음
+      blogUrlController.text = user.blogUrl;
+    });
+  }
 
   //선택된 Tag 내용만을 넘겨주는 메서드
   List<String> getSelectedTag(List<String> tagList, List<bool> isTagSelected) {
@@ -258,7 +269,7 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           ElevatedButton(
             child: Text("저장"),
-            onPressed: () async {
+            onPressed: () {
               String id = Session.get();
 
               UserApi.getUser(id).then((user) {
