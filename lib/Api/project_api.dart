@@ -84,14 +84,15 @@ class ProjectApi {
     QuerySnapshot querySnapshot = await DB.instance
         .collection('projects')
         .where('minSpec', isGreaterThanOrEqualTo: {field: 0}).where(
-            'minSpec',
-            isLessThanOrEqualTo: {field: career}).get();
+        'minSpec',
+        isLessThanOrEqualTo: {field: career}).get();
 
     for (var doc in querySnapshot.docs) {
       documentIds.add(doc.id);
     }
 
     return documentIds;
+  }
 
   static Future<List<Project>> getProjects() async {
     return DB.instance.collection('projects').get().then((querySnapshot) {
