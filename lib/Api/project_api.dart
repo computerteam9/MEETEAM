@@ -65,4 +65,61 @@ class ProjectApi {
       }
     });
   }
+  static Future<List<String>> getAllProjectIds() async {
+    List<String> documentIds = [];
+
+    QuerySnapshot querySnapshot =
+        await DB.instance.collection('projects').get();
+
+    for (var doc in querySnapshot.docs) {
+      documentIds.add(doc.id);
+    }
+
+    return documentIds;
+  }
+
+  static Future<List<String>> getSameMinSpecId(String field, int career) async {
+    List<String> documentIds = [];
+
+    QuerySnapshot querySnapshot = await DB.instance
+        .collection('projects')
+        .where('minSpec', isGreaterThanOrEqualTo: {field: 0}).where(
+            'minSpec',
+            isLessThanOrEqualTo: {field: career}).get();
+
+    for (var doc in querySnapshot.docs) {
+      documentIds.add(doc.id);
+    }
+
+    return documentIds;
+
+  static Future<List<Project>> getProjects() async {
+    return DB.instance.collection('projects').get().then((querySnapshot) {
+      List<Project> projects = [];
+      for (var doc in querySnapshot.docs) {
+        List<Map<String, int>> minSpec = [];
+        List<Map<String, String>> applicants = [];
+
+        for (var item in doc['minSpec']) {
+          minSpec.add(Map<String, int>.from(item));
+        }
+        for (var item in doc['applicants']) {
+          applicants.add(Map<String, String>.from(item));
+        }
+
+        projects.add(Project(
+            doc['title'],
+            doc['description'],
+            doc['meetingWay'],
+            doc['meetingTime'],
+            DateTime.parse(doc['startDate']),
+            DateTime.parse(doc['endDate']),
+            minSpec,
+            applicants,
+            doc['leaderId'],
+            DateTime.parse(doc['deadline'])));
+      }
+      return projects;
+    });
+  }
 }

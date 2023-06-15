@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meetteam/Color.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/Widgets/project_box.dart';
+import 'package:meetteam/Api/project_api.dart';
 
 class ExplorerPage extends StatefulWidget {
   const ExplorerPage({super.key});
@@ -24,6 +25,9 @@ class _ExplorerState extends State<ExplorerPage> {
   // 검색 결과 값
   static List<ProjectBox> searchResult = [];
 
+  // 검색 문자열 Controller
+  static TextEditingController searchController = TextEditingController();
+
   // 현재 페이지로 들아왔을 때 검색 결과 초기화
   @override
   void didChangeDependencies() {
@@ -44,10 +48,11 @@ class _ExplorerState extends State<ExplorerPage> {
               child: Row(
                 children: <Widget>[
                   // Row안에 TextField 넣기 위해 Expanded 사용
-                  const Expanded(
+                  Expanded(
                       // 검색 입력 박스
                       child: TextField(
-                    decoration: InputDecoration(
+                    controller: searchController,
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: '프로젝트 검색',
                       enabledBorder: UnderlineInputBorder(
@@ -62,57 +67,31 @@ class _ExplorerState extends State<ExplorerPage> {
                   // 검색 버튼
                   IconButton(
                       onPressed: () => {
-                            setState(() => searchResult = [
-                                  const ProjectBox(
-                                    title: "프로젝트1",
-                                    description: "설명1",
-                                    tag: "태그1",
-                                    dDay: "7",
-                                    color: CustomColor.color1,
-                                  ),
-                                  const ProjectBox(
-                                    title: "프로젝트2",
-                                    description: "설명2",
-                                    tag: "태그2",
-                                    dDay: "7",
-                                    color: CustomColor.color3,
-                                  ),
-                                  const ProjectBox(
-                                    title: "프로젝트3",
-                                    description: "설명3",
-                                    tag: "태그3",
-                                    dDay: "7",
-                                    color: CustomColor.color3,
-                                  ),
-                                  const ProjectBox(
-                                    title: "프로젝트4",
-                                    description: "설명4",
-                                    tag: "태그4",
-                                    dDay: "7",
-                                    color: CustomColor.color1,
-                                  ),
-                                  const ProjectBox(
-                                    title: "프로젝트5",
-                                    description: "설명5",
-                                    tag: "태그5",
-                                    dDay: "7",
-                                    color: CustomColor.color3,
-                                  ),
-                                  const ProjectBox(
-                                    title: "프로젝트6",
-                                    description: "설명6",
-                                    tag: "태그6",
-                                    dDay: "7",
-                                    color: CustomColor.color1,
-                                  ),
-                                  const ProjectBox(
-                                    title: "프로젝트7",
-                                    description: "설명7",
-                                    tag: "태그7",
-                                    dDay: "7",
-                                    color: CustomColor.color3,
-                                  ),
-                                ])
+                            ProjectApi.getProjects().then((projects) {
+                              searchResult = [];
+                              for (var project in projects) {
+                                setState(() {
+                                  if (project.title
+                                          .contains(searchController.text) ||
+                                      project.description
+                                          .contains(searchController.text)) {
+                                    searchResult.add(ProjectBox(
+                                      title: project.title,
+                                      description: project.description,
+                                      tag: project.minSpec
+                                              .map((e) => e.keys.first)
+                                              .join(", ") +
+                                          ' 개발자 모집중',
+                                      dDay: DateTime.now()
+                                          .difference(project.deadline)
+                                          .inDays
+                                          .toString(),
+                                      color: CustomColor.color1,
+                                    ));
+                                  }
+                                });
+                              }
+                            })
                           },
                       icon: const Icon(Icons.search, size: 30)),
                 ],
@@ -167,12 +146,14 @@ class _ExplorerState extends State<ExplorerPage> {
           Expanded(
             child: Container(
               margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-              child: ListView.builder(
-                itemCount: searchResult.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return searchResult[index];
-                },
-              ),
+              child: searchResult.isEmpty
+                  ? Center(child: Text("검색 결과가 없습니다."))
+                  : ListView.builder(
+                      itemCount: searchResult.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return searchResult[index];
+                      },
+                    ),
             ),
           ),
         ]));

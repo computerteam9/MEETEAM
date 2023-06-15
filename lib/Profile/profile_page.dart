@@ -6,13 +6,14 @@ import 'package:meetteam/Api/user_api.dart';
 import 'package:meetteam/Api/session.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final dynamic updatedData;
+  const ProfilePage({super.key, this.updatedData});
 
   @override
-  _ProfilePage createState() => _ProfilePage();
+  createState() => _ProfilePageState();
 }
 
-class _ProfilePage extends State<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage> {
   static const color1 = Color(0xff5dbaf4);
   static const iconColor = Colors.black;
 
@@ -26,7 +27,6 @@ class _ProfilePage extends State<ProfilePage> {
     "5년차 이상",
   ];
 
-
   final String sort = ProfileWrite.selectedSort;
   final String field = ProfileWrite.selectedField;
   final String link = "";
@@ -36,7 +36,7 @@ class _ProfilePage extends State<ProfilePage> {
   List<Map<String, int>> spec = <Map<String, int>>[];
   List<String> interest = <String>[];
 
-  Future<void> _urllaunch() async {
+  Future<void> _urlLaunch() async {
     if (await canLaunch(link)) {
       await launch(link);
     } else {
@@ -45,16 +45,18 @@ class _ProfilePage extends State<ProfilePage> {
   }
 
   @override
-  void initState () {
+  void initState() {
     super.initState();
     String id = Session.get();
     UserApi.getUser(id).then((user) {
-      print(user);
-      nickname = user.nickname; //닉네임
-      blogUrl = user.blogUrl; //블로그
-      introduction = user.introduction; //자기소개
-      spec = user.spec; //활동 내역
-      interest = user.interest; //관심사
+      print(id);
+      setState(() {
+        nickname = user.nickname; //닉네임
+        blogUrl = user.blogUrl; //블로그
+        introduction = user.introduction; //자기소개
+        spec = user.spec; //활동 내역
+        interest = user.interest; //관심사
+      });
     });
   }
 
@@ -115,7 +117,7 @@ class _ProfilePage extends State<ProfilePage> {
               Text(nickname),
               SizedBox(height: 30.0),
               TextButton(
-                onPressed: _urllaunch,
+                onPressed: _urlLaunch,
                 child: Text(blogUrl),
               ),
             ])
