@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/Color.dart';
+import '../Api/project_api.dart';
+import '../Api/session.dart';
+import '../Api/user_api.dart';
+import '../Model/project.dart';
 import '../Widgets/project_box.dart';
 
 class ProjectListPage extends StatefulWidget {
@@ -11,6 +15,68 @@ class ProjectListPage extends StatefulWidget {
 }
 
 class _ProjectListPage extends State<ProjectListPage> {
+  List<Project> leaderProjects = [];
+  List<Project> memberProjects = [];
+
+  @override
+  void initState() {
+    super.initState();
+    String id = Session.get();
+    if (id != "") {
+      UserApi.getUser(id).then((user) async {
+        Map<String, List<String>> projects = user.project;
+
+        if (projects["leader"]?.isNotEmpty == true) {
+          for (String projectId in projects["leader"]!) {
+            await ProjectApi.getProject(projectId).then((project) {
+              setState(() => leaderProjects.add(project));
+            });
+          }
+        }
+
+        if (projects["member"]?.isNotEmpty == true) {
+          for (String projectId in projects["member"]!) {
+            await ProjectApi.getProject(projectId).then((project) {
+              setState(() => memberProjects.add(project));
+            });
+          }
+        }
+      });
+    }
+  }
+
+  List<Widget> getProjectWidgets(List<Project> projects) {
+    List<Widget> projectWidgets = [];
+
+    if (projects.isEmpty) {
+      return [
+        const Text(
+          "\n프로젝트가 없습니다.",
+        ),
+      ];
+    }
+
+    for (Project project in projects) {
+      Duration dDay = DateTime.now().difference(project.deadline);
+      List<String> tags = [];
+
+      for (var item in project.minSpec) {
+        tags.add(item.keys.first);
+      }
+
+      projectWidgets.add(
+        ProjectBox(
+          title: project.title,
+          description: project.description,
+          tag: tags.join(", ") + ' 개발자 모집중',
+          dDay: dDay.inDays.toString(),
+          color: CustomColor.color1,
+        ),
+      );
+    }
+
+    return projectWidgets;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,68 +89,20 @@ class _ProjectListPage extends State<ProjectListPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("확정 내역"),
+                    const Text("모집 내역"),
                     Column(
-                      children: const [
-                        ProjectBox(
-                          title: "프로젝트 1",
-                          description: "프로젝트 설명...",
-                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                          dDay: "1",
-                        ),
-                        ProjectBox(
-                          title: "프로젝트 2",
-                          description: "프로젝트 설명...",
-                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                          dDay: "1",
-                        ),
-                        ProjectBox(
-                          title: "프로젝트 3",
-                          description: "프로젝트 설명...",
-                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                          dDay: "1",
-                        ),
-                      ],
-                    )
+                      children: getProjectWidgets(leaderProjects),
+                    ),
                   ],
                 )),
             Container(
-                margin: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                margin: const EdgeInsets.fromLTRB(50, 0, 50, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("신청 내역"),
+                    const Text("참가 내역"),
                     Column(
-                      children: const [
-                        ProjectBox(
-                          title: "프로젝트 1",
-                          description: "프로젝트 설명...",
-                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                          dDay: "7",
-                          color: CustomColor.color1,
-                        ),
-                        ProjectBox(
-                          title: "프로젝트 2",
-                          description: "프로젝트 설명...",
-                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                          dDay: "2",
-                          color: CustomColor.color1,
-                        ),
-                        ProjectBox(
-                          title: "프로젝트 3",
-                          description: "프로젝트 설명...",
-                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                          dDay: "5",
-                          color: CustomColor.color1,
-                        ),
-                        ProjectBox(
-                          title: "프로젝트 4",
-                          description: "프로젝트 설명...",
-                          tag: "오프라인, 백엔드 1, 디자이너1, ...",
-                          dDay: "1",
-                          color: CustomColor.color1,
-                        ),
-                      ],
+                      children: getProjectWidgets(memberProjects),
                     ),
                   ],
                 ))
@@ -92,4 +110,5 @@ class _ProjectListPage extends State<ProjectListPage> {
         )
     );
   }
+
 }

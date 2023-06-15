@@ -134,7 +134,7 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
     });
   }
 
-  Map<String, List<String>> getNewUserPrject(
+  Map<String, List<String>> getNewUserProject(
       Map<String, List<String>> userProject, String newProject) {
     Map<String, List<String>> resultProject = userProject;
     resultProject["leader"]?.add(newProject);
@@ -145,9 +145,9 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
   DateTime getDateTime(String datetime) {
     List<String> dateList = datetime.split("/"); // mm/dd/yyyy
 
-    int month = int.parse(dateList[0]);
-    int day = int.parse(dateList[1]);
-    int year = int.parse(dateList[2]);
+    int year = int.parse(dateList[0]);
+    int month = int.parse(dateList[1]);
+    int day = int.parse(dateList[2]);
 
     return DateTime.utc(year, month, day);
   }
@@ -349,13 +349,13 @@ class _ProjectWritePageState extends State<ProjectWritePage> {
                     getDateTime(endPeriod),
                     getMinSpecOfApplicants(selectedApplicantInfo,
                         applicantLabel[1]), // String int // 파이썬, 3
-                    [], // 신청자 user Id, 한 줄 소개
-                    userId,
+                    [], //projectId 리스트
+                    userId,// 신청자 user Id
                     getDateTime(deadLine),
                   ).then((projectId) {
                     UserApi.getUser(userId).then((user) {
                       Map<String, List<String>> newProjectList =
-                          getNewUserPrject(user.project, projectId);
+                          getNewUserProject(user.project, projectId);
                       UserApi.updateUser(
                         userId,
                         user.email,

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:meetteam/Appbar/normal_appbar.dart';
 import 'package:meetteam/Api/user_api.dart';
 import 'package:meetteam/Api/session.dart';
+import 'package:meetteam/Profile/profile_page.dart';
 import '../Model/user.dart';
 
 class ProfileWritePageArguments {
@@ -19,6 +20,7 @@ class ProfileWritePage extends StatefulWidget {
 
 class ProfileWrite extends State<ProfileWritePage> {
   static const color1 = Color(0xff5dbaf4);
+  final dynamic updatedData = null;
   static const List<String> tagList = [
     "백엔드",
     "프론트엔드",
@@ -58,11 +60,22 @@ class ProfileWrite extends State<ProfileWritePage> {
       TextEditingController();
   static final TextEditingController introduceController =
       TextEditingController();
-  static final TextEditingController careerController = TextEditingController();
   static final TextEditingController activityController =
       TextEditingController();
   static final TextEditingController blogUrlController =
       TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+    String id = Session.get();
+    UserApi.getUser(id).then((user) {
+      nicknameController.text = user.nickname;
+      introduceController.text = user.introduction;
+      // activityController.text = user. // user에는 기타를 받지 않음
+      blogUrlController.text = user.blogUrl;
+    });
+  }
 
   //선택된 Tag 내용만을 넘겨주는 메서드
   List<String> getSelectedTag(List<String> tagList, List<bool> isTagSelected) {
@@ -256,7 +269,7 @@ class ProfileWrite extends State<ProfileWritePage> {
           ),
           ElevatedButton(
             child: Text("저장"),
-            onPressed: () async {
+            onPressed: () {
               String id = Session.get();
 
               UserApi.getUser(id).then((user) {
@@ -281,7 +294,11 @@ class ProfileWrite extends State<ProfileWritePage> {
                 // 프로필 수정하는 경우
                 else {
                   //프로필 보는 페이지로 이동
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              ProfilePage(updatedData: updatedData)));
                 }
               });
             },
