@@ -65,6 +65,33 @@ class ProjectApi {
       }
     });
   }
+  static Future<List<String>> getAllProjectIds() async {
+    List<String> documentIds = [];
+
+    QuerySnapshot querySnapshot =
+        await DB.instance.collection('projects').get();
+
+    for (var doc in querySnapshot.docs) {
+      documentIds.add(doc.id);
+    }
+
+    return documentIds;
+  }
+
+  static Future<List<String>> getSameMinSpecId(String field, int career) async {
+    List<String> documentIds = [];
+
+    QuerySnapshot querySnapshot = await DB.instance
+        .collection('projects')
+        .where('minSpec', isGreaterThanOrEqualTo: {field: 0}).where(
+            'minSpec',
+            isLessThanOrEqualTo: {field: career}).get();
+
+    for (var doc in querySnapshot.docs) {
+      documentIds.add(doc.id);
+    }
+
+    return documentIds;
 
   static Future<List<Project>> getProjects() async {
     return DB.instance.collection('projects').get().then((querySnapshot) {

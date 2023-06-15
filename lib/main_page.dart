@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,10 +21,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPage extends State<MainPage> {
   static Project? myProject = null;
+  static List<String> recommandId = [];
+
   @override
   void initState() {
     super.initState();
     String id = Session.get();
+    List<String> projectId = [];
     if (id != "") {
       UserApi.getUser(id).then((user) async {
         Map<String, List<String>> projects = user.project;
@@ -38,6 +43,28 @@ class _MainPage extends State<MainPage> {
             setState(() => myProject = project);
           });
         }
+
+        String field = user.spec[0].keys.first;
+        int career = user.spec[0].values.first;
+
+        ProjectApi.getSameMinSpecId(field, career).then((projects) {
+          ProjectApi.getAllProjectIds().then((allProjectId) {
+            setState(() => projectId = projects);
+
+            if (projects.isEmpty) {
+              setState(() => projectId = allProjectId);
+            }
+
+            setState(() {
+              Random random = Random(DateTime.now().millisecond%100);
+              for (int i = 0; i < 3 && i < projectId.length; i++) {
+                int randNum = random.nextInt(projectId.length);
+                recommandId.add(projectId[randNum]);
+                print("추천 id :" + recommandId[i]);
+              }
+            });
+          });
+        });
       });
     }
   }
@@ -104,32 +131,17 @@ class _MainPage extends State<MainPage> {
                     // 추천 프로젝트 리스트
                     CarouselSlider(
                         items: [
-                          SizedBox(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/project');
-                              },
-                              child: const ProjectCard(
-                                title: "프로젝트1",
-                                description: "설명1",
-                                nickname: "user1",
-                                dDay: "3",
+                          for (int i = 0; i < recommandId.length; i++)
+                            SizedBox(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/project');
+                                },
+                                child: ProjectCard(
+                                  id: recommandId[i],
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/project');
-                              },
-                              child: const ProjectCard(
-                                title: "프로젝트2",
-                                description: "설명2",
-                                nickname: "user2",
-                                dDay: "6",
-                              ),
-                            ),
-                          ),
                         ],
                         options: CarouselOptions(
                           height: 380.0,

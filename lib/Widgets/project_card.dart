@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Color.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:meetteam/Api/project_api.dart';
+import 'package:meetteam/Api/user_api.dart';
 
-class ProjectCard extends StatelessWidget {
-  // 프로젝트 제목
-  final String title;
-  // 프로젝트 설명
-  final String description;
-  // user 이름
-  final String nickname;
-  // D-day
-  final String dDay;
-  const ProjectCard(
-      {super.key,
-      required this.title,
-      required this.description,
-      required this.nickname,
-      required this.dDay});
+class ProjectCard extends StatefulWidget {
+  final String id;
+
+  const ProjectCard({
+    super.key,
+    required this.id,
+  });
+
+  @override
+  State<StatefulWidget> createState() => ProjectCardState(id);
+}
+
+class ProjectCardState extends State<ProjectCard> {
+  static String title = '';
+  static String nickname = '';
+  static String dDay = '';
+  static String description = '';
+
+  ProjectCardState(String id) {
+    ProjectApi.getProject(id).then((project) {
+      UserApi.getUser(project.leaderId).then((user) {
+        setState(() {
+          title = project.title;
+          dDay = project.deadline.difference(DateTime.now()).toString();
+          description = project.description;
+          nickname = user.nickname;
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +60,7 @@ class ProjectCard extends StatelessWidget {
                     ),
                     Container(
                       margin: const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                      width: 80,
                       child: Text(
                         nickname,
                         style: const TextStyle(
@@ -54,7 +72,7 @@ class ProjectCard extends StatelessWidget {
                     Container(
                         height: 40,
                         width: 100,
-                        margin: const EdgeInsets.fromLTRB(70, 5, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(30, 5, 0, 0),
                         decoration: BoxDecoration(
                             color: CupertinoColors.systemGrey3,
                             borderRadius: BorderRadius.circular(37)),
