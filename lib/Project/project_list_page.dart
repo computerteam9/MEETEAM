@@ -57,7 +57,7 @@ class _ProjectListPage extends State<ProjectListPage> {
     }
 
     for (Project project in projects) {
-      Duration dDay = DateTime.now().difference(project.deadline);
+      Duration dDay = project!.deadline.difference(DateTime.now());
       List<String> tags = [];
 
       for (var item in project.minSpec) {
