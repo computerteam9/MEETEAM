@@ -162,7 +162,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
             alignment: Alignment.topLeft,
             child: Container(
               margin: EdgeInsets.only(top: 10),
-              height: 30,
+              height: 50,
               alignment: Alignment.topLeft,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -189,9 +189,14 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        "/    " + meetingTime,
-                      ),
+                      SizedBox(
+                        width: 110,
+                        child: Text(
+                          meetingTime,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      )
                     ],
                   ),
                   Text(ProjectWritePage.workingTime) //기간

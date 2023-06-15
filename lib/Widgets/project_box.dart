@@ -53,10 +53,15 @@ class ProjectBox extends StatelessWidget {
                           style:
                           const TextStyle(fontSize: 15, color: Colors.white),
                         ),
-                        Text(
-                          description,
-                          style: const TextStyle(
-                              height: 2, fontSize: 10, color: Colors.white),
+                        SizedBox(
+                          width: 160,
+                          child: Text(
+                            description,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: const TextStyle(
+                                height: 2, fontSize: 10, color: Colors.white),
+                          ),
                         ),
                         Text(
                           tag,
