@@ -62,9 +62,10 @@ class _MainPage extends State<MainPage> {
               for (int i = 0; i < recProjectId.length; i++) {
                 int randNum = random.nextInt(recProjectId.length);
                 recommandId.add(recProjectId[randNum]);
+                allProjectId.remove(recProjectId[randNum]);
                 print("추천 id :" + recommandId[i]);
               }
-              for(int i = 0; i < 3-recProjectId.length; i++){
+              for(int i = 0; i < 3-recProjectId.length && i < allProjectId.length; i++){
                 int randNum = random.nextInt(allProjectId.length);
                 recommandId.add(allProjectId[randNum]);
                 print("추천 id :" + recommandId[i]);
