@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:meetteam/Appbar/main_appbar.dart';
 import 'package:meetteam/Color.dart';
+import 'package:meetteam/Model/user.dart';
 import 'package:meetteam/Widgets/project_card.dart';
 import 'package:meetteam/Widgets/project_box.dart';
 import 'package:meetteam/Api/session.dart';
@@ -52,28 +53,49 @@ class _MainPage extends State<MainPage> {
         String field = user.spec[0].keys.first;
         int career = user.spec[0].values.first;
 
-        ProjectApi.getSameMinSpecId(field, career).then((recProjectId) {
+        ProjectApi.getSameMinSpecId(field, career).then((recProjectId) async {
           ProjectApi.getAllProjectIds().then((allProjectId) {
+            // 추천 id 추가
+            Random random = Random(DateTime.now().minute % 100);
 
-            setState(() {
-              // 추천 id 추가
-              Random random = Random(DateTime.now().millisecond%100);
-
-              for (int i = 0; i < recProjectId.length; i++) {
+            while (recommandId.length < 3) {
+              String recId = '';
+              if (recProjectId.isNotEmpty) {
                 int randNum = random.nextInt(recProjectId.length);
-                recommandId.add(recProjectId[randNum]);
-                allProjectId.remove(recProjectId[randNum]);
-                print("추천 id :" + recommandId[i]);
-              }
-              for(int i = 0; i < 3-recProjectId.length && i < allProjectId.length; i++){
+                if (recommandId.contains(recProjectId[randNum])) {
+                  continue;
+                }
+                recId = recProjectId[randNum];
+                recProjectId.remove(recProjectId[randNum]);
+                print("추천 id 중 : ${recProjectId[randNum]}");
+              } else if (allProjectId.isNotEmpty) {
                 int randNum = random.nextInt(allProjectId.length);
-                recommandId.add(allProjectId[randNum]);
-                print("추천 id :" + recommandId[i]);
+                if (recommandId.contains(allProjectId[randNum])) {
+                  continue;
+                }
+                recId = allProjectId[randNum];
+                allProjectId.remove(allProjectId[randNum]);
+                print("모든 id 중 : ${allProjectId[randNum]}");
               }
-            });
+              if (recId != '') {
+                setState(() {
+                  recommandId.add(recId);
+                  ProjectApi.getProject(recId).then((project) {
+                    UserApi.getUser(project.leaderId).then((user) {
+                      setState(() {
+                        titleList.add(project.title);
+                        nicknameList.add(user.nickname);
+                        dDayList.add(project.deadline
+                            .difference(DateTime.now())
+                            .toString());
+                        descriptionList.add(project.description);
+                      });
+                    });
+                  });
+                });
+              }
+            }
           });
-
-
         });
       });
     }
@@ -141,14 +163,17 @@ class _MainPage extends State<MainPage> {
                     // 추천 프로젝트 리스트
                     CarouselSlider(
                         items: [
-                          for (int i = 0; i < recommandId.length; i++)
+                          for (int i = 0; i < descriptionList.length; i++)
                             SizedBox(
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.pushNamed(context, '/project');
                                 },
                                 child: ProjectCard(
-                                  id: recommandId[i],
+                                  title: titleList[i],
+                                  nickname: nicknameList[i],
+                                  dDay: dDayList[i],
+                                  description: descriptionList[i],
                                 ),
                               ),
                             ),
