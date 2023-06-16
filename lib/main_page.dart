@@ -22,12 +22,17 @@ class MainPage extends StatefulWidget {
 class _MainPage extends State<MainPage> {
   static Project? myProject = null;
   static List<String> recommandId = [];
+  static List<String> titleList = [];
+  static List<String> nicknameList = [];
+  static List<String> dDayList = [];
+  static List<String> descriptionList = [];
 
   @override
   void initState() {
     super.initState();
+
     String id = Session.get();
-    List<String> projectId = [];
+
     if (id != "") {
       UserApi.getUser(id).then((user) async {
         Map<String, List<String>> projects = user.project;
@@ -47,23 +52,27 @@ class _MainPage extends State<MainPage> {
         String field = user.spec[0].keys.first;
         int career = user.spec[0].values.first;
 
-        ProjectApi.getSameMinSpecId(field, career).then((projects) {
+        ProjectApi.getSameMinSpecId(field, career).then((recProjectId) {
           ProjectApi.getAllProjectIds().then((allProjectId) {
-            setState(() => projectId = projects);
-
-            if (projects.isEmpty) {
-              setState(() => projectId = allProjectId);
-            }
 
             setState(() {
+              // 추천 id 추가
               Random random = Random(DateTime.now().millisecond%100);
-              for (int i = 0; i < 3 && i < projectId.length; i++) {
-                int randNum = random.nextInt(projectId.length);
-                recommandId.add(projectId[randNum]);
+
+              for (int i = 0; i < recProjectId.length; i++) {
+                int randNum = random.nextInt(recProjectId.length);
+                recommandId.add(recProjectId[randNum]);
+                print("추천 id :" + recommandId[i]);
+              }
+              for(int i = 0; i < 3-recProjectId.length; i++){
+                int randNum = random.nextInt(allProjectId.length);
+                recommandId.add(allProjectId[randNum]);
                 print("추천 id :" + recommandId[i]);
               }
             });
           });
+
+
         });
       });
     }
