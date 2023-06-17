@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Color.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meetteam/Api/project_api.dart';
-import 'package:meetteam/Api/user_api.dart';
 
 class ProjectCard extends StatefulWidget {
   final String title;
