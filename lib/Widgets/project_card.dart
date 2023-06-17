@@ -19,16 +19,16 @@ class ProjectCard extends StatefulWidget {
   });
 
   @override
-  State<StatefulWidget> createState() => ProjectCardState(title, nickname, dDay, description);
+  State<StatefulWidget> createState() => _ProjectCardState(title, nickname, dDay, description);
 }
 
-class ProjectCardState extends State<ProjectCard> {
+class _ProjectCardState extends State<ProjectCard> {
   final String title;
   final String nickname;
   final String dDay;
   final String description;
 
-  ProjectCardState(this.title, this.nickname, this.dDay, this.description);
+  _ProjectCardState(this.title, this.nickname, this.dDay, this.description);
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class ProjectCardState extends State<ProjectCard> {
                     const BoxDecoration(color: CupertinoColors.systemGrey3),
               ),
               Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  margin: const EdgeInsets.fromLTRB(20, 0, 10, 0),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -98,7 +98,12 @@ class ProjectCardState extends State<ProjectCard> {
                         ),
                         Text(
                           description,
-                          style: TextStyle(fontSize: 13, color: Colors.white),
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.white,
+                              overflow: TextOverflow.ellipsis
+                          ),
                         )
                       ])),
             ]));
