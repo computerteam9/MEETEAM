@@ -26,7 +26,9 @@ class _ProjectCardState extends State<ProjectCard> {
   final String dDay;
   final String description;
 
-  _ProjectCardState(this.title, this.nickname, this.dDay, this.description);
+  _ProjectCardState(this.title, this.nickname, this.dDay, this.description){
+    print("dDay : " + dDay);
+  }
 
   @override
   Widget build(BuildContext context) {

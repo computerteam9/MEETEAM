@@ -66,16 +66,16 @@ class _MainPage extends State<MainPage> {
                   continue;
                 }
                 recId = recProjectId[randNum];
-                recProjectId.remove(recProjectId[randNum]);
                 print("추천 id 중 : ${recProjectId[randNum]}");
+                recProjectId.remove(recProjectId[randNum]);
               } else if (allProjectId.isNotEmpty) {
                 int randNum = random.nextInt(allProjectId.length);
                 if (recommandId.contains(allProjectId[randNum])) {
                   continue;
                 }
                 recId = allProjectId[randNum];
-                allProjectId.remove(allProjectId[randNum]);
                 print("모든 id 중 : ${allProjectId[randNum]}");
+                allProjectId.remove(allProjectId[randNum]);
               }
               if (recId != '') {
                 setState(() {
@@ -86,13 +86,14 @@ class _MainPage extends State<MainPage> {
                         titleList.add(project.title);
                         nicknameList.add(user.nickname);
                         dDayList.add(project.deadline
-                            .difference(DateTime.now())
+                            .difference(DateTime.now()).inDays
                             .toString());
                         descriptionList.add(project.description);
                       });
                     });
                   });
                 });
+                print("now : "  + DateTime.now().toString());
               }
             }
           });
