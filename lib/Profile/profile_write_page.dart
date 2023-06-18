@@ -66,7 +66,7 @@ class ProfileWrite extends State<ProfileWritePage> {
       TextEditingController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     String id = Session.get();
     UserApi.getUser(id).then((user) {
@@ -293,12 +293,14 @@ class ProfileWrite extends State<ProfileWritePage> {
                 }
                 // 프로필 수정하는 경우
                 else {
+                  Navigator.pop(context);
+                  // Navigator.pop(context);
                   //프로필 보는 페이지로 이동
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              ProfilePage(updatedData: updatedData)));
+                  // Navigator.pushReplacement(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) =>
+                  //             ProfilePage(updatedData: updatedData)));
                 }
               });
             },
