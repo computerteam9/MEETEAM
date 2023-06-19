@@ -82,10 +82,7 @@ class _ExplorerState extends State<ExplorerPage> {
                                               .map((e) => e.keys.first)
                                               .join(", ") +
                                           ' 개발자 모집중',
-                                      dDay: DateTime.now()
-                                          .difference(project.deadline)
-                                          .inDays
-                                          .toString(),
+                                      dDay: project.deadline.difference(DateTime.now()).inDays.toString(),
                                       color: CustomColor.color1,
                                     ));
                                   }

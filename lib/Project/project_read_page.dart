@@ -94,7 +94,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
         padding: EdgeInsets.all(30),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
               alignment: Alignment.topLeft,
               child: Text(
                 title,
@@ -119,7 +119,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
             overflow: TextOverflow.ellipsis,
           ),
           Container(
-            padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
             alignment: Alignment.topLeft,
             child: const Text(
               "리더",
@@ -158,11 +158,11 @@ class _ProjectReadPage extends State<ProjectReadPage> {
             ],
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
             alignment: Alignment.topLeft,
             child: Container(
               margin: EdgeInsets.only(top: 10),
-              height: 50,
+              height: 30,
               alignment: Alignment.topLeft,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -174,7 +174,7 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                         style: TextStyle(fontSize: 20),
                       ),
                       SizedBox(
-                        width: 120,
+                        width: 50,
                       ),
                       Text(
                         meetingWay == 0
@@ -295,53 +295,55 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                 width: 50,
                 alignment: Alignment.centerLeft,
                 decoration: const BoxDecoration(
-                    color: Colors.grey, shape: BoxShape.circle),
+                  color: Colors.grey,
+                  shape: BoxShape.circle,
+                ),
               ),
               Container(
-                  margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                  height: 50,
-                  width: 80,
-                  alignment: Alignment.topLeft,
-                  child: Text(_minSpec.isNotEmpty && _minSpec[0].keys.length > 1
-                      ? _minSpec[0].keys.elementAt(1)
-                      : '')),
+                margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                height: 50,
+                width: 80,
+                alignment: Alignment.topLeft,
+                child: Text(
+                  _minSpec.length > 1 ? _minSpec[1].keys.first : '',
+                ),
+              ),
               Container(
-                margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 height: 60,
                 width: 200,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                        child: Column(
-                      children: [
-                        Text("최소 경력"),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          height: 20,
-                          width: 50,
-                          alignment: Alignment.center,
-                          decoration: const BoxDecoration(
+                      child: Column(
+                        children: [
+                          Text("최소 경력"),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            height: 20,
+                            width: 50,
+                            alignment: Alignment.center,
+                            decoration: const BoxDecoration(
                               color: CustomColor.color1,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                _minSpec.isNotEmpty && _minSpec[0].values.length > 1
-                                    ? _minSpec[0].values.elementAt(1).toString()
-                                    : '',
-                                style: TextStyle(color: CustomColor.color3),
-                              ),
-                              Text(" 년차"),
-                            ],
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(width: 5),
+                                Text(
+                                  _minSpec.length > 1 && _minSpec[1].values.isNotEmpty
+                                      ? _minSpec[1].values.elementAt(0).toString()
+                                      : '',
+                                  style: TextStyle(color: CustomColor.color3),
+                                ),
+                                Text(" 년차"),
+                              ],
+                            ),
                           ),
-                        )
-                      ],
-                    )),
+                        ],
+                      ),
+                    ),
                     Column(
                       children: [
                         const Text("필요 기술"),
@@ -350,8 +352,10 @@ class _ProjectReadPage extends State<ProjectReadPage> {
                           height: 30,
                           width: 30,
                           decoration: const BoxDecoration(
-                              color: Colors.grey, shape: BoxShape.circle),
-                        )
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
                       ],
                     ),
                   ],
