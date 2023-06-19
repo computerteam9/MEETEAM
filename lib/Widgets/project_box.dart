@@ -8,8 +8,8 @@ class ProjectBox extends StatelessWidget {
   final String dDay;
   final Color color;
 
-
-  const ProjectBox({super.key,
+  const ProjectBox({
+    super.key,
     required this.title,
     required this.description,
     required this.tag,
@@ -18,74 +18,65 @@ class ProjectBox extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context){
-    return SizedBox(
+  Widget build(BuildContext context) {
+    return Container(
         child: GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/project');
-          },
-          child: Container(
-              height: 100,
-              margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    child: const ClipOval(
-                      child: Icon(
-                        Icons.person,
-                        size: 50,
+      onTap: () {
+        Navigator.pushNamed(context, '/project');
+      },
+      child: Container(
+          height: 100,
+          margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          decoration: BoxDecoration(
+              color: color, borderRadius: BorderRadius.circular(20)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: const ClipOval(
+                  child: Icon(
+                    Icons.person,
+                    size: 50,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      overflow: TextOverflow.ellipsis,
+                      title,
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        description,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        style: const TextStyle(
+                            height: 1.7, fontSize: 10, color: Colors.white),
                       ),
                     ),
-                  ),
-                  Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style:
-                          const TextStyle(fontSize: 15, color: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 160,
-                          child: Text(
-                            description,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: const TextStyle(
-                                height: 2, fontSize: 10, color: Colors.white),
-                          ),
-                        ),
-                        Text(
-                          tag,
-                          maxLines:3,
-                          overflow: TextOverflow.ellipsis,
-                          style:
-                          const TextStyle(fontSize: 8, color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    child: Text(
-                      "D - $dDay",
-                      style: const TextStyle(
-                          height: 1.2,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28,
-                          color: Colors.white),
-                    ),
-                  )
-                ],
-              )),
-        ));
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: Text(
+                  "D-$dDay",
+                  style: const TextStyle(
+                      height: 1.2,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white),
+                ),
+              )
+            ],
+          )),
+    ));
   }
 }

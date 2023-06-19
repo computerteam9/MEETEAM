@@ -60,19 +60,16 @@ class ProfileWrite extends State<ProfileWritePage> {
       TextEditingController();
   static final TextEditingController introduceController =
       TextEditingController();
-  static final TextEditingController activityController =
-      TextEditingController();
   static final TextEditingController blogUrlController =
       TextEditingController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     String id = Session.get();
     UserApi.getUser(id).then((user) {
       nicknameController.text = user.nickname;
       introduceController.text = user.introduction;
-      // activityController.text = user. // user에는 기타를 받지 않음
       blogUrlController.text = user.blogUrl;
     });
   }
@@ -210,15 +207,6 @@ class ProfileWrite extends State<ProfileWritePage> {
                       }),
                 ],
               ),
-              Container(
-                child: TextField(
-                    controller: activityController,
-                    minLines: 1,
-                    maxLines: 3,
-                    decoration: InputDecoration(
-                      labelText: '기타',
-                    )),
-              ),
             ]),
           ),
           Container(
@@ -293,12 +281,14 @@ class ProfileWrite extends State<ProfileWritePage> {
                 }
                 // 프로필 수정하는 경우
                 else {
+                  Navigator.pop(context);
+                  // Navigator.pop(context);
                   //프로필 보는 페이지로 이동
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              ProfilePage(updatedData: updatedData)));
+                  // Navigator.pushReplacement(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) =>
+                  //             ProfilePage(updatedData: updatedData)));
                 }
               });
             },
