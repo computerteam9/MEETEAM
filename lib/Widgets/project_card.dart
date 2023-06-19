@@ -1,38 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:meetteam/Color.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meetteam/Api/project_api.dart';
-import 'package:meetteam/Api/user_api.dart';
 
 class ProjectCard extends StatefulWidget {
-  final String id;
+  final String title;
+  final String nickname;
+  final String dDay;
+  final String description;
 
   const ProjectCard({
     super.key,
-    required this.id,
+    required this.title,
+    required this.nickname,
+    required this.dDay,
+    required this.description
   });
 
   @override
-  State<StatefulWidget> createState() => ProjectCardState(id);
+  State<StatefulWidget> createState() => _ProjectCardState(title, nickname, dDay, description);
 }
 
-class ProjectCardState extends State<ProjectCard> {
-  static String title = '';
-  static String nickname = '';
-  static String dDay = '';
-  static String description = '';
+class _ProjectCardState extends State<ProjectCard> {
+  final String title;
+  final String nickname;
+  final String dDay;
+  final String description;
 
-  ProjectCardState(String id) {
-    ProjectApi.getProject(id).then((project) {
-      UserApi.getUser(project.leaderId).then((user) {
-        setState(() {
-          title = project.title;
-          dDay = project.deadline.difference(DateTime.now()).toString();
-          description = project.description;
-          nickname = user.nickname;
-        });
-      });
-    });
+  _ProjectCardState(this.title, this.nickname, this.dDay, this.description){
+    print("dDay : " + dDay);
   }
 
   @override
@@ -90,7 +85,7 @@ class ProjectCardState extends State<ProjectCard> {
                     const BoxDecoration(color: CupertinoColors.systemGrey3),
               ),
               Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  margin: const EdgeInsets.fromLTRB(20, 0, 10, 0),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -103,7 +98,12 @@ class ProjectCardState extends State<ProjectCard> {
                         ),
                         Text(
                           description,
-                          style: TextStyle(fontSize: 13, color: Colors.white),
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.white,
+                              overflow: TextOverflow.ellipsis
+                          ),
                         )
                       ])),
             ]));

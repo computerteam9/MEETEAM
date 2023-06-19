@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:meetteam/Appbar/main_appbar.dart';
 import 'package:meetteam/Color.dart';
+import 'package:meetteam/Model/user.dart';
 import 'package:meetteam/Widgets/project_card.dart';
 import 'package:meetteam/Widgets/project_box.dart';
 import 'package:meetteam/Api/session.dart';
@@ -22,12 +23,17 @@ class MainPage extends StatefulWidget {
 class _MainPage extends State<MainPage> {
   static Project? myProject = null;
   static List<String> recommandId = [];
+  static List<String> titleList = [];
+  static List<String> nicknameList = [];
+  static List<String> dDayList = [];
+  static List<String> descriptionList = [];
 
   @override
   void initState() {
     super.initState();
+
     String id = Session.get();
-    List<String> projectId = [];
+
     if (id != "") {
       UserApi.getUser(id).then((user) async {
         Map<String, List<String>> projects = user.project;
@@ -47,22 +53,49 @@ class _MainPage extends State<MainPage> {
         String field = user.spec[0].keys.first;
         int career = user.spec[0].values.first;
 
-        ProjectApi.getSameMinSpecId(field, career).then((projects) {
+        ProjectApi.getSameMinSpecId(field, career).then((recProjectId) async {
           ProjectApi.getAllProjectIds().then((allProjectId) {
-            setState(() => projectId = projects);
+            // 추천 id 추가
+            Random random = Random(DateTime.now().minute % 100);
 
-            if (projects.isEmpty) {
-              setState(() => projectId = allProjectId);
-            }
-
-            setState(() {
-              Random random = Random(DateTime.now().millisecond%100);
-              for (int i = 0; i < 3 && i < projectId.length; i++) {
-                int randNum = random.nextInt(projectId.length);
-                recommandId.add(projectId[randNum]);
-                print("추천 id :" + recommandId[i]);
+            while (recommandId.length < 3) {
+              String recId = '';
+              if (recProjectId.isNotEmpty) {
+                int randNum = random.nextInt(recProjectId.length);
+                if (recommandId.contains(recProjectId[randNum])) {
+                  continue;
+                }
+                recId = recProjectId[randNum];
+                print("추천 id 중 : ${recProjectId[randNum]}");
+                recProjectId.remove(recProjectId[randNum]);
+              } else if (allProjectId.isNotEmpty) {
+                int randNum = random.nextInt(allProjectId.length);
+                if (recommandId.contains(allProjectId[randNum])) {
+                  continue;
+                }
+                recId = allProjectId[randNum];
+                print("모든 id 중 : ${allProjectId[randNum]}");
+                allProjectId.remove(allProjectId[randNum]);
               }
-            });
+              if (recId != '') {
+                setState(() {
+                  recommandId.add(recId);
+                  ProjectApi.getProject(recId).then((project) {
+                    UserApi.getUser(project.leaderId).then((user) {
+                      setState(() {
+                        titleList.add(project.title);
+                        nicknameList.add(user.nickname);
+                        dDayList.add(project.deadline
+                            .difference(DateTime.now()).inDays
+                            .toString());
+                        descriptionList.add(project.description);
+                      });
+                    });
+                  });
+                });
+                print("now : "  + DateTime.now().toString());
+              }
+            }
           });
         });
       });
@@ -131,14 +164,17 @@ class _MainPage extends State<MainPage> {
                     // 추천 프로젝트 리스트
                     CarouselSlider(
                         items: [
-                          for (int i = 0; i < recommandId.length; i++)
+                          for (int i = 0; i < descriptionList.length; i++)
                             SizedBox(
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.pushNamed(context, '/project');
                                 },
                                 child: ProjectCard(
-                                  id: recommandId[i],
+                                  title: titleList[i],
+                                  nickname: nicknameList[i],
+                                  dDay: dDayList[i],
+                                  description: descriptionList[i],
                                 ),
                               ),
                             ),
